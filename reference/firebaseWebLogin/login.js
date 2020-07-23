@@ -20,7 +20,7 @@ firebase.auth().onAuthStateChanged(firebaseUser=> {
   else {
     console.log('not logged in');
   }
-}
+};
 
 function login(){
 
@@ -35,8 +35,8 @@ function login(){
     window.alert("Error : " + errorMessage);
 
   };
-
-}
+    
+};
 
 function logout(){
   firebase.auth().signOut();
