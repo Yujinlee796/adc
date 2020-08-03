@@ -1,21 +1,22 @@
 <html>
 <head>
-  <title>Firebase Login</title>
+  <title>Fittogether login</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
+  <script src="login.js"></script>
 </head>
 
 <body>
 
   <div id="login_div" class="main-div">
-    <h3>Firebase Web login Example</h3>
+    <h3>Fittogether 로그인</h3>
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
     <button onclick="login()">Login to Account</button>
   </div>
 
-<!--
+<!-- login 후 활성화 시킬 것
   <div id="user_div" class="loggedin-div">
     <h3>Welcome User</h3>
     <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
@@ -23,9 +24,9 @@
   </div>
 -->
 
+
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<!--  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
--->
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
 
   <script>
   // Your web app's Firebase configuration
@@ -43,7 +44,6 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   </script>
-  <script src="./login.js"></script>
 
 </body>
 </html>
