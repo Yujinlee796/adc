@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>로그인 ｜ 핏투게더</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
                 
             <!-- STYLE CSS -->
-        <link rel="stylesheet" href="design_files/css/style.css">
+        <link rel="stylesheet" href="design_files/css/styleLogIn.css">
 
             <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -25,39 +25,40 @@
     </head>
 
     <body>
-        <div class="wrapper" style="background-image: url('design_files/images/loginback.jpg');">
+        <div class="wrapper" style="background-image: url('design_files/images/thunderstorm.jpg');">
             <div class="inner">
                 <div class="image-holder">
-                    <img src="design_files/images/login.jpg">
+                    <a href="../intro/index.html"><img src="design_files/images/logInMainImage.png"></a>
                 </div>
                 
                 <form action="">
-                    <h3>Login</h3>
+                    <h3>로그인</h3>
                     <div class="form-wrapper">
-                        <input id="email" type="email" placeholder="Email Address" class="form-control">
+                        <input id="email" type="email" placeholder="  Email" class="form-control">
                         <i class="zmdi zmdi-email"></i>
                     </div>
                     <div class="form-wrapper">
-                        <input id="password" type="password" placeholder="Password" class="form-control">
+                        <input id="password" type="password" placeholder="  비밀번호" class="form-control">
                         <i class="zmdi zmdi-lock"></i>
                     </div>
                     <div class="form-group container-login100-form-btn">
                         <button id="btn-login" type="button">
-                            Login
+                            로그인
                             <i class="zmdi zmdi-arrow-right"></i>
                         </button>
                     </div>
                     <div class="w-full text-center p-t-27 p-b-239">
-                        <span class="text-muted">
-                            Forgot
-                        </span>
                         <a href="forgetPassword.html" class="text-dark">
-                                user name / password?
+                            Email / 비밀번호
                         </a>
+                        <span class="text-muted">
+                            를 잊어버리셨나요?
+                        </span>
+                        
                     </div>
-                    <div class="w-full text-center" style="margin-top: 66%; font-size: 15px;">
+                    <div class="w-full text-center" style="margin-top: 52%; font-size: 15px;">
                         <a href="signUp.html" class="text-dark">
-                            Not have a account? Sign Up
+                            계정이 없으신가요?
                         </a>
                     </div>
                 </form>

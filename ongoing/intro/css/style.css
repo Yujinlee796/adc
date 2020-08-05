@@ -160,14 +160,14 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-#hero .actions a {
+
+#hero .actions button {
   font-family: "InfinitySans-RegularA1";
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 8px 20px;
   border-radius: 2px;
   transition: 0.5s;
   margin: 10px;
@@ -182,6 +182,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 15px;
   border-radius: 2px;
   height: 40px;
+  margin-right: 15px;
 }
 
 #hero .btn-get-started:hover {
