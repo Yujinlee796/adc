@@ -7,19 +7,30 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@font-face {
+  font-family: 'InfinitySans-RegularA1';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face { font-family: 'InfinitySans-BoldA1';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal; }
+
 body {
   background: #fff;
   color: #666666;
-  font-family: "Open Sans", sans-serif;
+  font-family: "InfinitySans-RegularA1";
 }
 
 a {
-  color: #BCE55C;
+  color: #1d64be;
   transition: 0.5s;
 }
 
 a:hover, a:active, a:focus {
-  color: #BCE55C;
+  color: #1d64be;
   outline: none;
   text-decoration: none;
 }
@@ -30,7 +41,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "InfinitySans-RegularA1";
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
@@ -75,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-to-top:hover {
-  background: #BCE55C;
+  background: #1d64be;
   color: #fff;
 }
 
@@ -86,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   display: table;
   width: 100%;
   height: 100vh;
-  background: url(../img/IntroBackground.png) top center;
+  background: url(../img/introBackground.jpg) top center;
   background-size: cover;
 }
 
@@ -150,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .actions a {
-  font-family: "Raleway", sans-serif;
+  font-family: "InfinitySans-RegularA1";
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
@@ -164,9 +175,13 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .btn-get-started {
   width: 120px;
-  background: #9FC93C;
-  border: 2px solid #9FC93C;
+  background: #1d64be;
+  border: 2px solid #1d64be;
   color: #fff;
+  font-family: "InfinitySans-RegularA1";
+  font-size: 15px;
+  border-radius: 2px;
+  height: 40px;
 }
 
 #hero .btn-get-started:hover {
@@ -174,18 +189,31 @@ h1, h2, h3, h4, h5, h6 {
   background: none;
   border: 2px solid #fff;
   color: #fff;
+  font-family: "InfinitySans-RegularA1";
+  font-size: 15px;
+  border-radius: 2px;
+  height: 40px;
 }
 
 #hero .btn-services {
   width: 120px;
   border: 2px solid #fff;
   color: #fff;
+  font-family: "InfinitySans-RegularA1";
+  background: none;
+  font-size: 15px;
+  border-radius: 2px;
+  height: 40px;
 }
 
 #hero .btn-services:hover {
   width: 120px;
-  background: #9FC93C;
-  border: 2px solid #9FC93C;
+  background: #1d64be;
+  border: 2px solid #1d64be;
+  font-family: "InfinitySans-RegularA1";
+  font-size: 15px;
+  border-radius: 2px;
+  height: 40px;
 }
 
 /*--------------------------------------------------------------
@@ -322,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a:hover, .nav-menu li:hover > a, .nav-menu .menu-active > a {
-  color: #CEF279;
+  color: #1d64be;
 }
 
 .nav-menu ul {
@@ -430,11 +458,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #mobile-nav ul .menu-has-children i.fa-chevron-up {
-  color: #CEF279;
+  color: #1d64be;
 }
 
 #mobile-nav ul .menu-item-active {
-  color: #CEF279;
+  color: #1d64be;
 }
 
 #mobile-body-overly {
@@ -482,7 +510,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .section-title-divider {
   width: 50px;
   height: 3px;
-  background: #BCE55C;
+  background: #1d64be;
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -520,12 +548,14 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #333;
   font-weight: 700;
   font-size: 28px;
+  margin-bottom: 35px;
 }
 
 #about .about-text {
   line-height: 26px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
+
 
 #about .about-text:last-child {
   margin-bottom: 0;
@@ -549,7 +579,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 16px;
   border-radius: 50%;
   transition: 0.5s;
-  border: 1px solid #03C4EB;
+  border: 1px solid #1d64be;
 }
 
 #services .service-icon i {
@@ -620,8 +650,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #subscribe .subscribe-btn:hover {
-  background: #CEF279;
-  border: 2px solid #CEF279;
+  background: #1d64be;
+  border: 2px solid #1d64be;
 }
 
 /* Portfolio Section
