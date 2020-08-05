@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>lets fittogether</title>
+  <script src="makingRoom.js"></script>
+</head>
+
+<body>
+  <h3>fittogether 방 만들기</h3>
+  <input placeholder="방 이름..." id="room_name" />
+  <input placeholder="운동목표.." id="room_goal" />
+
+  //user 검색하고 초대하는 기능 필요
+  <input placeholder="userId.." id="room_users"/>
+  <input type="datetime-local" placeholder="오늘날짜.." id="room_date"/>
+
+  <button onclick="makingRoom()">방 만들기</button>
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCqHKmX1adJ9qCPMnSWyP1p5JRzEruoe1E",
+    authDomain: "fittogether-d628a.firebaseapp.com",
+    databaseURL: "https://fittogether-d628a.firebaseio.com",
+    projectId: "fittogether-d628a",
+    storageBucket: "fittogether-d628a.appspot.com",
+    messagingSenderId: "169218684132",
+    appId: "1:169218684132:web:3134f8df18470da201a8f1",
+    measurementId: "G-2MK17W9C5C"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  </script>
+
+</body>
+</html>
