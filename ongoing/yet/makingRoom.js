@@ -1,14 +1,16 @@
 
 function makingRoom(userId,goal,date) {
-  var roomName = getElementById("room_name")
-  var roomGoal = getElementById("room_goal")
-  var userId = getElementById("room_users")
-  var roomDate = getElementById("room_date")
+  var roomName = document.getElementById("room_name").value;
+  var roomGoal = document.getElementById("room_goal").value;
+  var userId = document.getElementByTagName("room_users").value;
+  var roomDate = document.getElementById("room_date").value;
 
   firebase.database().ref('rooms/' + cnt).set({
     name : roomName,
     users : userId,
-    goals : room,
+    goals : roomGoal,
     startDate : roomDate
   });
+
+  cnt++;
 }

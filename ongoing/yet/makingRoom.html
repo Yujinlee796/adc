@@ -1,22 +1,25 @@
 <html>
 <head>
-  <title>lets fittogether</title>
+  <title>letsfittogether</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8"/>
   <script src="makingRoom.js"></script>
 </head>
 
 <body>
   <h3>fittogether 방 만들기</h3>
-  <input placeholder="방 이름..." id="room_name" />
+  <input placeholder="방 이름 ..." id="room_name" />
   <input placeholder="운동목표.." id="room_goal" />
 
-  //user 검색하고 초대하는 기능 필요
+  <!--user 검색하고 초대하는 기능 필요-->
   <input placeholder="userId.." id="room_users"/>
   <input type="datetime-local" placeholder="오늘날짜.." id="room_date"/>
 
   <button onclick="makingRoom()">방 만들기</button>
-
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+
 
   <script>
   // Your web app's Firebase configuration
