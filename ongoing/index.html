@@ -1,9 +1,12 @@
+<!--firebase config 추가 안 된 상태-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>Fit Together</title>
+  <title>핏투게더</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -22,6 +25,9 @@
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="">
 
+  <!--모바일도 잘보이게-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
   <link href="favicon.ico" rel="shortcut icon">
 
@@ -29,14 +35,14 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="intro/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate-css/animate.min.css" rel="stylesheet">
+  <link href="intro/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="intro/lib/animate-css/animate.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="intro/css/styleindex.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: Imperial
@@ -47,17 +53,28 @@
 </head>
 
 <body>
-<!-- Firebase를 위한 코드
- The core Firebase JS SDK is always required and must be listed first
-<script src="/__/firebase/7.16.1/firebase-app.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
 
-TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries
-<script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
 
-Initialize Firebase
-<script src="/__/firebase/init.js"></script>
--->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCqHKmX1adJ9qCPMnSWyP1p5JRzEruoe1E",
+    authDomain: "fittogether-d628a.firebaseapp.com",
+    databaseURL: "https://fittogether-d628a.firebaseio.com",
+    projectId: "fittogether-d628a",
+    storageBucket: "fittogether-d628a.appspot.com",
+    messagingSenderId: "169218684132",
+    appId: "1:169218684132:web:3134f8df18470da201a8f1",
+    measurementId: "G-2MK17W9C5C"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+</script>
+
 
 
 
@@ -77,8 +94,9 @@ Initialize Firebase
         <h1>FIT TOGETHER</h1>
         <h2>세상에 없던 새로운 소셜 홈트레이닝 서비스</h2>
         <div class="actions">
-          <a href="signUp.html" class="btn-get-started">Sign Up</a>
-          <a href="signin.html" class="btn-services">Log In</a>
+          <a href="login/signin.html"><button class="btn-get-started">로그인</button></a>
+          <a href="login/signUp.html"><button class="btn-get-started">회원가입</button></a>
+          <button id="information" class="btn-services">더 알아보기</button>
         </div>
       </div>
     </div>
@@ -86,7 +104,7 @@ Initialize Firebase
 
 
 
-
+  
 
   <!--==========================
   About Section
@@ -105,17 +123,11 @@ Initialize Firebase
       <div class="row">
 
         <div class="col-lg-6 about-img">
-          <img src="img/about-img.jpg" alt="">
+          <img src="intro/img/fightingImg.png" alt="">
         </div>
 
         <div class="col-md-6 about-content">
           <h2 class="about-title">지루한 홈트레이닝, 친구와 함께 해 보세요!</h2>
-          <p class="about-text">
-            끝나지 않는 지겨운 운동. 3일도 채 가지 않는 심지 약한 결심. 거울 속 변화 없는 나의 모습.
-          </p>
-          <p class="about-text">
-            이 모든 것에 지치지 않으셨나요?
-          </p>
           <p class="about-text">
             핏투게더는 지루한 운동을 당신의 친구들과 함께 할 수 있는 플랫폼을 제공합니다.
           </p>
@@ -126,58 +138,15 @@ Initialize Firebase
             재미있는 내기를 설정하여 불성실한 참여를 막을 수 있답니다.
           </p>
           <p class="about-text">
-            바닥난 끈기에 포기하고 싶어질 때는 '한 턱 쏘는' 당신의 모습이 당신을 일으킬 거예요.
+            바닥난 끈기에 포기하고 싶어질 때는 ' 한 턱 쏘는 ' 당신의 모습이 당신을 일으킬 거예요.
           </p>
           <p class="about-text">
-            '운동은 내일부터'라고 생각하고 있나요?
+            ' <span style="font-style: italic;">운동은 내일부터</span>  ' 라고 생각하고 있나요?
           </p>
           <p class="about-text">
-            지금 바로 시작합시다!
+            <span style="font-weight: bold;">지금 바로 시작합시다!</span>
           </p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!--==========================
-  Contact Section
-  ============================-->
-  <section id="contact">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="section-title">핏투게더 소리함</h3>
-          <div class="section-title-divider"></div>
-          <p class="section-description">저희 핏투게더에게 하고 싶은 말씀을 무엇이든 보내주세요. 서비스 개선에 큰 도움이 됩니다.</p>
-        </div>
-      </div>
-
-        <div class="col-md-5 col-md-push-2">
-          <div class="form">
-            <div id="sendmessage">소중한 말씀 감사합니다.</div>
-            <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
-              <div class="form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="ID (닉네임)" data-rule="minlen:4" data-msg="두 글자 이상 입력해 주세요." />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="이메일" data-rule="email" data-msg="가입 시 기입한 이메일을 입력해 주세요." />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="제목" data-rule="minlen:4" data-msg="제목을 작성해 주세요." />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="소리를 작성해 주세요."></textarea>
-                <div class="validation"></div>
-              </div>
-              <div class="text-center"><button type="submit">소리 보내기</button></div>
-            </form>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -190,7 +159,7 @@ Initialize Firebase
       <div class="row">
         <div class="col-md-12">
           <div class="copyright">
-            &copy; Copyright <strong>ADC Cor</strong>. All Rights Reserved
+            &copy; Copyright <strong>ADC Cor</strong>. All Rights Reserved 
           </div>
           <div class="credits">
             <!--
@@ -210,19 +179,40 @@ Initialize Firebase
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- Required JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/superfish/hoverIntent.js"></script>
-  <script src="lib/superfish/superfish.min.js"></script>
-  <script src="lib/morphext/morphext.min.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/stickyjs/sticky.js"></script>
-  <script src="lib/easing/easing.js"></script>
+  <script src="intro/lib/jquery/jquery.min.js"></script>
+  <script src="intro/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="intro/lib/superfish/hoverIntent.js"></script>
+  <script src="intro/lib/superfish/superfish.min.js"></script>
+  <script src="intro/lib/morphext/morphext.min.js"></script>
+  <script src="intro/lib/wow/wow.min.js"></script>
+  <script src="intro/lib/stickyjs/sticky.js"></script>
+  <script src="intro/lib/easing/easing.js"></script>
 
   <!-- Template Specisifc Custom Javascript File -->
-  <script src="custom.js"></script>
+  <script src="intro/js/custom.js"></script>
 
-  <script src="contactform/contactform.js"></script>
+  <script src="intro/contactform/contactform.js"></script>
+
+
+  <!--알아보기 태그-->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+    <script>
+        $(document).ready(function(){
+
+            $('#information').click(function(){
+
+                var offset = $('#about').offset(); //선택한 태그의 위치를 반환
+
+                    //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+                $('html').animate({scrollTop : offset.top}, 700);
+
+            });
+
+        });
+    </script>
 
 
 </body>
