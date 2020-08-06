@@ -62,7 +62,8 @@
 
         <script src="js/login.js"></script>
 
-        <!--회원가입하면 데이터베이스에 유저 정보 변수가 생기는 거임-->
+        <!--유저가 accountsettings을 했는지 확인하고 안했으면 어카운팅세팅html로 넘어가라는거 같은디-->
+        <!--이 코드를 signin에도 추가해볼것. 회원가입만하고, 어카운팅세팅안한 유저가 로그인했을때 다시 세팅할수있도록-->
         <script>
             firebase.auth().onAuthStateChanged(function(user)
             {
@@ -74,7 +75,7 @@
                     {
                         if(snapshot.val())
                         {
-                            window.location.href = "MainPage.html";
+                            window.location.href = "../main/mainPage.html";
                         }
                         else
                         {

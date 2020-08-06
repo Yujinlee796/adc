@@ -110,12 +110,15 @@ $("#btn-resetPassword").click(function()
 });
 
 // logout
+/*
 $("#btn-logout").click(function()
 {
    firebase.auth().signOut();
 });
+*/
 
-// update
+// update(account settings) 원래 있던것
+/*
 $("#btn-update").click(function()
 {
     var phone = $("#phone").val();
@@ -166,3 +169,59 @@ $("#btn-update").click(function()
         window.alert("Form is incomplete. Please fill out all fields.");
     }
 });
+*/
+/*
+// nickname settings
+$("#btn-update").click(function()
+{
+    var nickName = $("#nickName").val();
+    //var gender = $("#gender").val();
+    //var age = $("#age").val();
+
+    var rootRef = firebase.database().ref().child("Users");
+    var userID = firebase.auth().currentUser.uid;
+    var usersRef = rootRef.child(userID);
+
+    if(nickName != "")
+    {
+        $("#nickName").removeClass("is-invalid");
+
+        if(nickName값이 다른 유저의 닉네임 테이버베이스에 있으면)
+        {
+            $("#main-desc").addClass("is-invalid");
+            return;
+        }
+        else
+        {
+            var userData =
+            {
+                "nickName": nickName,
+                "gender": gender,
+                "age": age,
+            };
+
+            usersRef.set(userData, function(error)
+            {
+                if(error)
+                {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+
+                    console.log(errorCode);
+                    onsole.log(errorMessage);
+
+                    window.alert("Message: " + errorMessage);
+                }
+                else
+                {
+                    window.location.href = "MainPage.html";
+                }
+            });
+        }
+    }
+    else
+    {
+        window.alert("Form is incomplete. Please fill out all fields.");
+    }
+});
+*/
