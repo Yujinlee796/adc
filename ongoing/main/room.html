@@ -37,6 +37,14 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 </head>
 
 <body>
@@ -231,10 +239,12 @@
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="js/mainRoom.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!--signout 상태이면 쫓겨나는 코드-->
+  <!-- 이 html 전용 JS File -->
+  <script src="js/mainRoom.js"></script>
+  
+  <!-- signout 상태이면 쫓겨나는 코드 -->
   <script>
     firebase.auth().onAuthStateChanged(function(user)
     {

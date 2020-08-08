@@ -170,34 +170,22 @@ $("#btn-update").click(function()
     }
 });
 */
-/*
+
 // nickname settings
 $("#btn-update").click(function()
 {
     var nickName = $("#nickName").val();
-    //var gender = $("#gender").val();
-    //var age = $("#age").val();
 
     var rootRef = firebase.database().ref().child("Users");
     var userID = firebase.auth().currentUser.uid;
     var usersRef = rootRef.child(userID);
-
-    if(nickName != "")
-    {
-        $("#nickName").removeClass("is-invalid");
-
-        if(nickName값이 다른 유저의 닉네임 테이버베이스에 있으면)
-        {
-            $("#main-desc").addClass("is-invalid");
-            return;
-        }
-        else
-        {
+    
+    rootRef.orderByChild('nickName').equalTo(nickName).once('value', function(snapshot){
+        if (snapshot.val() === null) {
+            // 중복되지않은 닉네임
             var userData =
             {
                 "nickName": nickName,
-                "gender": gender,
-                "age": age,
             };
 
             usersRef.set(userData, function(error)
@@ -214,14 +202,15 @@ $("#btn-update").click(function()
                 }
                 else
                 {
-                    window.location.href = "MainPage.html";
+                    window.location.href = "../main/mainPage.html";
                 }
             });
         }
-    }
-    else
-    {
-        window.alert("Form is incomplete. Please fill out all fields.");
-    }
+        else
+        {
+            // 중복된 닉네임
+            //class를 추가해서 경고 문구가 뜨도록 하는 코드
+            $("#nickName").addClass("is-invalid");
+        }  
+    }); 
 });
-*/

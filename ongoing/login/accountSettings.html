@@ -36,7 +36,7 @@
                         <input id="nickName" type="text" placeholder="닉네임" class="form-control">
                     </div>
                     <div class="invalid-feedback">
-                        Please write some description first.
+                        중복된 닉네임입니다.
                     </div>
                     <!--
                     <div class="form-wrapper">
@@ -99,6 +99,7 @@
 
 
         <script src="js/login.js"></script>
+
         <script>
             firebase.auth().onAuthStateChanged(function(user)
             {
