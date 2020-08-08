@@ -28,6 +28,20 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/styleRoom.css" rel="stylesheet">
 
+  <script type="text/javascript">
+    function openGoalPopup() {
+      var goalPopupUrl = "roomGoalPopup.html"
+      var goalPopupOption = "width=570, height=250, resizable = no, scrollbars = no"
+      window.open(goalPopupUrl, '', goalPopupOption, '');
+    }
+
+    function openPunishmentPopup() {
+      var punishmentPopupUrl = "roomPunishmentPopup.html"
+      var punishmentPopupOption = "width=570, height=250, resizable = no, scrollbars = no"
+      window.open(punishmentPopupUrl, '', punishmentPopupOption, '');
+    }
+  </script>
+
 
   <!-- =======================================================
   * Template Name: Hidayah - v2.2.0
@@ -57,7 +71,7 @@
               <li><a href="#services">방 만들기</a></li>
               <li><a href="#portfolio">방 목록</a></li>
               <li><a href="#team">내 정보</a></li>
-              <li><a href="blog.html">로그아웃</a></li>
+              <li><a id="btn-logout" href="#">로그아웃</a></li>
               <!--<li class="drop-down"><a href="">Drop Down</a>
                 <ul>
                   <li><a href="#">Drop Down 1</a></li>
@@ -86,33 +100,85 @@
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
+    <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-      <!--<ol class="carousel-indicators" id="hero-carousel-indicators"></ol>-->
+        
 
-      <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
-              <div class="carousel-container">
-                <p class="goal" id="box">한 달 동안 하루 1회 골반 스트레칭
-                  <img id="editPencil" style="width: 18px; height: 18px;" src="assets/img/editPencil.png">
-                </p>
-                <p class="punishment" id="box">못 한 날마다 보드게임 15분 누적</p>
-                <p class="ranking" id="box">랭킹</p>
-              </div>
-              
-              <div class="today">
-                <p class="currentResult">오늘의 달성 상황</p>
-                <p style="font-size: 20px;">유진 성공 · 다은 성공 · 채영 성공</p>
-              </div>
+          
+          <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
+               
+                <div class="carousel-container">
+                  <h1 id="roomTitle">생리통 뿌시기</h1> 
+                  <div class="boxes">
+                    <p class="goal" id="box">
+                      
+                      <span id="goalText">한 달 동안 하루 1회 골반 스트레칭</span>
+                      <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
+                    </p>
+                    
+                    <p class="punishment" id="box">
+                      
+                      <span id="punishmentText">못 한 날마다 보드게임 15분 누적</span>
+                      <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
+                    </p>
+                    
+                    <p class="ranking" id="box">랭킹</p>
+                  </div>
+                </div>
+                
+                <div class="today">
+                  <div class="todayContents">
+                    <h2 style="color: #428bca; margin-bottom: 30px;"> <span id="quotation">"</span> 내기 종료까지 D-29 <span id="quotation">"</span></h2>
+                    <p style="margin-bottom: 8px;" class="currentResult">오늘의 달성 상황</p>
+                    <p style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</p>
+                    <table class="table">
+                      <tr>
+                        <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림--> <img id="profileImg" src="assets/img/charCat.png" style="width: 250px;"> </td>
+                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--오늘 날짜--> <span style="position: relative; top: 15px;">2020.08.08.</span></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--유저이름--> <span style="position: relative; top: 15px;">luvchaeng</span></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td style="border-top: none;">
+                          <!--성공 실패 버튼-->
+                          <button onclick="successImg()" id="resultBtn" class="firSec">성공</button>
+                          <button onclick="failImg()" id="resultBtn" class="firSec">포기</button>
+                          <button onclick="reset()" id="resultBtn">리셋</button>
+                        </td>
+                        <script>
+                          function successImg() {
+                            document.getElementById("profileImg").src = "assets/img/charCatSuccess.png";
+                          }
+                          function failImg() {
+                            document.getElementById("profileImg").src = "assets/img/charCatFail.png"
+                          }
+                          function reset() {
+                            document.getElementById("profileImg").src = "assets/img/charCat.png"
+                          }
+                        </script>
+                      </tr>
+
+                    </table>
+                    
+                    
+                  </div>
+                </div>
+          </div>
+
         </div>
-
       </div>
-    </div>
-
   </section><!-- End Hero -->
 
 
@@ -157,6 +223,16 @@
   <!-- Template Main JS File -->
   <script src="assets/js/mainRoom.js"></script>
 
+  <!--signout 상태이면 쫓겨나는 코드-->
+  <script>
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+      if(!user)
+      {
+        window.location.href = "../index.html";
+      }
+    });
+  </script>
 </body>
 
 </html>
