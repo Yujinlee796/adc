@@ -28,19 +28,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/styleRoom.css" rel="stylesheet">
 
-  <script type="text/javascript">
-    function openGoalPopup() {
-      var goalPopupUrl = "roomGoalPopup.html"
-      var goalPopupOption = "width=570, height=250, resizable = no, scrollbars = no"
-      window.open(goalPopupUrl, '', goalPopupOption, '');
-    }
-
-    function openPunishmentPopup() {
-      var punishmentPopupUrl = "roomPunishmentPopup.html"
-      var punishmentPopupOption = "width=570, height=250, resizable = no, scrollbars = no"
-      window.open(punishmentPopupUrl, '', punishmentPopupOption, '');
-    }
-  </script>
+  
 
 
   <!-- =======================================================
@@ -127,7 +115,14 @@
                       <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
                     </p>
                     
-                    <p class="ranking" id="box">랭킹</p>
+                    <p class="ranking" id="box">랭킹
+                      <br>
+                        <script type="text/javascript" src="js/mainRoom.js">
+                          document.write(todayScore);
+                          console.log(todayScore);
+                        </script>
+                    </p>
+                    
                   </div>
                 </div>
                 
@@ -138,8 +133,33 @@
                     <p style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</p>
                     <table class="table">
                       <tr>
-                        <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림--> <img id="profileImg" src="assets/img/charCat.png" style="width: 250px;"> </td>
-                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--오늘 날짜--> <span style="position: relative; top: 15px;">2020.08.08.</span></td>
+                        <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
+                          <img id="profileImg" src="assets/img/charCat.png" style="width: 250px;"> </td>
+                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--오늘 날짜-->
+                        <span style="position: relative; top: 15px;">
+                        <script type="text/javascript">
+                          //현재 날짜 표시 코드, 로컬 날짜 표시됨
+                          var d = new Date();
+
+                          var currentYear = d.getFullYear();
+
+                          if (d.getMonth()+1 >= 10) {
+                            var currentMonth = (d.getMonth()+1);
+                          }
+                          else {
+                            var currentMonth = '0'+(d.getMonth()+1);
+                          };
+
+                          if (d.getDate() >= 10) {
+                            var currentDate = d.getDate();
+                          }
+                          else {
+                            var currentDate = '0'+d.getDate();
+                          }
+                          //화면에 출력
+                          document.write(currentYear + '.' + currentMonth + '.' + currentDate + '.');
+                        </script>
+                        </span></td>
 
                       </tr>
 
@@ -153,21 +173,11 @@
 
                         <td style="border-top: none;">
                           <!--성공 실패 버튼-->
-                          <button onclick="successImg()" id="resultBtn" class="firSec">성공</button>
-                          <button onclick="failImg()" id="resultBtn" class="firSec">포기</button>
-                          <button onclick="reset()" id="resultBtn">리셋</button>
+                          <button onclick="successImg(); plusOne()" id="resultBtn" class="firSec">성공</button>
+                          <button onclick="failImg(); giveUp()" id="resultBtn" class="firSec">포기</button>
+                          <button onclick="reset(); resetScore()" id="resultBtn">리셋</button>
                         </td>
-                        <script>
-                          function successImg() {
-                            document.getElementById("profileImg").src = "assets/img/charCatSuccess.png";
-                          }
-                          function failImg() {
-                            document.getElementById("profileImg").src = "assets/img/charCatFail.png"
-                          }
-                          function reset() {
-                            document.getElementById("profileImg").src = "assets/img/charCat.png"
-                          }
-                        </script>
+                        
                       </tr>
 
                     </table>
