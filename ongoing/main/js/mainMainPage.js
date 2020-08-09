@@ -18,16 +18,15 @@ var firebaseConfig = {
 /*현재 존재하는 방목록 업로드*/
 function existRoom() {
   //사용자의 profile 로드
-  //var rootRef = firebase.database().ref().child("Users");
   var userID = firebase.auth().currentUser.uid;
-  var usersRef = rootRef.child(userID);
+  console.log(userID);
 
-  firebase.database().ref('Users' + userID + '/nickName').once('value').then(function(snapshot) {
-    var userNickname = snapshot.val
+  firebase.database().ref('Users/' + userID).once('value').then(function(snapshot) {
+    var userNickname = snapshot.child("nickName").val();
     console.log(userNickname);
   })
 
-  firebase.database().ref('Usersroom/' + userNickname).once('value').then(function(snapshot) {
+  firebase.database().ref('Usersroom/' + userID).once('value').then(function(snapshot) {
     var roomName = snapshot.val();
     console.log(roomName);
     document.getElementById("i_roomName").innerHTML = roomName;
