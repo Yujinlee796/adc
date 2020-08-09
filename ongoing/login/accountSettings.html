@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Account Settings</title>
+        <title>닉네임 설정 ｜ 핏투게더</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
                 
             <!-- STYLE CSS -->
-        <link rel="stylesheet" href="design_files/css/styleSignin.css">
+        <link rel="stylesheet" href="design_files/css/styleAccountSettings.css">
 
             <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -25,10 +25,10 @@
     </head>
 
     <body>
-        <div class="wrapper" style="background-image: url('design_files/images/accountSettingsback.jpg');">
+        <div class="wrapper" style="background-image: url('design_files/images/accountSettingsBackground.jpg');">
             <div class="inner">
                 <div class="image-holder">
-                    <img src="design_files/images/asettings.jpg">
+                    <img src="design_files/images/accountSettingsMainImage.png">
                 </div>
                 <form action="">
                     <h3>닉네임 설정</h3>
@@ -36,7 +36,7 @@
                         <input id="nickName" type="text" placeholder="닉네임" class="form-control">
                     </div>
                     <div class="invalid-feedback">
-                        중복된 닉네임입니다.
+                        이미 사용중인 닉네임입니다.
                     </div>
                     <!--
                     <div class="form-wrapper">
@@ -89,7 +89,7 @@
                     -->
                     <div class="form-group container-login100-form-btn">
                         <button id="btn-update" type="button">
-                            설정
+                            설정 완료
                             <i class="zmdi zmdi-arrow-right"></i>
                         </button>
                     </div>
