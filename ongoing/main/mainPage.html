@@ -41,11 +41,14 @@
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
-  
+
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+
 </head>
 
 <body>
+  <script src="js/mainMainPage.js"></script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
@@ -113,7 +116,7 @@
                 <p class="punishment" id="box">못 한 날마다 보드게임 15분 누적</p>
                 <p class="ranking" id="box">랭킹</p>
               </div>
-              
+
               <div class="today">
                 <p class="currentResult">오늘의 달성 상황</p>
                 <p style="font-size: 20px;">유진 성공 · 다은 성공 · 채영 성공</p>
@@ -125,6 +128,12 @@
 
   </section><!-- End Hero -->
 
+  <!-- now 수정 ======= Button ======= -->
+  <h3>Fittogether</h3>
+  <button onclick="existRoom()">My rooms</button>
+  <span id = "i_roomName"></span>
+
+  <button onclick="newRoom()">New room</button>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -133,7 +142,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="copyright">
-              &copy; Copyright <strong>ADC Cor</strong>. All Rights Reserved 
+              &copy; Copyright <strong>ADC Cor</strong>. All Rights Reserved
             </div>
             <div class="credits">
               <!--
@@ -147,7 +156,7 @@
           </div>
         </div>
       </div>
-   
+
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>

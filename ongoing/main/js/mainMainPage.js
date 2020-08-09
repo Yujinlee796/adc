@@ -15,7 +15,32 @@ var firebaseConfig = {
 
   firebase.auth.Auth.Persistence.LOCAL;
 
-  
+/*현재 존재하는 방목록 업로드*/
+function existRoom() {
+  //사용자의 profile 로드
+  //var rootRef = firebase.database().ref().child("Users");
+  var userID = firebase.auth().currentUser.uid;
+  var usersRef = rootRef.child(userID);
+
+  firebase.database().ref('Users' + userID + '/nickName').once('value').then(function(snapshot) {
+    var userNickname = snapshot.val
+    console.log(userNickname);
+  })
+
+  firebase.database().ref('Usersroom/' + userNickname).once('value').then(function(snapshot) {
+    var roomName = snapshot.val();
+    console.log(roomName);
+    document.getElementById("i_roomName").innerHTML = roomName;
+  })
+}
+
+  //makingRoom.html로 연결
+function newRoom() {
+  var link ='makingRoom.html';
+  location.href = link;
+}
+
+
 // logout
 $("#btn-logout").click(function()
 {
