@@ -124,11 +124,15 @@
                     </p>
                     
                     <p class="ranking" id="box">랭킹
-                      <br>
-                        <script type="text/javascript" src="js/mainRoom.js">
-                          document.write(todayScore);
-                          console.log(todayScore);
-                        </script>
+                      <script type="text/javascript">
+                        //변수 세팅
+                        var todayScore = 0;
+                        var totalScore = 0;
+
+                        var currentHours = d.getHours();
+                        var currentMinutes = d.getMinutes();
+                        document.write(totalScore);
+                      </script>
                     </p>
                     
                   </div>
@@ -145,28 +149,29 @@
                           <img id="profileImg" src="assets/img/charCat.png" style="width: 250px;"> </td>
                         <td style="border-top: none; border-bottom: 1px solid white;"> <!--오늘 날짜-->
                         <span style="position: relative; top: 15px;">
-                        <script type="text/javascript">
-                          //현재 날짜 표시 코드, 로컬 날짜 표시됨
-                          var d = new Date();
-
-                          var currentYear = d.getFullYear();
-
-                          if (d.getMonth()+1 >= 10) {
+                          <script type="text/javascript">
+                            //현재 날짜 변수 설정
+                            var d = new Date();
+  
+                            var currentYear = d.getFullYear();
+                            if (d.getMonth()+1 >= 10) {
                             var currentMonth = (d.getMonth()+1);
-                          }
-                          else {
-                            var currentMonth = '0'+(d.getMonth()+1);
-                          };
-
-                          if (d.getDate() >= 10) {
-                            var currentDate = d.getDate();
-                          }
-                          else {
-                            var currentDate = '0'+d.getDate();
-                          }
-                          //화면에 출력
-                          document.write(currentYear + '.' + currentMonth + '.' + currentDate + '.');
-                        </script>
+                            }
+                            else {
+                              var currentMonth = '0'+(d.getMonth()+1);
+                            };
+  
+                            if (d.getDate() >= 10) {
+                              var currentDate = d.getDate();
+                            }
+                            else {
+                              var currentDate = '0'+d.getDate();
+                            }
+  
+                            
+                            //화면에 출력
+                            document.write(currentYear + '.' + currentMonth + '.' + currentDate + '.');
+                          </script>
                         </span></td>
 
                       </tr>
