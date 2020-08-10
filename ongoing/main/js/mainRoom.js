@@ -12,7 +12,7 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-  
+  var database = firebase.database();
 
   firebase.auth.Auth.Persistence.LOCAL;
 
@@ -108,3 +108,11 @@ if (currentHours === 5 && currentMinutes === 0) {
 
   };
 };
+
+//목표 출력 함수
+var database = firebase.database();
+
+firebase.database().ref('Rooms/채영테스트/').once('value').then(function(snapshot) {
+  var printGoals = snapshot.child("goals").val();
+  document.getElementById("goalText").innerHTML = printGoals;
+});

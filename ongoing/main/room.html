@@ -45,6 +45,9 @@
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
   
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+
+  
 </head>
 
 <body>
@@ -109,11 +112,13 @@
           <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
                
                 <div class="carousel-container">
-                  <h1 id="roomTitle">생리통 뿌시기</h1> 
+                  <h1 id="roomTitle">생리통 뿌시기 3일차</h1> 
                   <div class="boxes">
                     <p class="goal" id="box">
                       
-                      <span id="goalText">한 달 동안 하루 1회 골반 스트레칭</span>
+                      <span id="goalText">
+                        
+                      </span>
                       <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
                     </p>
                     
@@ -128,6 +133,8 @@
                         //변수 세팅
                         var todayScore = 0;
                         var totalScore = 0;
+
+                        var d = new Date();
 
                         var currentHours = d.getHours();
                         var currentMinutes = d.getMinutes();
@@ -151,7 +158,7 @@
                         <span style="position: relative; top: 15px;">
                           <script type="text/javascript">
                             //현재 날짜 변수 설정
-                            var d = new Date();
+                            
   
                             var currentYear = d.getFullYear();
                             if (d.getMonth()+1 >= 10) {
