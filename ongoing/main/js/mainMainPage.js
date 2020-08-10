@@ -24,13 +24,36 @@ function existRoom() {
   firebase.database().ref('Users/' + userID).once('value').then(function(snapshot) {
     var userNickname = snapshot.child("nickName").val();
     console.log(userNickname);
-  })
+    document.getElementById("nickName").innerHTML = userNickname;
+  });
 
-  firebase.database().ref('Usersroom/' + userID).once('value').then(function(snapshot) {
-    var roomName = snapshot.val();
-    console.log(roomName);
-    document.getElementById("i_roomName").innerHTML = roomName;
-  })
+  var childData = " ";
+
+  firebase.database().ref('Usersroom/' + userID).once('value')
+  .then(function(snapshot) {
+    var roomListHtml = [];
+    var cbDisplayRoomList = function(data) {
+      var val = data.val();
+      roomListHtml.push( _.template(this.roomTemplate)({
+        roomName : data.name,
+        fitcnt : data.fitcnt
+      }));
+    }
+    snapshot.forEach(cbDisplayRoomList.bind(this));
+    console.log(roomListHtml);
+    document.getElementById("i_roomName").innerHTML = roomListHtml;
+
+    /*
+     function ( childSnapshot ) {
+      var key = childSnapshot.key;
+      var roomData = snapshot.child("name").val();
+      roomList
+      console.log(childData);
+    });*/
+    //var room = snapshot.val();
+    //console.log(room);
+    //document.getElementById("i_roomName").innerHTML = room.name;
+  });
 }
 
   //makingRoom.html로 연결
