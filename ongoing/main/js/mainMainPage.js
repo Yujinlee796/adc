@@ -16,45 +16,35 @@ var firebaseConfig = {
   firebase.auth.Auth.Persistence.LOCAL;
 
 /*현재 존재하는 방목록 업로드*/
-function existRoom() {
-  //사용자의 profile 로드
-  var userID = firebase.auth().currentUser.uid;
-  console.log(userID);
+firebase.auth().onAuthStateChanged(function(user)
+{
+    if(user)
+    {
+      userID = firebase.auth().currentUser.uid;
+      console.log(userID);
+      //닉네임 출력
+      firebase.database().ref('Users/' + userID).once('value')
+      .then(function(snapshot) {
+        var userNickname = snapshot.child("nickName").val();
+        console.log(userNickname);
+        document.getElementById("nickName").innerHTML = userNickname;
+      });
 
-  firebase.database().ref('Users/' + userID).once('value').then(function(snapshot) {
-    var userNickname = snapshot.child("nickName").val();
-    console.log(userNickname);
-    document.getElementById("nickName").innerHTML = userNickname;
-  });
-
-  var childData = " ";
-
-  firebase.database().ref('Usersroom/' + userID).once('value')
-  .then(function(snapshot) {
-    var roomListHtml = [];
-    var cbDisplayRoomList = function(data) {
-      var val = data.val();
-      roomListHtml.push( _.template(this.roomTemplate)({
-        roomName : data.name,
-        fitcnt : data.fitcnt
-      }));
+      //방목록 출력
+      var roomList = " ";
+      firebase.database().ref('Usersroom/' + userID).once('value')
+      .then(function(snapshot) {
+        var roomList = [];
+        snapshot.forEach(function(childSnapshot) {
+         var roomName = childSnapshot.key;
+         roomList.push("<br>" + roomName);  //걍 줄바꿈하려고 <br> 넣음 바꿔도됨.
+         console.log(roomName);
+        });
+        document.getElementById("i_roomName").innerHTML = roomList;
+        console.log(roomList);
+      });
     }
-    snapshot.forEach(cbDisplayRoomList.bind(this));
-    console.log(roomListHtml);
-    document.getElementById("i_roomName").innerHTML = roomListHtml;
-
-    /*
-     function ( childSnapshot ) {
-      var key = childSnapshot.key;
-      var roomData = snapshot.child("name").val();
-      roomList
-      console.log(childData);
-    });*/
-    //var room = snapshot.val();
-    //console.log(room);
-    //document.getElementById("i_roomName").innerHTML = room.name;
-  });
-}
+});
 
   //makingRoom.html로 연결
 function newRoom() {
