@@ -16,7 +16,26 @@ var firebaseConfig = {
 
   firebase.auth.Auth.Persistence.LOCAL;
 
+//접속중인 유저 닉네임 띄우기
+firebase.auth().onAuthStateChanged(function(user)
+    {
+        if(user)
+        {
+            var userID = firebase.auth().currentUser.uid;
+            console.log(userID);
+
+            firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
+            {
+                if(snapshot.val())
+                {
+                  var userNname = snapshot.child('nickName').val();
   
+                  document.getElementById('nicknameData').innerHTML = userNname;
+                }
+            });
+        }
+    });
+
 // logout
 $("#btn-logout").click(function()
 {
@@ -35,6 +54,7 @@ function openPunishmentPopup() {
   var punishmentPopupOption = "width=570, height=250, resizable = no, scrollbars = no"
   window.open(punishmentPopupUrl, '', punishmentPopupOption, '');
 }
+
 
 
 
@@ -325,7 +345,9 @@ firebase.database().ref('Rooms/채영테스트/').once('value').then(function(sn
 
 
 //닉네임 출력 ★변수 분류★ 유저스, 스냅샷
+/*
 firebase.database().ref('Users/rv2UkGj4xWQoAEEYiKiHHLQeY883/').once('value').then(function(snapshot) {
   var printNickname = snapshot.child("nickName").val();
   document.getElementById("nicknameData").innerHTML = printNickname;
 })
+*/
