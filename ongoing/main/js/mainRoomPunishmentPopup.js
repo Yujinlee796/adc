@@ -17,13 +17,12 @@ var firebaseConfig = {
   firebase.auth.Auth.Persistence.LOCAL;
 
 
-  
-function editGoals() {
-        var newGoal = document.getElementById("edittedGoals").value;
+function editBetting() {
+        var newBetting = document.getElementById("edittedBetting").value;
         firebase.database().ref("Rooms/채영테스트/").update({
-            goals: newGoal
+            betting: newBetting
         });
-      alert("목표가 새로 설정되었습니다.");
+      alert("내기가 새로 설정되었습니다.");
       opener.location.reload();
       window.close();
     };

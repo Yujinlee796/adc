@@ -3,13 +3,22 @@
     <head>
         <title>내기 수정 ｜ 핏투게더</title>
         <link href="assets/css/styleRoomGoalPopup.css" rel="stylesheet">
+        
+
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+        <script src="js/mainRoomPunishmentPopup.js"></script>
     </head>
 
     <body>
         <div class="inputContainer">
             <h2 style="font-family: 'InfinitySans-RegularA1'; color: white;">내기 수정하기</h2>
-            <input type="text" id="#" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
-            <br><button id="done" style="margin-top: 20px">수정 완료</button>
+            <input type="text" id="edittedBetting" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
+            <br><button id="done" onclick="editBetting();" style="margin-top: 20px">수정 완료</button>
         </div>
     </body>
 

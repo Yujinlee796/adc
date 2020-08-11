@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>방 이름 ｜ 핏투게더</title>
+  <title><span id="titleData"></span> ｜ 핏투게더</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -112,34 +112,22 @@
           <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
                
                 <div class="carousel-container">
-                  <h1 id="roomTitle">생리통 뿌시기 3일차</h1> 
+                  <h1 id="roomTitle"><span id="titleData"></span> <span id="fromStartDate"></span>
+                  </h1> 
                   <div class="boxes">
-                    <p class="goal" id="box">
-                      
-                      <span id="goalText">
-                        
-                      </span>
+                    <p class="goal" id="box"> 
+                      <span id="goalText"></span><!--이 아이디로 목표 출력-->
                       <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
                     </p>
                     
                     <p class="punishment" id="box">
+                      <span id="bettingText"></span><!--이 아이디로 내기 출력-->
                       
-                      <span id="punishmentText">못 한 날마다 보드게임 15분 누적</span>
                       <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
                     </p>
                     
                     <p class="ranking" id="box">랭킹
-                      <script type="text/javascript">
-                        //변수 세팅
-                        var todayScore = 0;
-                        var totalScore = 0;
-
-                        var d = new Date();
-
-                        var currentHours = d.getHours();
-                        var currentMinutes = d.getMinutes();
-                        document.write(totalScore);
-                      </script>
+             
                     </p>
                     
                   </div>
@@ -153,12 +141,14 @@
                     <table class="table">
                       <tr>
                         <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                          <img id="profileImg" src="assets/img/charCat.png" style="width: 250px;"> </td>
+                          <img id="profileImg" src="" style="width: 250px;">
+
+                        </td>
                         <td style="border-top: none; border-bottom: 1px solid white;"> <!--오늘 날짜-->
                         <span style="position: relative; top: 15px;">
                           <script type="text/javascript">
                             //현재 날짜 변수 설정
-                            
+                            var d = new Date();
   
                             var currentYear = d.getFullYear();
                             if (d.getMonth()+1 >= 10) {
@@ -185,13 +175,14 @@
 
                       <tr>
 
-                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--유저이름--> <span style="position: relative; top: 15px;">luvchaeng</span></td>
+                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--유저이름--> <span style="position: relative; top: 15px;" id="nicknameData"></span></td>
 
                       </tr>
 
                       <tr>
 
                         <td style="border-top: none;">
+                          
                           <!--성공 실패 버튼-->
                           <button onclick="successImg(); plusOne()" id="resultBtn" class="firSec">성공</button>
                           <button onclick="failImg(); giveUp()" id="resultBtn" class="firSec">포기</button>
