@@ -55,6 +55,8 @@ function makingRoom() {
   var roomBet = document.getElementById("room_bet").value;
   var invitedList = document.querySelectorAll("#invitedList li");
   var roomDate = document.getElementById("room_date").value;
+  //방 개설 날짜 기록
+  var startDate = getTimeStamp()
 
   if(roomName != "" && roomGoal != "" && roomBet != "" && roomDate != "")
   {
@@ -86,7 +88,8 @@ function makingRoom() {
           firebase.database().ref('Usersroom/' + invitedUid + '/' + roomName).set({
               //name : roomName,
               fitcnt : 0,
-              recentcnt : false
+              recentcnt : 0,
+              lastClick : startDate,
           },
           function(error) {
             if(error)
@@ -110,7 +113,8 @@ function makingRoom() {
       name : roomName,
       betting : roomBet,
       goals : roomGoal,
-      startDate : roomDate
+      endDate : roomDate,
+      startDate : startDate,
     };
     firebase.database().ref('Rooms/' + roomName).set(roomData, function(error)
     {
@@ -126,7 +130,7 @@ function makingRoom() {
       }
       else{
         window.alert("방이 만들어졌습니다.");
-        window.location.href = "../main/mainPage.html";
+        //window.location.href = "../main/mainPage.html";
       }
     });
 
@@ -286,3 +290,33 @@ function confirmName(){
     alert("아무것도 안썼잖아요");
   }
 }
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) 현재 시간 표준 포맷을 뽑는 합수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function getTimeStamp() {
+  var d = new Date();
+  var s =
+    leadingZeros(d.getFullYear(), 4) + '-' +
+    leadingZeros(d.getMonth() + 1, 2) + '-' +
+    leadingZeros(d.getDate(), 2) + ' ' +
+
+    leadingZeros(d.getHours(), 2) + ':' +
+    leadingZeros(d.getMinutes(), 2) + ':' +
+    leadingZeros(d.getSeconds(), 2);
+
+  return s;
+}
+
+function leadingZeros(n, digits) {
+  var zero = '';
+  n = n.toString();
+
+  if (n.length < digits) {
+    for (i = 0; i < digits - n.length; i++)
+      zero += '0';
+  }
+  return zero + n;
+}
+

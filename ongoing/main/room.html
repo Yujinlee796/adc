@@ -112,70 +112,58 @@
           <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
                
                 <div class="carousel-container">
-                  <h1 id="roomTitle"><span id="titleData"></span> <span id="fromStartDate"></span>
-                  </h1> 
+                  <h1 id="roomTitle">
+                    <span id="titleData"><!--방이름 출력되는 부분--></span>
+                    <span id="fromStartDate"><!--몇일차 출력되는 부분--></span>
+                  </h1>
+                  <h6 style="color: gainsboro; text-align: center;">
+                    <span id="endDate"><!--종료일 출력되는 부분--></span>
+                  </h6>
                   <div class="boxes">
                     <p class="goal" id="box"> 
-                      <span id="goalText"></span><!--이 아이디로 목표 출력-->
+                      <span id="goalText"><!--목표 출력되는 부분--></span>
                       <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
                     </p>
                     
                     <p class="punishment" id="box">
-                      <span id="bettingText"></span><!--이 아이디로 내기 출력-->
+                      <span id="bettingText"><!--내기 출력되는 부분--></span>
                       
                       <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
                     </p>
                     
-                    <p class="ranking" id="box">랭킹
-             
-                    </p>
+                    <div class="ranking" id="box">랭킹
+                      <div id="scoreBar">
+                        <!--<div class="progress">
+                          <div class="progress-done">10점</div>
+                        </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
+                        <!-----스코어바 생성 부분-----></div>
+                    </div>
                     
                   </div>
                 </div>
                 
                 <div class="today">
                   <div class="todayContents">
-                    <h2 style="color: #428bca; margin-bottom: 30px;"> <span id="quotation">"</span> 내기 종료까지 D-29 <span id="quotation">"</span></h2>
+                    <h2 style="color: #428bca; margin-bottom: 30px;">오늘의 운동기록까지<br><span id="quotation">" </span><span id="todayTimer"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation"> "</span></h2>
                     <p style="margin-bottom: 8px;" class="currentResult">오늘의 달성 상황</p>
-                    <p style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</p>
+                    <a href="#" onclick="openStatePopup()" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
                     <table class="table">
                       <tr>
                         <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
                           <img id="profileImg" src="" style="width: 250px;">
 
                         </td>
-                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--오늘 날짜-->
-                        <span style="position: relative; top: 15px;">
-                          <script type="text/javascript">
-                            //현재 날짜 변수 설정
-                            var d = new Date();
-  
-                            var currentYear = d.getFullYear();
-                            if (d.getMonth()+1 >= 10) {
-                            var currentMonth = (d.getMonth()+1);
-                            }
-                            else {
-                              var currentMonth = '0'+(d.getMonth()+1);
-                            };
-  
-                            if (d.getDate() >= 10) {
-                              var currentDate = d.getDate();
-                            }
-                            else {
-                              var currentDate = '0'+d.getDate();
-                            }
-  
-                            
-                            //화면에 출력
-                            document.write(currentYear + '.' + currentMonth + '.' + currentDate + '.');
-                          </script>
-                        </span></td>
+                        <td style="border-top: none; border-bottom: 1px solid white;">
+                        <span id="currentDay" style="position: relative; top: 15px;">수정예정</span>
+                        </td>
 
                       </tr>
 
                       <tr>
 
-                        <td style="border-top: none; border-bottom: 1px solid white;"> <!--유저이름--> <span style="position: relative; top: 15px;" id="nicknameData"></span></td>
+                        <td style="border-top: none; border-bottom: 1px solid white;">
+                          <span style="position: relative; top: 15px;" id="nicknameData"> <!--닉네임 출력되는 부분--> </span>
+                        </td>
 
                       </tr>
 
@@ -184,9 +172,9 @@
                         <td style="border-top: none;">
                           
                           <!--성공 실패 버튼-->
-                          <button onclick="successImg(); plusOne()" id="resultBtn" class="firSec">성공</button>
-                          <button onclick="failImg(); giveUp()" id="resultBtn" class="firSec">포기</button>
-                          <button onclick="reset(); resetScore()" id="resultBtn">리셋</button>
+                          <button onclick="plusOneAndReload()" id="resultBtn" class="firSec">성공</button>
+                          <button onclick="giveUpAndReload()" id="resultBtn" class="firSec">포기</button>
+                          <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
                         </td>
                         
                       </tr>
@@ -201,6 +189,13 @@
         </div>
       </div>
   </section><!-- End Hero -->
+
+  <!------ Modal Section 
+    <div class="bg-modal">
+      <div class="modal-content">
+        <div class="close">+</div>
+      </div>
+    </div>------>
 
 
   <!-- ======= Footer ======= -->
