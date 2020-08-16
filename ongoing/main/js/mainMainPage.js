@@ -15,6 +15,10 @@ var firebaseConfig = {
 
   firebase.auth.Auth.Persistence.LOCAL;
 
+function setRoomNameAndMove(url,rName) {
+  window.location.href = url + "?roomName=" + rName;
+}
+
 /*현재 존재하는 방목록 업로드*/
 firebase.auth().onAuthStateChanged(function(user)
 {
@@ -22,6 +26,7 @@ firebase.auth().onAuthStateChanged(function(user)
     {
       userID = firebase.auth().currentUser.uid;
       console.log(userID);
+
       //닉네임 출력
       firebase.database().ref('Users/' + userID).once('value')
       .then(function(snapshot) {
@@ -36,6 +41,7 @@ firebase.auth().onAuthStateChanged(function(user)
       .then(function(snapshot) {
         var roomList = new Array;
         var html = '';
+        var link = '';
         snapshot.forEach(function(childSnapshot) {
          var roomName = childSnapshot.key;
          var roomCnt = childSnapshot.child("recentcnt").val();
@@ -45,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user)
           html += '<tr>';
           html += '<td>' + roomList[key].name + '</td>';
           html += '<td>' + roomList[key].count + '</td>';
-          html += '<td> <button onclick="setRoomNameAndMove("room.html","' + roomList[key].name + '")"> 입장</button> </td>';
+          html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">입장</button> </td>'
           html += '</tr>';
         }
         $("#dynamicTbody").empty();
