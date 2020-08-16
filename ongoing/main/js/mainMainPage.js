@@ -40,13 +40,27 @@ firebase.auth().onAuthStateChanged(function(user)
       firebase.database().ref('Usersroom/' + userID).once('value')
       .then(function(snapshot) {
         var roomList = new Array;
+        var roomState = '';
         var html = '';
         var link = '';
+
+        //firebase database에서 정보 받아오기
         snapshot.forEach(function(childSnapshot) {
          var roomName = childSnapshot.key;
          var roomCnt = childSnapshot.child("recentcnt").val();
-         roomList.push({name : roomName , count : roomCnt });
+
+         //현황 text화 
+         if (roomCnt == 0) {
+           roomState = '-'
+         } else if (roomCnt == -1) {
+           roomStae = '미달성'
+         } else if(roomCnt == 1) {
+           roomState = '달성'
+         }
+         roomList.push({name : roomName , state : roomState });
         });
+
+        //방목록 html에 띄우기
         for (key in roomList) {
           html += '<tr>';
           html += '<td>' + roomList[key].name + '</td>';
