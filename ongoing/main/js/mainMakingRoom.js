@@ -129,8 +129,12 @@ function makingRoom() {
         window.alert("Message: " + errorMessage);
       }
       else{
-        window.alert("방이 만들어졌습니다.");
-        //window.location.href = "../main/mainPage.html";
+        var result = confirm("방이 성공적으로 만들어졌습니다. 지금 바로 새로 만든 방으로 이동할까요?")
+        if(result) {
+          setRoomNameAndMove("room.html", roomName);
+        } else {
+          window.location.href = "mainPage.html";
+        }
       }
     });
 
@@ -292,9 +296,9 @@ function confirmName(){
 }
 
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//(다은코드) 현재 시간 표준 포맷을 뽑는 합수
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) (공통JS로 뺄것) 현재 시간 표준 포맷을 뽑는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function getTimeStamp() {
   var d = new Date();
   var s =
@@ -320,3 +324,9 @@ function leadingZeros(n, digits) {
   return zero + n;
 }
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) (공통JS로 뺄것) url에 방이름 담아서 보내는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function setRoomNameAndMove(url, rName) {
+  window.location.href = url + "?roomName=" + rName;
+ }

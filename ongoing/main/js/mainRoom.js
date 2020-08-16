@@ -17,51 +17,88 @@ var firebaseConfig = {
   firebase.auth.Auth.Persistence.LOCAL;
 
 
-//접속중인 유저 닉네임 출력해주는 구 코드(삭제할 것)
-/*
-firebase.auth().onAuthStateChanged(function(user)
-    {
-        if(user)
-        {
-            var userID = firebase.auth().currentUser.uid;
-            console.log(userID);
 
-            firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
-            {
-                if(snapshot.val())
-                {
-                  var userNname = snapshot.child('nickName').val();
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) 모든 전역변수 선언
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  var roomName = '';
+  var startDate = '';
+  var period = 0;
+
+  var roomUsers = [];
+  var fitcnt = 0;
+  var recentcnt = 0;
+  var lastClick = '';
+  var currentUserID = '';
+
   
-                  document.getElementById('nicknameData').innerHTML = userNname;
-                }
-            });
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) 페이지 로드시 필요한 정보 가져오고, 출력하는 모든 코드 부분
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+window.onload = function(){
+
+    roomName = getURLParameter();  //방 이름 받아오기
+ 
+    //============================================================================//
+    //(다은코드) 현재 방 정보 받아오고 띄우기
+    //============================================================================//
+    if (roomName != '') {
+      firebase.database().ref('Rooms/' + roomName).once('value').then(function(snapshot) {
+        var printGoals = snapshot.child("goals").val();
+        var printBetting = snapshot.child("betting").val();
+        var printTitle = snapshot.child("name").val();
+        var endDate = snapshot.child("endDate").val();
+        startDate = snapshot.child("startDate").val();
+        if(startDate != '' && endDate != '') {
+          period = calculatePeriod(startDate, endDate);
         }
-    });*/
+      
+        document.getElementById("goalText").innerHTML = printGoals;
+        document.getElementById("bettingText").innerHTML = printBetting;
+        document.getElementById("titleData").innerHTML = printTitle;
+        document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
+      });
+    } else { alert('방이름이 없습니다.');}
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//(다은코드) 방 이름 건네받는 부분
-//각종 방 정보 띄우는 부분
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-var roomName = "다우니 테스트방7";  //방 이름 받아오기
-var startDate = '';
-var period = 0;
 
-//현재 방 정보 띄우기
-firebase.database().ref('Rooms/' + roomName).once('value').then(function(snapshot) {
-  var printGoals = snapshot.child("goals").val();
-  var printBetting = snapshot.child("betting").val();
-  var printTitle = snapshot.child("name").val();
-  var endDate = snapshot.child("endDate").val();
-  startDate = snapshot.child("startDate").val();
-  if(startDate != '' && endDate != '') {
-    period = calculatePeriod(startDate, endDate);
-  }
+    //============================================================================//
+    //(다은코드) 현재 접속 중인 유저의 방과 관련된 정보 받아오고 띄우기
+    //(추가된 기능)
+    //(1) 접속중인 유저 닉네임 띄우기
+    //(2) 해당 유저의 현재 fitcnt, recentcnt, lastClick 전역변수에 저장
+    //(3) recentcnt 상태 새벽 5시 기준으로 리셋하기
+    //(4) recentcnt 값에 따라 동물 그림 로드하기
+    //============================================================================//
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+      if(user && roomName != ''){
+        currentUserID = firebase.auth().currentUser.uid;
+        console.log(currentUserID);
 
-  document.getElementById("goalText").innerHTML = printGoals;
-  document.getElementById("bettingText").innerHTML = printBetting;
-  document.getElementById("titleData").innerHTML = printTitle;
-  document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
-});
+        firebase.database().ref('Rooms/' + roomName + '/Users').once('value').then(function(snapshot)
+        {
+          //방에 참여 중인 멤버의 uid 받아오기
+          snapshot.forEach(function(childSnapshot) {
+            var roomUsersUid = childSnapshot.key;
+            roomUsers.push(roomUsersUid);
+
+            //닉네임과 스코어를 가져오면, 출력하기 result1: Nname, result2: score (나중에 변경)
+            $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID)).done(function(result1, result2){
+              //스코어바 출력하기
+              displayScoreBar(result1, result2);
+              recentcntUpdate();
+            }).done(function(){
+              //동물 그림 출력하기(이게 forEach에 걸려있는거 안좋을듯. 추후 수정)
+              displayImg();
+            });
+          });
+            //console.log(roomUsers);
+        });
+      } else if (!user) { window.location.href = "../index.html"; //signout 상태이면 쫓겨나는 코드
+      } else if (roomName == '') { alert('방이름이 없습니다.');}
+    });
+}
+
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,77 +148,17 @@ var x = setInterval(function() {
   }
 });
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//(채영코드 수정) 날짜 데이터 string으로 받으면 가공해서 출력 형식으로 바꿔주는 함수
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function revisePrintEndDate(printEndDate) {
-  var d = new Date(printEndDate);
-  
-  var currentYear = d.getFullYear();
-  if (d.getMonth()+1 >= 10) {
-    var currentMonth = (d.getMonth()+1);
-  }
-  else {
-    var currentMonth = '0'+(d.getMonth()+1);
-  };
-    
-  if (d.getDate() >= 10) {
-    var currentDate = d.getDate();
-  }
-  else {
-    var currentDate = '0'+d.getDate();
-  }
 
-  return currentYear + '년 ' + currentMonth + '월 ' + currentDate + '일 ';
-}
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//(제이쿼리 함수 이용)랭킹부분에 스코어바 띄우기
+//(다은코드)<현재 접속 중인 유저의 방과 관련된 정보 받아오고 띄우기와 관련된 모든 함수 선언>
+//(수정된 부분)
 ///for문을 아예 없애고, css이름도 닉네임으로 차별화를 둠
-//각 uid에 대해, 해당하는 닉네임과 스코어를 받아오는 행위가 실행이 된 후에, 화면에 스코어바를 출력
-//(기능추가)
-//(1) 접속중인 유저 닉네임 띄우기
-//(2) 해당 유저의 현재 fitcnt, recentcnt, lastClick 전역변수에 저장
-//(3) recentcnt 상태 새벽 5시 기준으로 리셋하기
-//(4) recentcnt 값에 따라 동물 그림 로드하기
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-//전역변수로 선언
-var roomUsers = [];
-var fitcnt = 0;
-var recentcnt = 0;
-var lastClick = '';
-var currentUserID = '';
-
-firebase.auth().onAuthStateChanged(function(user)
-{
-  if(user){
-    currentUserID = firebase.auth().currentUser.uid;
-    console.log(currentUserID);
-
-    firebase.database().ref('Rooms/' + roomName + '/Users').once('value').then(function(snapshot)
-    {
-      //방에 참여 중인 멤버의 uid 받아오기
-      snapshot.forEach(function(childSnapshot) {
-        var roomUsersUid = childSnapshot.key;
-        roomUsers.push(roomUsersUid);
-
-        //닉네임과 스코어를 가져오면, 출력하기 result1: Nname, result2: score (나중에 변경)
-        $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID)).done(function(result1, result2){
-          //스코어바 출력하기
-          displayScoreBar(result1, result2);
-          recentcntUpdate();
-        }).done(function(){
-          //동물 그림 출력하기(이게 forEach에 걸려있는거 안좋을듯. 추후 수정)
-          displayImg();
-        });
-      });
-        //console.log(roomUsers);
-    });
-  }
-});
-
+//============================================================================//
 //각 uid에 대해 닉네임 가져오기
+//============================================================================//
 function getRoomUsersNname(roomUsersUid, currentUserID) {
 
   var deferred = $.Deferred();
@@ -202,7 +179,9 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
   return deferred.promise();
 }
 
+//============================================================================//
 //각 uid에 대해 score 가져오기
+//============================================================================//
 function getRoomUsersScore(roomUsersUid, currentUserID) {
 
   var deferred = $.Deferred();
@@ -226,8 +205,10 @@ function getRoomUsersScore(roomUsersUid, currentUserID) {
       });
   return deferred.promise();
 }
-  
+
+//============================================================================//
 //각 uid에 대해 스코어바와 점수 출력하기
+//============================================================================//
 function displayScoreBar(Nname, score) {
   scoreBar.appendChild(createNname(Nname));
   scoreBar.appendChild(createScore(score, Nname));
@@ -235,7 +216,9 @@ function displayScoreBar(Nname, score) {
   createMotion(score, Nname)
 }
 
+//============================================================================//
 //페이지 새로 로그할때, 최종 클릭 시간 이용하여 recentcnt 리셋하기
+//============================================================================//
 function recentcntUpdate() {
   var lastBaseMinusNow = judgement();
   if (lastBaseMinusNow < 0) {
@@ -266,9 +249,9 @@ function recentcntUpdate() {
   }
 }
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//============================================================================//
 //(채영코드수정) recentcnt에 따라 이미지 로그
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//============================================================================//
 function displayImg() {
   var imgSrc = '';
   if (recentcnt == 1) {
@@ -284,12 +267,15 @@ function displayImg() {
   document.getElementById('profileImg').src = imgSrc;
 }
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//============================================================================//
 //닉네임과 점수를 입력하면 스코어바를 화면에 출력하고 모션을 추가하는 함수 선언하기
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//============================================================================//
 const scoreBar = document.getElementById('scoreBar');
 
-//스코어와 인덱스 번호(->현재 닉네임 값으로 수정됨)를 입력하면, 각 스코어를 출력할 수 있는 css를 생성하여 스코어바를 만드는 함수
+//--------------------------------------------------------------------------//
+//스코어와 인덱스 번호(->현재 닉네임 값으로 수정됨)를 입력하면,
+//각 스코어를 출력할 수 있는 css를 생성하여 스코어바를 만드는 함수
+//-------------------------------------------------------------------------//
 function createScore(score, i) {
 
   //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
@@ -312,7 +298,9 @@ function createScore(score, i) {
   return divElem;
 }
 
+//----------------------------------------------------------------------------//
 //닉네임을 입력하면 닉네임을 출력하는 함수
+//----------------------------------------------------------------------------//
 function createNname(Nname) {
   const spanElem = document.createElement('span');
   const elemTxt = document.createTextNode(Nname);
@@ -321,7 +309,9 @@ function createNname(Nname) {
   return spanElem;
 }
 
+//---------------------------------------------------------------------------//
 //모션 넣어주는 함수(스코어 넣으면 그만큼 width 키우는 것)
+//---------------------------------------------------------------------------//
 function createMotion(score, i) {
   var progress = document.querySelector('.progress-done-' + i);
 
@@ -333,8 +323,9 @@ function createMotion(score, i) {
   }
 }
 
-
+//=============================================================================//
 //period 계산해주는 함수
+//=============================================================================//
 function calculatePeriod(sDate, eDate) {
   var start = new Date(sDate);
   var end = new Date(eDate);
@@ -345,9 +336,35 @@ function calculatePeriod(sDate, eDate) {
   return d; //기간이 총 몇일인지 리턴
 }
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//============================================================================//
+//(채영코드 수정) 날짜 데이터 string으로 받으면 가공해서 출력 형식으로 바꿔주는 함수
+//============================================================================//
+function revisePrintEndDate(printEndDate) {
+  var d = new Date(printEndDate);
+  
+  var currentYear = d.getFullYear();
+  if (d.getMonth()+1 >= 10) {
+    var currentMonth = (d.getMonth()+1);
+  }
+  else {
+    var currentMonth = '0'+(d.getMonth()+1);
+  };
+    
+  if (d.getDate() >= 10) {
+    var currentDate = d.getDate();
+  }
+  else {
+    var currentDate = '0'+d.getDate();
+  }
+
+  return currentYear + '년 ' + currentMonth + '월 ' + currentDate + '일 ';
+}
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //(다은코드)친구들의 달성 현황 보여주는 modal 띄우기
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 /*
 document.getElementById('btn-showState').addEventListener('click',
 function() {
@@ -363,15 +380,18 @@ function() {
 
 
 
-
-// logout
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//logout
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $("#btn-logout").click(function()
 {
    firebase.auth().signOut();
 });
 
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //팝업창
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function openGoalPopup() {
   var goalPopupUrl = "roomGoalPopup.html?val=" + roomName;
   var goalPopupOption = "width=570, height=250, resizable = no, scrollbars = no";
@@ -384,10 +404,12 @@ function openPunishmentPopup() {
   window.open(punishmentPopupUrl, '', punishmentPopupOption, '');
 }
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//(다은코드)친구들의 달성 현황 보여주는 팝업창 띄우기(추후에 팝엽창 위치 조정)
-//일단 전부 자식창에 url 형식으로 방이름 보내는 방식 채택. 후에 수정할수도
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//===========================================================================================//
+//(채영코드추가) 친구들의 달성 현황 보여주는 팝업창
+//(추가해야할 기능)
+//(1) 팝업창 위치 조정 or Modal로 변경
+//(2) 가져올 정보들 어떻게 처리할지 (팝업창: 방이름 보낼때 전부 보내기 vs modal: 전역변수 값 이용)
+//============================================================================================//
 function openStatePopup() {
   var statePopupUrl = "roomStatePopup.html?val=" + roomName;
   var statePopupOption = "width=300, height=400, resizable = no, scrollbars = auto";
@@ -395,10 +417,12 @@ function openStatePopup() {
 }
 
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //(다은코드) 성공 or 포기 or 리셋 버튼 누를때
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//=============================================================================//
 //성공 버튼
+//=============================================================================//
 function plusOne() {
   //lastBase(인정가능한시각)을 현재시각이 넘겼다면 recentcnt를 0으로 설정
   if (lastClick != '') {
@@ -439,14 +463,18 @@ function plusOne() {
   }
 }
 
+//=============================================================================//
 //성공 버튼 기능이 완료된 후에, 페이지 새로고침하기
+//=============================================================================//
 function plusOneAndReload() {
   $.when(plusOne()).done(function(){
     window.location.reload();
   });
 }
 
+//=============================================================================//
 //포기 버튼
+//=============================================================================//
 function giveUp() {
   //lastBase(인정가능한시각)을 현재시각이 넘겼다면 recentcnt를 0으로 설정
   if (lastClick != '') {
@@ -485,14 +513,18 @@ function giveUp() {
   }
 }
 
+//=============================================================================//
 //포기 버튼 기능이 완료된 후에, 페이지 새로고침하기
+//=============================================================================//
 function giveUpAndReload() {
   $.when(giveUp()).done(function(){
     window.location.reload();
   });
 }
 
+//=============================================================================//
 //리셋 버튼
+//=============================================================================//
 function resetScore() {
   //lastBase(인정가능한시각)을 현재시각이 넘겼다면 recentcnt를 0으로 설정
   if (lastClick != '') {
@@ -535,15 +567,18 @@ function resetScore() {
   }
 }
 
+//=============================================================================//
 //포기 버튼 기능이 완료된 후에, 페이지 새로고침하기
+//=============================================================================//
 function resetScoreAndReload() {
   $.when(resetScore()).done(function(){
     window.location.reload();
   });
 }
 
-
+//=============================================================================//
 //마지막클릭시각에 대한 base시간과 현재 시간을 비교하는 함수
+//=============================================================================//
 function judgement() {
   var now = new Date();
   var last = new Date(lastClick);
@@ -565,11 +600,11 @@ function judgement() {
   }
   
   return (lastBase - now);
-
-
 }
 
+//=============================================================================//
 //변경된 정보들 데이터베이스에 업데이트하는 함수
+//=============================================================================//
 function usersroomUpdate() {
   if (currentUserID != ''){
     firebase.database().ref('Usersroom/' + currentUserID + '/' + roomName).set({
@@ -591,6 +626,48 @@ function usersroomUpdate() {
     });
   }
 }
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) (공통JS로 뺄것) 현재 시간 표준 포맷을 뽑는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function getTimeStamp() {
+  var d = new Date();
+  var s =
+    leadingZeros(d.getFullYear(), 4) + '-' +
+    leadingZeros(d.getMonth() + 1, 2) + '-' +
+    leadingZeros(d.getDate(), 2) + ' ' +
+
+    leadingZeros(d.getHours(), 2) + ':' +
+    leadingZeros(d.getMinutes(), 2) + ':' +
+    leadingZeros(d.getSeconds(), 2);
+
+  return s;
+}
+
+function leadingZeros(n, digits) {
+  var zero = '';
+  n = n.toString();
+
+  if (n.length < digits) {
+    for (i = 0; i < digits - n.length; i++)
+      zero += '0';
+  }
+  return zero + n;
+}
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) (공통JS로 뺄것) 현재 url에서 방이름 가져오는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function getURLParameter() {
+  return decodeURI(
+   (RegExp(roomName + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+  );
+}
+
+
+
+
 
 
 
@@ -888,31 +965,3 @@ firebase.database().ref('Users/rv2UkGj4xWQoAEEYiKiHHLQeY883/').once('value').the
   document.getElementById("nicknameData").innerHTML = printNickname;
 })
 */
-
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//(다은코드) 현재 시간 표준 포맷을 뽑는 합수
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function getTimeStamp() {
-  var d = new Date();
-  var s =
-    leadingZeros(d.getFullYear(), 4) + '-' +
-    leadingZeros(d.getMonth() + 1, 2) + '-' +
-    leadingZeros(d.getDate(), 2) + ' ' +
-
-    leadingZeros(d.getHours(), 2) + ':' +
-    leadingZeros(d.getMinutes(), 2) + ':' +
-    leadingZeros(d.getSeconds(), 2);
-
-  return s;
-}
-
-function leadingZeros(n, digits) {
-  var zero = '';
-  n = n.toString();
-
-  if (n.length < digits) {
-    for (i = 0; i < digits - n.length; i++)
-      zero += '0';
-  }
-  return zero + n;
-}
