@@ -114,7 +114,7 @@ function createState(Nname, recentcnt) {
   switch(recentcnt) {
     case 1:
       tdElemRight.classList.add('stateTrue');
-      elemTxtRight = document.createTextNode('성공');
+      elemTxtRight = document.createTextNode('완료');
       tdElemRight.appendChild(elemTxtRight);
       break;
     case -1:
@@ -124,7 +124,7 @@ function createState(Nname, recentcnt) {
       break;
     case 0:
       tdElemRight.classList.add('stateYet');
-      elemTxtRight = document.createTextNode('보류');
+      elemTxtRight = document.createTextNode('-');
       tdElemRight.appendChild(elemTxtRight);
       break;
   }
