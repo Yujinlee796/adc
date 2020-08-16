@@ -52,7 +52,7 @@
   <!--(다은코드 종료)-->
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="css/styleMakingRoom.css">
+  <link rel="stylesheet" href="assets/css/styleMakingRoom.css">
   <meta charset="UTF-8"/>
   
 </head>
@@ -116,8 +116,8 @@
         <div class="carousel-inner" role="listbox">
 
           
-          <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
-               
+          <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg); background-attachment: fixed;">
+
                 <div class="carousel-container">
                   <!--== for 달력 ==-->
                     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
@@ -152,9 +152,9 @@
                       <!--<span>초대: </span>-->
                       <input id="invitedNname" type="text" placeholder="초대할 멤버의 닉네임">
                       <button id="btn-invite" onclick="addLi()" type="button">추가</button>
-                      <br><br>
+                      <br><br><br><br>
                       <!--<span>참여 멤버: </span>-->
-                      <ul id = "invitedList">
+                      <ul id = "invitedList" style="font-size: 15px; color: white; margin-top: 12px;">
                         <!--초대할 닉네임 입력하면 여기에 추가됨-->
                       </ul>
                       <!--<div class="invalid-feedback">
@@ -171,13 +171,14 @@
                     <!-- (다은코드 종료) -->
 
                     
-                    
+                     
 
                     <!--
                     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
                     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>-->
                
-          </div>
+                </div>
+
 
         </div>
       </div>
