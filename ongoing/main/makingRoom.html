@@ -1,8 +1,42 @@
-<html>
-<head>
-  <title>letsfittogether</title>
+<!DOCTYPE html>
+<html lang="en">
 
-  <!--(유진코드)
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>방 만들기 ｜ 핏투게더</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+  
+
+
+  <!-- =======================================================
+  * Template Name: Hidayah - v2.2.0
+  * Template URL: https://bootstrapmade.com/hidayah-free-simple-html-template-for-corporate/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+    <!--(유진코드)
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
   -->
@@ -18,72 +52,192 @@
   <!--(다은코드 종료)-->
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="css/styleMakingRoom.css">
   <meta charset="UTF-8"/>
-
+  
 </head>
 
 <body>
-  <!--== for 달력 ==-->
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-  <!--===달력====-->
 
-  <h3>fittogether 방 만들기</h3>
-  
-  <div>
-    <span>방 이름: </span>
-    <input placeholder="방 이름 ..." id="room_name" />
-    <button id="btn-confirm" onclick="confirmName()" type="button">중복확인</button>
-    <span id="confirmNameResult"></span>
-  </div>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container-fluid">
 
-  <br>
-  <div>
-    <span>운동목표: </span>
-    <input placeholder="운동목표.." id="room_goal" />
-    <br><br>
-    <span>내기: </span>
-    <input placeholder="내기.." id="room_bet" />
-  </div>
-  <br>
+      <div class="row justify-content-center">
+        <div class="col-xl-10 d-flex align-items-center justify-content-end">
 
-  <!--(유진코드)user 검색하고 초대하는 기능 필요-
-  <input placeholder="닉네임.." id="room_users"/>-->
+          <h1 class="logo mr-auto"><a href="index.html">핏투게더</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-  <!-- (다은코드 시작) -->
-  <div>
-    <span>초대: </span>
-    <input id="invitedNname" type="text" placeholder="초대할 닉네임">
-    <button id="btn-invite" onclick="addLi()" type="button">추가</button>
-    <br><br>
-    <span>참여 멤버: </span>
-    <ul id = "invitedList">
-      <!--초대할 닉네임 입력하면 여기에 추가됨-->
-    </ul>
-    <!--<div class="invalid-feedback">
-              중복된 닉네임입니다.
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active"><a href="index.html">인트로</a></li>
+              <li><a href="#about">더 알아보기</a></li>
+              <li><a href="#services">방 만들기</a></li>
+              <li><a href="#portfolio">방 목록</a></li>
+              <li><a href="#team">내 정보</a></li>
+              <li><a id="btn-logout" href="#">로그아웃</a></li>
+              <!--<li class="drop-down"><a href="">Drop Down</a>
+                <ul>
+                  <li><a href="#">Drop Down 1</a></li>
+                  <li class="drop-down"><a href="#">Deep Drop Down</a>
+                    <ul>
+                      <li><a href="#">Deep Drop Down 1</a></li>
+                      <li><a href="#">Deep Drop Down 2</a></li>
+                      <li><a href="#">Deep Drop Down 3</a></li>
+                      <li><a href="#">Deep Drop Down 4</a></li>
+                      <li><a href="#">Deep Drop Down 5</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Drop Down 2</a></li>
+                  <li><a href="#">Drop Down 3</a></li>
+                  <li><a href="#">Drop Down 4</a></li>
+                </ul>
+              </li>
+              <li><a href="#contact">Contact</a></li>
+            -->
+
+            </ul>
+          </nav><!-- .nav-menu -->
+
+        </div>
+      </div>
     </div>
-    <p id = "invitedUsers">초대된 인원: </p>-->
-  </div>
-  
-  <!-- (다은코드 종료) -->
+  </header><!-- End Header -->
 
-  <br>
-  <span>내기 종료 날짜: </span>
-  <input type="datetime-local" placeholder="오늘날짜.." id="room_date"/>
-  <br><br>
+    <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-  <button onclick="makingRoom()">방 만들기</button>
+        
 
-  <!--
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>-->
+        <div class="carousel-inner" role="listbox">
 
+          
+          <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
+               
+                <div class="carousel-container">
+                  <!--== for 달력 ==-->
+                    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                    <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+                    <!--===달력====-->
+
+                    <h3 style="text-align: center; color: white; font-weight: bold;">새로운 방 만들기</h3> <br>
+                    
+                    <div>
+                      <!--<span>방 이름: </span>-->
+                      <input placeholder="방 이름" id="room_name" />
+                      <button id="btn-confirm" onclick="confirmName()" type="button">중복확인</button>
+                      <span id="confirmNameResult"></span>
+                    </div>
+
+                    <br>
+                    <div>
+                      <!--<span>운동목표: </span>-->
+                      <input placeholder="운동 목표" id="room_goal" />
+                      <br><br>
+                      <!--<span>내기: </span>-->
+                      <input placeholder="내기 내용" id="room_bet" />
+                    </div>
+                    <br>
+
+                    <!--(유진코드)user 검색하고 초대하는 기능 필요-
+                    <input placeholder="닉네임.." id="room_users"/>-->
+
+                    <!-- (다은코드 시작) -->
+                    <div>
+                      <!--<span>초대: </span>-->
+                      <input id="invitedNname" type="text" placeholder="초대할 멤버의 닉네임">
+                      <button id="btn-invite" onclick="addLi()" type="button">추가</button>
+                      <br><br>
+                      <!--<span>참여 멤버: </span>-->
+                      <ul id = "invitedList">
+                        <!--초대할 닉네임 입력하면 여기에 추가됨-->
+                      </ul>
+                      <!--<div class="invalid-feedback">
+                                중복된 닉네임입니다.
+                      </div>
+                      <p id = "invitedUsers">초대된 인원: </p>-->
+                      <span style="color: white; font-size: 12px;">내기 종료 날짜를 설정해 주세요.</span> <br>
+                      <input style="margin-top: 7px; padding: 5px; height: 30px; color: #757575; font-size: 15px;" type="datetime-local" id="room_date"/>
+                      <br><br>
+
+                      <button id="complete" onclick="makingRoom()">방 만들기</button>
+                    </div>
+                    
+                    <!-- (다은코드 종료) -->
+
+                    
+                    
+
+                    <!--
+                    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+                    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>-->
+               
+          </div>
+
+        </div>
+      </div>
+  </section><!-- End Hero -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="copyright">
+              &copy; Copyright <strong>ADC Cor</strong>. All Rights Reserved 
+            </div>
+            <div class="credits">
+              <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
+              -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <!--<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>-->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
   <!--이 html에 해당하는 JS File-->
   <script src="js/mainMakingRoom.js"></script>
-
+  
+  <!-- signout 상태이면 쫓겨나는 코드 -->
+  <script>
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+      if(!user)
+      {
+        window.location.href = "../index.html";
+      }
+    });
+  </script>
 </body>
+
 </html>
