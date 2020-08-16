@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>방 이름 ｜ 핏투게더</title>
+  <title>방 ｜ 핏투게더</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -29,6 +29,8 @@
   <link href="assets/css/styleRoom.css" rel="stylesheet">
 
 
+
+
   <!-- =======================================================
   * Template Name: Hidayah - v2.2.0
   * Template URL: https://bootstrapmade.com/hidayah-free-simple-html-template-for-corporate/
@@ -36,7 +38,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
@@ -44,11 +46,17 @@
 
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
+  <!--방 입장 위한 함수 -->
+  <script>
+  function setRoomNameAndMove(url,rName) {
+    window.location.href = url + "?roomName=" + rName;
+  }
+  </script>
+
 
 </head>
 
 <body>
-  <script src="js/mainMainPage.js"></script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
@@ -69,8 +77,6 @@
               <li><a href="#portfolio">방 목록</a></li>
               <li><a href="#team">내 정보</a></li>
               <li><a id="btn-logout" href="#">로그아웃</a></li>
-              <!--로그아웃 부분 버튼으로 바꾸기-->
-
               <!--<li class="drop-down"><a href="">Drop Down</a>
                 <ul>
                   <li><a href="#">Drop Down 1</a></li>
@@ -99,44 +105,54 @@
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
+    <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-      <!--<ol class="carousel-indicators" id="hero-carousel-indicators"></ol>-->
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-      <div class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
-              <div class="carousel-container">
-                <p class="goal" id="box">한 달 동안 하루 1회 골반 스트레칭
-                  <img id="editPencil" style="width: 18px; height: 18px;" src="assets/img/editPencil.png">
-                </p>
-                <p class="punishment" id="box">못 한 날마다 보드게임 15분 누적</p>
-                <p class="ranking" id="box">랭킹</p>
-              </div>
 
-              <div class="today">
-                <p class="currentResult">오늘의 달성 상황</p>
-                <p style="font-size: 20px;">유진 성공 · 다은 성공 · 채영 성공</p>
-              </div>
+        <div class="carousel-inner" role="listbox">
+
+
+          <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
+
+                <div class="carousel-container">
+                    <!-- 코드 -->
+                    <h1 id = "roomTitle">My room
+                      <p id = "nickName">닉네임</p>
+                      <div class = "boxes">
+                        <!--방목록 출력 표-->
+                        <table style="border: 1px;" id="dynamicTable">
+                          <thead>
+                            <tr>
+                              <th>방이름</th>
+                              <th>상태</th>
+                            </tr>
+                          </thead>
+                          <tbody id="dynamicTbody">
+                          </tbody>
+                        </table>
+                        <!--방목룍 출력 표 끝-->
+                        <!--방만들기 버튼-->
+                        <button onclick="newRoom()">New room</button>
+                      </div>
+                  </h1>
+                </div>
+
+          </div>
+
         </div>
-
       </div>
-    </div>
+  </section><!-- End Hero -->
 
-  </section>
-  <!--End Hero -->
+  <!------ Modal Section
+    <div class="bg-modal">
+      <div class="modal-content">
+        <div class="close">+</div>
+      </div>
+    </div>------>
 
-  <!-- now 수정 ======= Button ======= -->
-  <h5>My room</h5>
-  <!--<button onclick="existRoom()">My rooms</button>-->
-  <p id = "nickName">닉네임</p>
-  <p id = "i_roomName">방목록</p>
-
-
-  <button onclick="newRoom()">New room</button>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -177,10 +193,12 @@
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/mainRoom.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- 이 html 전용 JS File -->
   <script src="js/mainMainPage.js"></script>
 
-  <!--signout 상태이면 쫓겨나는 코드-->
+  <!-- signout 상태이면 쫓겨나는 코드 -->
   <script>
     firebase.auth().onAuthStateChanged(function(user)
     {
@@ -190,7 +208,6 @@
       }
     });
   </script>
-
 </body>
 
 </html>

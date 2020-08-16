@@ -34,17 +34,26 @@ firebase.auth().onAuthStateChanged(function(user)
       var roomList = " ";
       firebase.database().ref('Usersroom/' + userID).once('value')
       .then(function(snapshot) {
-        var roomList = [];
+        var roomList = new Array;
+        var html = '';
         snapshot.forEach(function(childSnapshot) {
          var roomName = childSnapshot.key;
-         roomList.push("<br>" + roomName);  //걍 줄바꿈하려고 <br> 넣음 바꿔도됨.
-         console.log(roomName);
+         var roomCnt = childSnapshot.child("recentcnt").val();
+         roomList.push({name : roomName , count : roomCnt });
         });
-        document.getElementById("i_roomName").innerHTML = roomList;
-        console.log(roomList);
+        for (key in roomList) {
+          html += '<tr>';
+          html += '<td>' + roomList[key].name + '</td>';
+          html += '<td>' + roomList[key].count + '</td>';
+          html += '<td> <button onclick="setRoomNameAndMove("room.html","' + roomList[key].name + '")"> 입장</button> </td>';
+          html += '</tr>';
+        }
+        $("#dynamicTbody").empty();
+        $("#dynamicTbody").append(html);
       });
     }
 });
+
 
   //makingRoom.html로 연결
 function newRoom() {
