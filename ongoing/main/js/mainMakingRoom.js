@@ -24,6 +24,7 @@ firebase.auth().onAuthStateChanged(function(user)
 
             firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
             {
+              
                 if(snapshot.val())
                 {
                   var userNname = snapshot.child('nickName').val();
@@ -34,6 +35,7 @@ firebase.auth().onAuthStateChanged(function(user)
                 
                   liNode.appendChild(txtNode);
                   listNode.appendChild(liNode);
+                  document.getElementById("nickName").innerHTML = userNname;
                 }
             });
         }
@@ -279,19 +281,21 @@ function confirmName(){
       if (snapshot.val() === null) {
         // 중복되지않은 방이름
         //alert("사용가능한 방이름입니다.");
-        document.getElementById("confirmNameResult").innerHTML = "사용가능한 방이름입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("confirmNameResult").innerHTML = "사용 가능한 방 이름입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("confirmNameResult").style.color = "greenyellow"
       }
       else
       {
         // 중복된 방이름
         //alert("중복된 방이름입니다.");
-        document.getElementById("confirmNameResult").innerHTML = "중복된 방이름입니다.";  //추후에, 이경우엔 style 속성에 color 초록색 넣기
+        document.getElementById("confirmNameResult").innerHTML = "이미 사용중인 방 이름입니다.";  //추후에, 이경우엔 style 속성에 color 초록색 넣기
+        document.getElementById("confirmNameResult").style.color = "red"
       }
     });
   }
   else
   {
-    alert("아무것도 안썼잖아요");
+    alert("방 이름을 입력해 주세요.");
   }
 }
 
@@ -330,3 +334,10 @@ function leadingZeros(n, digits) {
 function setRoomNameAndMove(url, rName) {
   window.location.href = url + "?roomName=" + rName;
  }
+
+ // logout
+$("#btn-logout").click(function()
+{
+   firebase.auth().signOut();
+});
+
