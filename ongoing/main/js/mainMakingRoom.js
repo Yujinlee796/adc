@@ -38,6 +38,9 @@ firebase.auth().onAuthStateChanged(function(user)
                   document.getElementById("nickName").innerHTML = userNname;
                 }
             });
+        } else if (!user) {
+          //signout 상태이면 쫓겨나는 코드
+          window.location.href = "../index.html";
         }
     });
 
