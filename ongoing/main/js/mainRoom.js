@@ -172,6 +172,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
         //만약 이 uid가 현재 접속중인 uid와 같다면, 해당 닉네임을 출력해줘라
         if(roomUsersUid == currentUserID){
           document.getElementById('nicknameData').innerHTML = Nname;
+          document.getElementById("nickName").innerHTML = Nname;
         }
 
         deferred.resolve(Nname);
@@ -281,7 +282,7 @@ function createScore(score, i) {
   //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
   var style = document.createElement('style');
   style.type = 'text/css';
-  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #F2709C, #FF9472); box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #00ccff, #fcfa7a); box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
   document.getElementsByTagName('head')[0].appendChild(style);
 
   //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌

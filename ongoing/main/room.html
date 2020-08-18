@@ -1,257 +1,163 @@
+<!--
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    상단바에 생기는 이상한 녀석들..수정필요
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-->
+
+
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>방 ｜ 핏투게더</title>
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/styleRoom.css" rel="stylesheet">
-
-  
-
-
-  <!-- =======================================================
-  * Template Name: Hidayah - v2.2.0
-  * Template URL: https://bootstrapmade.com/hidayah-free-simple-html-template-for-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
-  
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
-
-
-  
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container-fluid">
-
-      <div class="row justify-content-center">
-        <div class="col-xl-10 d-flex align-items-center justify-content-end">
-
-          <h1 class="logo mr-auto"><a href="index.html">핏투게더</a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-          <nav class="nav-menu d-none d-lg-block">
-            <ul>
-              <li class="active"><a href="index.html">인트로</a></li>
-              <li><a href="#about">더 알아보기</a></li>
-              <li><a href="#services">방 만들기</a></li>
-              <li><a href="#portfolio">방 목록</a></li>
-              <li><a href="#team">내 정보</a></li>
-              <li><a id="btn-logout" href="#">로그아웃</a></li>
-              <!--<li class="drop-down"><a href="">Drop Down</a>
-                <ul>
-                  <li><a href="#">Drop Down 1</a></li>
-                  <li class="drop-down"><a href="#">Deep Drop Down</a>
-                    <ul>
-                      <li><a href="#">Deep Drop Down 1</a></li>
-                      <li><a href="#">Deep Drop Down 2</a></li>
-                      <li><a href="#">Deep Drop Down 3</a></li>
-                      <li><a href="#">Deep Drop Down 4</a></li>
-                      <li><a href="#">Deep Drop Down 5</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Drop Down 2</a></li>
-                  <li><a href="#">Drop Down 3</a></li>
-                  <li><a href="#">Drop Down 4</a></li>
-                </ul>
-              </li>
-              <li><a href="#contact">Contact</a></li>
-            -->
-
-            </ul>
-          </nav><!-- .nav-menu -->
-
-        </div>
-      </div>
-    </div>
-  </header><!-- End Header -->
-
-    <!-- ======= Hero Section ======= -->
-  <section id="hero">
+<html>
+    <head>
+        <title>방 ｜ 핏투게더</title>
     
-      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
-        
+        <link rel="stylesheet" href="assets/css/styleRoom.css">
+    </head>
 
-        <div class="carousel-inner" role="listbox">
-
-          
-          <div class="carousel-item active" style="background-image: url(assets/img/slide/roomBackground.jpg)">
-               
-                <div class="carousel-container">
-                  <h1 id="roomTitle">
-                    <span id="titleData"><!--방이름 출력되는 부분--></span>
-                    <span id="fromStartDate"><!--몇일차 출력되는 부분--></span>
-                  </h1>
-                  <h6 style="color: gainsboro; text-align: center;">
-                    <span id="endDate"><!--종료일 출력되는 부분--></span>
-                  </h6>
-                  <div class="boxes">
-                    <p class="goal" id="box"> 
-                      <span id="goalText"><!--목표 출력되는 부분--></span>
-                      <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
-                    </p>
-                    
-                    <p class="punishment" id="box">
-                      <span id="bettingText"><!--내기 출력되는 부분--></span>
-                      
-                      <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
-                    </p>
-                    
-                    <div class="ranking" id="box">랭킹
-                      <div id="scoreBar">
-                        <!--<div class="progress">
-                          <div class="progress-done">10점</div>
-                        </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
-                        <!-----스코어바 생성 부분-----></div>
-                    </div>
-                    
-                  </div>
+    <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
+        <header id="header" class="fixed-top">
+            <span class="logo" style="float: left;">
+                <div class="greet" style="display: flex;">
+                    <h1><a href="mainPage.html">핏투게더</a></h1>
+                    <span style=
+                    "color: white; font-size: 15px; margin-top: 30px; margin-left: 20px;">
+                        환영합니다, <span id="nickName" style="color: #2f88d6"></span>님!
+                    </span>
                 </div>
                 
-                <div class="today">
-                  <div class="todayContents">
-                    <h2 style="color: #428bca; margin-bottom: 30px;">오늘의 운동기록까지<br><span id="quotation">" </span><span id="todayTimer"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation"> "</span></h2>
-                    <p style="margin-bottom: 8px;" class="currentResult">오늘의 달성 상황</p>
-                    <a href="#" onclick="openStatePopup()" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
-                    <table class="table">
-                      <tr>
-                        <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                          <img id="profileImg" src="" style="width: 250px;">
 
-                        </td>
-                        <td style="border-top: none; border-bottom: 1px solid white;">
-                        <span id="currentDay" style="position: relative; top: 15px;">수정예정</span>
-                        </td>
+            </span>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../index.html">인트로</a></li>
+                    <li><a href="#more">더 알아보기</a></li>
+                    <li><a href="makingRoom.html">방 만들기</a></li>
+                    <li><a href="mainPage.html">방 목록</a></li>
+                    <li><a href="#profile">내 정보</a></li>
+                    <li><a id="btn-logout" href="#">로그아웃</a></li>
+                </ul>
+            </nav>
 
-                      </tr>
-
-                      <tr>
-
-                        <td style="border-top: none; border-bottom: 1px solid white;">
-                          <span style="position: relative; top: 15px;" id="nicknameData"> <!--닉네임 출력되는 부분--> </span>
-                        </td>
-
-                      </tr>
-
-                      <tr>
-
-                        <td style="border-top: none;">
-                          
-                          <!--성공 실패 버튼-->
-                          <button onclick="plusOneAndReload()" id="resultBtn" class="firSec">성공</button>
-                          <button onclick="giveUpAndReload()" id="resultBtn" class="firSec">포기</button>
-                          <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
-                        </td>
-                        
-                      </tr>
-
-                    </table>
-                    
-                    
-                  </div>
-                </div>
-          </div>
-
-        </div>
-      </div>
-  </section><!-- End Hero -->
-
-  <!------ Modal Section 
-    <div class="bg-modal">
-      <div class="modal-content">
-        <div class="close">+</div>
-      </div>
-    </div>------>
+        </header>
 
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="copyright">
-              &copy; Copyright <strong>ADC Cor</strong>. All Rights Reserved 
-            </div>
-            <div class="credits">
-              <!--
-                All the links in the footer should remain intact.
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
-              -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <div class="main-box">
+               
+          <div class="align-left">
+            <p id="roomTitle">
+              <span id="titleData"><!--방이름 출력되는 부분--></span>
+              <span id="fromStartDate"><!--몇일차 출력되는 부분--></span>
+            </p>
+            
+              <span id="endDate"><!--종료일 출력되는 부분--></span>
+            
+            <div class="boxes">
+              <p class="goal" id="box"> 
+                <span id="goalText"><!--목표 출력되는 부분--></span>
+                <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
+              </p>
+              
+              <p class="punishment" id="box">
+                <span id="bettingText"><!--내기 출력되는 부분--></span>
+                
+                <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
+              </p>
+              
+              <div class="ranking" id="box">
+                <div id="scoreBar">
+                  <!--<div class="progress">
+                    <div class="progress-done">10점</div>
+                  </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
+                  <!-----스코어바 생성 부분-----></div>
+              </div>
+              
             </div>
           </div>
+          
+          <div class="align-right">
+            <!--글씨 크기 수정-->
+            <h2 style="color: #428bca; margin-bottom: 30px; font-size: 20px;">
+              오늘의 운동 기록까지 남은 시간<br><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;">" </span>
+              <span id="todayTimer" style="font-size: 50px;"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;"> "</span>
+            </h2>
+            <p>
+              <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
+              <span style="font-size: 50px; color: white; font-weight: bolder;">성공</span>
+            </p>
+            <a href="#" onclick="openStatePopup()" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
+            <table class="table" style="margin-top: 30px;">
+              <tr>
+                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
+                  <img id="profileImg" src="" style="width: 250px;">
+    
+                </td>
+                <td style="border-top: none; border-bottom: 1px solid white;">
+                  <span style="font-size: 20px; color: white;" id="nicknameData"> <!--닉네임 출력되는 부분--> </span>
+                </td>
+    
+              </tr>
+    
+              <tr>
+    
+                <td style="border-top: none; border-bottom: 1px solid white;">
+                  <button onclick="plusOneAndReload()" id="successBtn" class="firSec">성공</button>
+                </td>
+    
+              </tr>
+    
+              <tr>
+    
+                <td style="border-top: none;">
+                  
+                  <!--성공 실패 버튼-->
+                  
+                  <button onclick="giveUpAndReload()" id="resultBtn" class="firSec">포기</button>
+                  <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
+                </td>
+                
+              </tr>
+    
+            </table>
+              
+              
+
+          </div>
         </div>
-      </div>
-   
-  </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <!--<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>-->
+        <script src="assets/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/venobox/venobox.min.js"></script>
+        <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+        <script src="assets/vendor/counterup/counterup.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+        <!-- Template Main JS File --><!--
+        <script src="assets/js/main.js"></script>-->
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+        <!--이 html에 해당하는 JS File-->
+        <script src="js/mainRoom.js"></script>
+        
+        <!-- signout 상태이면 쫓겨나는 코드 -->
+        <script>/*
+            firebase.auth().onAuthStateChanged(function(user)
+            {
+                if(!user)
+                {
+                    window.location.href = "../index.html";
+                }
+            });*/
+        </script>
 
-  <!-- 이 html 전용 JS File -->
-  <script src="js/mainRoom.js"></script>
-  
-  <!-- signout 상태이면 쫓겨나는 코드 -->
-  <script>
-    firebase.auth().onAuthStateChanged(function(user)
-    {
-      if(!user)
-      {
-        window.location.href = "../index.html";
-      }
-    });
-  </script>
-</body>
-
+    </body>
 </html>
