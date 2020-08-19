@@ -61,14 +61,23 @@
             
             <div class="boxes">
               <p class="goal" id="box"> 
-                <span id="goalText"><!--목표 출력되는 부분--></span>
-                <button id="pencilBtn" onclick="openGoalPopup()"><img id="editPencil" style="width: 16px; height: 16px; padding: 0;" src="assets/img/editPencil.png"></button>
+                <a id="editGoals" href="#">
+                  <span id="goalText">
+                    
+                      <!--목표 출력되는 부분-->
+                    
+                  </span>
+                </a>
               </p>
               
               <p class="punishment" id="box">
-                <span id="bettingText"><!--내기 출력되는 부분--></span>
-                
-                <button id="pencilBtn" onclick="openPunishmentPopup()"><img id="editPencil" style="width: 16px; height: 16px;" src="assets/img/editPencil.png"></button>
+                <a id="editPunishment" href="#">
+                  <span id="bettingText">
+                    
+                      <!--내기 출력되는 부분-->
+                    
+                  </span>
+                </a>
               </p>
               
               <div class="ranking" id="box">
@@ -131,6 +140,26 @@
 
           </div>
         </div>
+
+        <div id="myModal-goal" class="modal">
+          <div class="modal-content">
+            <span class="closeGoal">&times;</span>
+            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">목표 수정하기</h2>
+            <input type="text" id="edittedGoals" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 목표를 입력하세요.">
+            <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button>
+          </div>
+        </div>
+
+        <div id="myModal-punishment" class="modal">
+          <div class="modal-content">
+            <span class="closePun">&times;</span>
+            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">내기 수정하기</h2>
+            <input type="text" id="edittedPunishment" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
+            <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button>
+          </div>
+        </div>
+
+        
 
         <script src="assets/vendor/jquery/jquery.min.js"></script>
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

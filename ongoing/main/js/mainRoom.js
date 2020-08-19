@@ -282,7 +282,7 @@ function createScore(score, i) {
   //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
   var style = document.createElement('style');
   style.type = 'text/css';
-  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #00ccff, #fcfa7a); box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #fcfa7a); box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
   document.getElementsByTagName('head')[0].appendChild(style);
 
   //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌
@@ -389,7 +389,7 @@ $("#btn-logout").click(function()
    firebase.auth().signOut();
 });
 
-
+/*
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //팝업창
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -403,7 +403,7 @@ function openPunishmentPopup() {
   var punishmentPopupUrl = "roomPunishmentPopup.html?val=" + roomName;
   var punishmentPopupOption = "width=570, height=250, resizable = no, scrollbars = no";
   window.open(punishmentPopupUrl, '', punishmentPopupOption, '');
-}
+}*/
 
 //===========================================================================================//
 //(채영코드추가) 친구들의 달성 현황 보여주는 팝업창
@@ -966,3 +966,83 @@ firebase.database().ref('Users/rv2UkGj4xWQoAEEYiKiHHLQeY883/').once('value').the
   document.getElementById("nicknameData").innerHTML = printNickname;
 })
 */
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+//자라나라 모달모달 - 목표수정
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalGoal = document.getElementById('myModal-goal');
+ 
+// Get the button that opens the modal
+var btnGoal = document.getElementById("editGoals");
+
+// Get the <span> element that closes the modal
+var spanGoal = document.getElementsByClassName("closeGoal")[0];                                          
+
+// When the user clicks on the button, open the modal 
+btnGoal.onclick = function() {
+    modalGoal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanGoal.onclick = function() {
+    modalGoal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalGoal) {
+        modalGoal.style.display = "none";
+    }
+}
+
+
+function editGoals() {
+  var newGoal = document.getElementById("edittedGoals").value;
+  firebase.database().ref("Rooms/" + roomName).update({
+      goals: newGoal
+  });
+alert("목표가 새로 설정되었습니다.");
+window.location.reload();
+};
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+//자라나라 모달모달 - 내기수정
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalPun = document.getElementById('myModal-punishment');
+ 
+// Get the button that opens the modal
+var btnPun = document.getElementById("editPunishment");
+
+// Get the <span> element that closes the modal
+var spanPun = document.getElementsByClassName("closePun")[0];                                         
+
+// When the user clicks on the button, open the modal 
+btnPun.onclick = function() {
+    modalPun.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanPun.onclick = function() {
+    modalPun.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalPun) {
+        modal.style.display = "none";
+    }
+}
+
+
+function editPunishment() {
+  var newBetting = document.getElementById("edittedPunishment").value;
+  firebase.database().ref("Rooms/" + roomName).update({
+    betting: newBetting
+  });
+alert("내기가 새로 설정되었습니다.");
+window.location.reload();
+};
