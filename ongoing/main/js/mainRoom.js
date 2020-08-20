@@ -411,11 +411,12 @@ function openPunishmentPopup() {
 //(1) 팝업창 위치 조정 or Modal로 변경
 //(2) 가져올 정보들 어떻게 처리할지 (팝업창: 방이름 보낼때 전부 보내기 vs modal: 전역변수 값 이용)
 //============================================================================================//
+/*
 function openStatePopup() {
   var statePopupUrl = "roomStatePopup.html?val=" + roomName;
   var statePopupOption = "width=300, height=400, resizable = no, scrollbars = auto";
   window.open(statePopupUrl, '', statePopupOption, '');
-}
+}*/
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1033,7 +1034,7 @@ spanPun.onclick = function() {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modalPun) {
-        modal.style.display = "none";
+        modalPun.style.display = "none";
     }
 }
 
@@ -1046,3 +1047,34 @@ function editPunishment() {
 alert("내기가 새로 설정되었습니다.");
 window.location.reload();
 };
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//자라나라 모달모달 - state (띄우기만 하는 코드임, 내용물코드x)
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalState = document.getElementById('myModal-state');
+ 
+// Get the button that opens the modal
+var btnState = document.getElementById("openStatePopup");
+
+// Get the <span> element that closes the modal
+var spanState = document.getElementsByClassName("closeState")[0];                                         
+
+// When the user clicks on the button, open the modal 
+btnState.onclick = function() {
+    modalState.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanState.onclick = function() {
+    modalState.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalState) {
+        modalState.style.display = "none";
+    }
+}

@@ -101,14 +101,14 @@
               <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
               <span style="font-size: 50px; color: white; font-weight: bolder;">성공</span>
             </p>
-            <a href="#" onclick="openStatePopup()" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
+            <a href="#" id="openStatePopup" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
             <table class="table" style="margin-top: 30px;">
               <tr>
                 <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
                   <img id="profileImg" src="" style="width: 250px;">
     
                 </td>
-                <td style="border-top: none; border-bottom: 1px solid white;">
+                <td style="border-top: none; border-bottom: 1px solid white; width: 200px;">
                   <span style="font-size: 20px; color: white;" id="nicknameData"> <!--닉네임 출력되는 부분--> </span>
                 </td>
     
@@ -116,7 +116,7 @@
     
               <tr>
     
-                <td style="border-top: none; border-bottom: 1px solid white;">
+                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 35px; padding-left: 35px;">
                   <button onclick="plusOneAndReload()" id="successBtn" class="firSec">성공</button>
                 </td>
     
@@ -124,7 +124,7 @@
     
               <tr>
     
-                <td style="border-top: none;">
+                <td style="border-top: none; padding-right: 74px; padding-left: 5px;">
                   
                   <!--성공 실패 버튼-->
                   
@@ -159,6 +159,23 @@
           </div>
         </div>
 
+        <div id="myModal-state" class="modal">
+          <div class="modal-content">
+            <span class="closeState">&times;</span>
+              <div class="main-container">
+                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: white;">친구들의 달성 상황</h2>
+                  <table id="stateTable">
+                      <!--동적할당되는 표의 형태
+                      <tr>
+                          <td style="color: skyblue;">닉네임</td>
+                          <td style="color: tomato;">현황</td>
+                      </tr>
+                      -->
+                  </table>
+              </div>
+          </div>
+        </div>
+
         
 
         <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -176,6 +193,7 @@
 
         <!--이 html에 해당하는 JS File-->
         <script src="js/mainRoom.js"></script>
+        <script src="js/mainRoomStatePopup.js"></script>
         
         <!-- signout 상태이면 쫓겨나는 코드 -->
         <script>/*
