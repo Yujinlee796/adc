@@ -99,7 +99,7 @@
             </h2>
             <p>
               <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
-              <span style="font-size: 50px; color: white; font-weight: bolder;">성공</span>
+              <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;"><!--오늘의 운동 완료 여부--></span>
             </p>
             <a href="#" id="openStatePopup" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
             <table class="table" style="margin-top: 30px;">
@@ -109,7 +109,7 @@
     
                 </td>
                 <td style="border-top: none; border-bottom: 1px solid white; width: 200px;">
-                  <span style="font-size: 20px; color: white;" id="nicknameData"> <!--닉네임 출력되는 부분--> </span>
+                  <span id="nicknameData" style="font-size: 20px; color: white;"> <!--닉네임 출력되는 부분--> </span>
                 </td>
     
               </tr>
@@ -117,7 +117,7 @@
               <tr>
     
                 <td style="border-top: none; border-bottom: 1px solid white; padding-right: 35px; padding-left: 35px;">
-                  <button onclick="plusOneAndReload()" id="successBtn" class="firSec">성공</button>
+                  <button onclick="plusOneAndReload()" id="successBtn" class="firSec">완료</button>
                 </td>
     
               </tr>
@@ -163,7 +163,7 @@
           <div class="modal-content">
             <span class="closeState">&times;</span>
               <div class="main-container">
-                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: white;">친구들의 달성 상황</h2>
+                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">친구들의 달성 상황</h2>
                   <table id="stateTable">
                       <!--동적할당되는 표의 형태
                       <tr>

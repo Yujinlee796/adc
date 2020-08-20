@@ -403,11 +403,31 @@ modal
 
 
 
-
+/* 친구들의 달성 현황 볼때 동적으로 생성되는 table의 디자인 */
 #stateTable {
   width: 60%;
   height: 100px;
   margin: auto;
   text-align: center;
   font-family: 'InfinitySans-RegularA1';
+}
+
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+(다은코드) 친구들의 달성 상황 볼때 닉네임과 상태 글씨 디자인
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.Nname {
+  color: skyblue;
+}
+
+.stateTrue {
+  color: cornflowerblue;
+}
+
+.stateFalse {
+  color: tomato;
+}
+
+.stateYet {
+  color: gray;
 }

@@ -82,10 +82,10 @@ window.onload = function(){
             var roomUsersUid = childSnapshot.key;
             roomUsers.push(roomUsersUid);
 
-            //닉네임과 스코어를 가져오면, 출력하기 result1: Nname, result2: score (나중에 변경)
-            $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID)).done(function(result1, result2){
-              //스코어바 출력하기
-              displayScoreBar(result1, result2);
+            //닉네임과 스코어&상태를 가져오면, 출력하기
+            $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID)).done(function(Nname, scoreAndstate = []){
+              displayScoreBar(Nname, scoreAndstate[0]); //스코어바 출력하기
+              displayState(Nname, scoreAndstate[1]); //모달에 친구들의 달성 상태 출력하기
               recentcntUpdate();
             }).done(function(){
               //동물 그림 출력하기(이게 forEach에 걸려있는거 안좋을듯. 추후 수정)
@@ -181,7 +181,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 }
 
 //============================================================================//
-//각 uid에 대해 score 가져오기
+//각 uid에 대해 score(fitcnt)와 state(recentcnt) 가져오기
 //============================================================================//
 function getRoomUsersScore(roomUsersUid, currentUserID) {
 
@@ -190,19 +190,21 @@ function getRoomUsersScore(roomUsersUid, currentUserID) {
   firebase.database().ref('Usersroom/' + roomUsersUid + '/' + roomName).once('value')
       .then(function(snapshot) {
         score = snapshot.child('fitcnt').val();
-        //roomUsersScore.push(score);
+        state = snapshot.child('recentcnt').val();
+        //roomUsersState.push(state);
         //console.log(score);
 
         //만약 이 uid가 현재 접속중인 uid와 같다면, recentcnt와 lastClick값도 저장해둬라
         if(roomUsersUid == currentUserID){
-          recentcnt = snapshot.child('recentcnt').val();
+          recentcnt = state;
           lastClick = snapshot.child('lastClick').val();
           fitcnt = score;
-          //console.log(recentcnt);
-          //console.log(lastClick);
+
+          //현재 접속자의 오늘의 운동 달성 여부도 출력하자
+          displayTodayState(state);
         }
 
-        deferred.resolve(score);
+        deferred.resolve(score, state);
       });
   return deferred.promise();
 }
@@ -266,6 +268,23 @@ function displayImg() {
   }
 
   document.getElementById('profileImg').src = imgSrc;
+}
+
+//============================================================================//
+//(다은코드) 현재 접속중인 유저의 recentcnt에 따라 완료/-/포기 여부 출력
+//============================================================================//
+function displayTodayState(state) {
+  switch(state) {
+    case 1:
+      document.getElementById("todayState").innerHTML = '완료';
+      break;
+    case 0:
+      document.getElementById("todayState").innerHTML = '-';
+      break;
+    case -1:
+      document.getElementById("todayState").innerHTML = '포기';
+      break;
+  }
 }
 
 //============================================================================//
@@ -1050,9 +1069,9 @@ window.location.reload();
 
 
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//자라나라 모달모달 - state (띄우기만 하는 코드임, 내용물코드x)
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//자라나라 모달모달 - 친구들의 달성 상황(채영코드에 다은 코드 추가)
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalState = document.getElementById('myModal-state');
  
@@ -1078,3 +1097,43 @@ window.onclick = function(event) {
         modalState.style.display = "none";
     }
 }
+
+//=============================================================================//
+//(다은코드) 친구들의 달성 상황 - 각 넥네임 별 표 한칸씩 생성
+//=============================================================================//
+function displayState(Nname, state) {
+  const stateTable = document.getElementById('stateTable');
+  const trElem = document.createElement('tr');
+  const tdElemLeft = document.createElement('td');
+  const tdElemRight = document.createElement('td');
+  const elemTxtLeft = document.createTextNode(Nname);
+  var elemTxtRight = document.createTextNode('');
+
+  tdElemLeft.classList.add('Nname');
+  tdElemLeft.appendChild(elemTxtLeft);
+  
+  switch(state) {
+    case 1:
+      tdElemRight.classList.add('stateTrue');
+      elemTxtRight = document.createTextNode('완료');
+      tdElemRight.appendChild(elemTxtRight);
+      break;
+    case -1:
+      tdElemRight.classList.add('stateFalse');
+      elemTxtRight = document.createTextNode('포기');
+      tdElemRight.appendChild(elemTxtRight);
+      break;
+    case 0:
+      tdElemRight.classList.add('stateYet');
+      elemTxtRight = document.createTextNode('-');
+      tdElemRight.appendChild(elemTxtRight);
+      break;
+  }
+
+  trElem.appendChild(tdElemLeft);
+  trElem.appendChild(tdElemRight);
+
+  stateTable.appendChild(trElem);
+  return trElem;
+}
+
