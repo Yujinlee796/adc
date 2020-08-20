@@ -253,7 +253,7 @@ function addLi(){
               
       if (snapshot.val() === null) {
         //존재하지 않는 닉네임일때
-        alert(invitedNname + "은(는) 존재하지 않는 닉네임입니다.");  //닉네임 설정과 마찬가지로 밑에 빨간줄 생기는 걸로 수정.
+        alert(invitedNname + "은(는) 존재하지 않는 닉네임입니다.");  //♥이부분에 오류 메시지 추가해주세용♥
       }
       else {
         //존재하는 닉네임일때
@@ -267,7 +267,7 @@ function addLi(){
     });
   }
   else{
-    alert("아무것도 안적었잖아요");
+    alert("아무것도 안적었잖아요");   //♥이부분에 오류 메시지 추가해주세용♥
   }
 }
 
@@ -276,8 +276,9 @@ function addLi(){
 function confirmName(){
   var roomName = document.getElementById('room_name').value;
 
-  if(roomName != "")
-  {
+  //방 이름 10자 이내 인지 확인하기
+  if (0 < roomName.length && roomName.length <= 10) {
+
     var rootRef = firebase.database().ref().child("Rooms");
 
     rootRef.orderByChild('name').equalTo(roomName).once('value', function(snapshot){
@@ -295,10 +296,12 @@ function confirmName(){
         document.getElementById("confirmNameResult").style.color = "red"
       }
     });
-  }
-  else
-  {
-    alert("방 이름을 입력해 주세요.");
+  } else if (roomName.length == 0) {
+    //방 이름을 입력하지 않음
+    alert("방 이름을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
+  } else if (roomName.length > 10) {
+    //방 이름이 10자를 초과함
+    alert("초과");   //♥이부분에 오류 메시지 추가해주세용♥
   }
 }
 
