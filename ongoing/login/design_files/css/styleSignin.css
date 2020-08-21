@@ -122,7 +122,7 @@ select {
     display: none; }
 
 button {
-  border: 2px solid #1d64be;
+  border: 2px solid rgba(61,141,211,1);
   width: 164px;
   height: 51px;
   margin: auto;
@@ -132,7 +132,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: #1d64be;
+  background: rgba(61,141,211,1);
   font-size: 17px;
   color: #fff;
   vertical-align: middle;

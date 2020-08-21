@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-to-top:hover {
-  background: #1d64be;
+  background: rgba(61,141,211,0.6);
   color: #fff;
 }
 
@@ -175,8 +175,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .btn-get-started {
   width: 120px;
-  background: #1d64be;
-  border: 2px solid #1d64be;
+  background: rgba(61,141,211,0.6);
+  border: 2px solid rgba(61,141,211,0.6);
   color: #fff;
   font-family: "InfinitySans-RegularA1";
   font-size: 15px;
@@ -209,8 +209,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .btn-services:hover {
   width: 120px;
-  background: #1d64be;
-  border: 2px solid #1d64be;
+  background: rgba(61,141,211,0.6);
+  border: 2px solid rgba(61,141,211,0.6);
   font-family: "InfinitySans-RegularA1";
   font-size: 15px;
   border-radius: 2px;
@@ -511,7 +511,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .section-title-divider {
   width: 50px;
   height: 3px;
-  background: #1d64be;
+  background: rgba(61,141,211,1);
   margin: 0 auto;
   margin-bottom: 20px;
 }
