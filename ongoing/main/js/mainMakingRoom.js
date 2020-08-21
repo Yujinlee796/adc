@@ -24,18 +24,22 @@ firebase.auth().onAuthStateChanged(function(user)
 
             firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
             {
-              
                 if(snapshot.val())
                 {
                   var userNname = snapshot.child('nickName').val();
-  
+
                   var listNode = document.getElementById('invitedList');
                   var liNode = document.createElement("LI");
                   var txtNode = document.createTextNode(userNname);
-                
+                  
                   liNode.appendChild(txtNode);
                   listNode.appendChild(liNode);
                   document.getElementById("nickName").innerHTML = userNname;
+
+                } else 
+                {
+                  //닉네임 설정을 건너뛰었다면 닉네임 설정부터 하고 와라
+                  window.location.href = "../login/accountSettings.html";
                 }
             });
         } else if (!user) {
