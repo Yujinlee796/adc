@@ -32,10 +32,12 @@ firebase.auth().onAuthStateChanged(function(user)
       .then(function(snapshot) {
         var userNickname = snapshot.child("nickName").val();
         console.log(userNickname);
-        if (userNickname == null) {
-          window.location.href = "../login/accountSettings.html";
-        } else {
+
+        if (userNickname != null) {
           document.getElementById("nickName").innerHTML = userNickname;
+        } else {
+          //닉네임 설정을 건너뛰었다면 닉네임 설정부터 하고 와라
+          window.location.href = "../login/accountSettings.html";
         }
       });
 
@@ -45,6 +47,7 @@ firebase.auth().onAuthStateChanged(function(user)
       .then(function(snapshot) {
         var roomList = new Array;
         var roomState = '';
+        var htmlTh = '';
         var html = '';
         //var link = '';
 
