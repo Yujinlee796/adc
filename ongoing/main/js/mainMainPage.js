@@ -91,3 +91,34 @@ $("#btn-logout").click(function()
 {
    firebase.auth().signOut();
 });
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//자라나라 모달모달 - 더 알아보기
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalManual = document.getElementById('myModal-manual');
+ 
+// Get the button that opens the modal
+var btnManual = document.getElementById("openManual");
+
+// Get the <span> element that closes the modal
+var spanManual = document.getElementsByClassName("closeManual")[0];                                         
+
+// When the user clicks on the button, open the modal 
+btnManual.onclick = function() {
+    modalManual.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanManual.onclick = function() {
+    modalManual.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalManual) {
+        modalManual.style.display = "none";
+    }
+}

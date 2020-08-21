@@ -58,7 +58,7 @@ window.onload = function(){
         document.getElementById("titleData").innerHTML = printTitle;
         document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
       });
-    } else { alert('방이름이 없습니다.');}
+    } else { alert('방 이름을 불러오지 못했습니다.');}
 
 
     //============================================================================//
@@ -95,7 +95,7 @@ window.onload = function(){
             //console.log(roomUsers);
         });
       } else if (!user) { window.location.href = "../index.html"; //signout 상태이면 쫓겨나는 코드
-      } else if (roomName == '') { alert('방이름이 없습니다.');}
+      } else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
     });
 }
 
@@ -339,7 +339,7 @@ function createMotion(score, i) {
     progress.style.width = (score/period)*100 + '%';
     progress.style.opacity = 1;
   } else {
-    alert('방정보가 로드되기 전에 랭킹바를 출력하려는 오류 발생');
+    alert('방 정보가 로드되기 전에 스코어 바를 출력하려는 오류가 발생했습니다.');
   }
 }
 
@@ -462,7 +462,7 @@ function plusOne() {
     }
     else if (lastBaseMinusNow >= 0) {
       if (recentcnt == 1) {
-        alert("오늘은 이미 성공 버튼을 누르셨습니다.");
+        alert("오늘은 이미 완료 버튼을 누르셨습니다.");
       }
       else if (recentcnt == -1) {
         alert("오늘은 이미 포기 버튼을 누르셨습니다.");
@@ -480,7 +480,7 @@ function plusOne() {
       }
     }
   } else {
-    alert("잠시후 다시 시도해주세요.");
+    alert("잠시 후 다시 시도해 주세요.");
   }
 }
 
@@ -509,11 +509,11 @@ function giveUp() {
       //위에서 변경된 값으로 데이터베이스 업데이트
       usersroomUpdate();
 
-      alert("저런. 오늘의 운동을 포기하셨습니다.");
+      alert("오늘의 운동을 포기하셨습니다.");
     }
     else if (lastBaseMinusNow >= 0) {
       if (recentcnt == 1) {
-        alert("오늘은 이미 성공 버튼을 누르셨습니다.");
+        alert("오늘은 이미 완료 버튼을 누르셨습니다.");
       }
       else if (recentcnt == -1) {
         alert("오늘은 이미 포기 버튼을 누르셨습니다.");
@@ -526,11 +526,11 @@ function giveUp() {
         //위에서 변경된 값으로 데이터베이스 업데이트
         usersroomUpdate();
 
-        alert("저런. 오늘의 운동을 포기하셨습니다.");
+        alert("오늘의 운동을 포기하셨습니다.");
       }
     }
   } else {
-    alert("잠시후 다시 시도해주세요.");
+    alert("잠시 후 다시 시도해 주세요.");
   }
 }
 
@@ -553,7 +553,7 @@ function resetScore() {
     var lastBaseMinusNow = judgement();
     if (lastBaseMinusNow < 0) {
       //이미 다음날로 넘어가버림
-      alert("이미 늦었다 임마");
+      alert("어제의 운동 기록이 이미 종료되었습니다.");
     }
     else if (lastBaseMinusNow >= 0) {
       //아직 다음날로 안넘어가서 리셋해준다.
@@ -566,7 +566,7 @@ function resetScore() {
         //위에서 변경된 값으로 데이터베이스 업데이트
         usersroomUpdate();
 
-        alert("성공 눌러있던거 리셋했다 임마");
+        alert("오늘의 운동 기록이 리셋되었습니다.");
       }
       else if (recentcnt == -1) {
         //포기 눌러져있던 경우
@@ -576,7 +576,7 @@ function resetScore() {
         //위에서 변경된 값으로 데이터베이스 업데이트
         usersroomUpdate();
 
-        alert("포기 눌러있던거 리셋했다 임마");
+        alert("오늘의 운동 기록이 리셋되었습니다.");
       }
       else if (recentcnt == 0) {
         //리셋 눌러져있던 경우
@@ -584,7 +584,7 @@ function resetScore() {
       }
     }
   } else {
-    alert("잠시후 다시 시도해주세요.");
+    alert("잠시 후 다시 시도해 주세요.");
   }
 }
 
@@ -1095,6 +1095,37 @@ spanState.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modalState) {
         modalState.style.display = "none";
+    }
+}
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//자라나라 모달모달 - 더 알아보기
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalManual = document.getElementById('myModal-manual');
+ 
+// Get the button that opens the modal
+var btnManual = document.getElementById("openManual");
+
+// Get the <span> element that closes the modal
+var spanManual = document.getElementsByClassName("closeManual")[0];                                         
+
+// When the user clicks on the button, open the modal 
+btnManual.onclick = function() {
+    modalManual.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanManual.onclick = function() {
+    modalManual.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalManual) {
+        modalManual.style.display = "none";
     }
 }
 

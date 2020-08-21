@@ -60,7 +60,7 @@ nav ul {
 
 nav li {
     float: left;
-    margin-right: 40px;
+    margin-right: 60px;
     font-size: 13px;
     margin-top: 20px;
 }
@@ -327,7 +327,7 @@ modal
   margin-bottom: 20px;
 }
 
-.modal input, button {
+.modal input, #done {
   position: relative;
   left: 50%;
   transform: translateX(-50%)
@@ -408,6 +408,14 @@ modal
   font-weight: bold;
 }
 
+.closeManual {
+  color: #aaa;
+  float: right;
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .closeGoal:hover .closeGoal:focus {
     color: black;
     text-decoration: none;
@@ -425,6 +433,13 @@ modal
   text-decoration: none;
   cursor: pointer;
 }
+
+.closeManual:hover, .closeManual:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 
 /* 친구들의 달성 현황 볼때 동적으로 생성되는 table의 디자인 */

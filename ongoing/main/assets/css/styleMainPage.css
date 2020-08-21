@@ -55,7 +55,7 @@ nav ul {
 
 nav li {
     float: left;
-    margin-right: 40px;
+    margin-right: 60px;
     font-size: 13px;
     margin-top: 20px;
 }
@@ -144,7 +144,7 @@ th, td {
 버튼 디자인
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-button {
+table button {
     background: none;
     border: white 2px solid;
     border-radius: 2px;
@@ -157,7 +157,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+table button:hover {
     background-color: rgba(61,141,211,0.6);
     border: rgba(61,141,211,0.6) 2px solid;
     border-radius: 2px;
@@ -196,6 +196,20 @@ button:hover {
 
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-table
+modal
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
+
+.closeManual {
+    color: #aaa;
+    float: right;
+    margin-top: 0;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .closeManual:hover, .closeManual:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

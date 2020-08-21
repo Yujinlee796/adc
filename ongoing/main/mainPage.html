@@ -31,15 +31,14 @@
     </span>
     
     <nav class="nav-menu">
-        <ul>
-            <li><a href="../index.html">인트로</a></li>
-            <li><a href="#more">더 알아보기</a></li>
-            <li><a href="makingRoom.html">방 만들기</a></li>
-            <li><a href="mainPage.html">방 목록</a></li>
-            <li><a href="#profile">내 정보</a></li>
-            <li><a id="btn-logout" href="#">로그아웃</a></li>
-        </ul>
-    </nav>
+      <ul>
+          <li><a id="openManual" href="#more">더 알아보기</a></li>
+          <li><a href="makingRoom.html">방 만들기</a></li>
+          <li><a href="mainPage.html">방 목록</a></li>
+          <li><a href="#profile">내 정보</a></li>
+          <li><a id="btn-logout" href="#logout">로그아웃</a></li>
+      </ul>
+  </nav>
 
   </header>
 
@@ -55,7 +54,7 @@
                         <!--방목록 출력 표-->
                         <table id="dynamicTable">
                           <thead>
-                              <th>방이름</th>
+                              <th>방 이름</th>
                               <th>현황</th>
                               <th>입장</th>
                             </tr>
@@ -68,6 +67,130 @@
                       </div>
                   
                 </div>
+
+
+                <div id="myModal-manual" class="modalManual">
+                  <div class="modal-contentManual">
+                    <span class="closeManual">&times;</span>
+                    <div class="main-container">
+                      <div>
+                        <h2 style="color: black; text-align: center; font-weight: bolder;">핏투게더 이용하기</h2>
+                        <div class="section-title-divider"></div>
+                        <p class="howToUse">
+                          <span>❶  회원가입 후 닉네임을 설정하세요.</span><br><br>
+                          <span>❷  방 만들기 <button id="right">바로가기</button> 버튼을 클릭하여 새로운 홈트레이닝 방을 생성해 보세요.</span><br><br>
+                          <span>❸  운동 목표와 내기, 운동 종료 날짜를 설정하고, 함께 운동할 친구들을 초대하세요.</span><br><br>
+                          <span>❹  오늘의 운동을 완료했다면 <button id="right">완료</button> 버튼을, 포기했다면 <button id="reverse">포기</button> 버튼을 누르세요.</span><br><br>
+                          <span>❺  <button id='reverse'>리셋</button> 버튼을 누름으로써 오늘의 운동 내역을 초기화할 수 있습니다.</span><br><br>
+                          <span>❻  스코어 바를 통해 나와 친구들의 현재 점수를 확인할 수 있어요.</span><br><br>
+                          <span>❼  <a>친구들의 달성 현황</a>에서 친구들이 오늘의 운동을 완료했는지 확인할 수 있어요.</span>
+                        </p>
+                      </div>
+                      <br>
+                      <div>
+                        <h2 style="color: black; text-align: center; font-weight: bolder;">알고 넘어가기</h2>
+                        <div class="section-title-divider"></div>
+                        <p class='caution'>
+                          <span>❶  그 날의 운동 기록은 다음 날 새벽 5시에 초기화됩니다.</span><br><br>
+                          <span>❷  방 안에서 <a>목표</a>와 <a>내기</a> 텍스트를 클릭하면 내용을 수정할 수 있어요.</span><br><br>
+                          <span>❸  운동 종료 날짜가 지나면 방은 사라지며 방 정보가 <a>내 정보</a>의 <a>나의 운동 히스토리</a>에 기록됩니다.</span><br><br>
+                          <span><span style="color: red;">❹  한 번 설정한 닉네임과 방 이름은 변경할 수 없으니 주의해주세요.</span></span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+                <style>
+                  .howToUse, .caution {
+                    border: none;
+                    width: 820px;
+                    position: relative;
+                    left: 50%;
+                    margin-left: -310px;
+                    font-size: 15px;
+                  }
+              
+                  .howToUse #right, .caution #right {
+                    border: 1px solid #3d8dd3;
+                    border-radius: 2px;
+                    background-color: #3d8dd3;
+                    color: white;
+                    transition: 0.3s;
+                    cursor: pointer;
+                  }
+              
+                  .howToUse #right:hover, .caution #right:hover {
+                    border: 1px solid #000;
+                    border-radius: 2px;
+                    background: none;
+                    color: black;
+                    transition: 0.3s;
+                  }
+              
+                  .howToUse #reverse, .caution #reverse {
+                    border: 1px solid black;
+                    border-radius: 2px;
+                    background: none;
+                    color: black;
+                    transition: 0.3s;
+                    cursor: pointer;
+                  }
+              
+                  .howToUse #reverse:hover, .caution #reverse:hover {
+                    border: 1px solid #3d8dd3;
+                    border-radius: 2px;
+                    background-color: #3d8dd3;
+                    color: white;
+                    transition: 0.3s;
+                  }
+              
+              
+                  .howToUse a, .caution a {
+                    color: black;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    cursor: pointer;
+                  }
+              
+                  .howToUse a:hover, .caution a:hover {
+                    color: #3d8dd3;
+                    font-weight: bold;
+                  }
+        
+        
+                  .section-title-divider {
+                    width: 50px;
+                    height: 3px;
+                    background: rgba(61,141,211,1);
+                    margin: 0 auto;
+                    margin-bottom: 20px;
+                  }
+        
+                  .modalManual {
+                      display: none; /* Hidden by default */
+                      position: fixed; /* Stay in place */
+                      z-index: 2; /* Sit on top */
+                      left: 0;
+                      top: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                  }
+        
+                  /* Modal Content/Box */
+                  .modal-contentManual {
+                      background-color: #fff;
+                      margin: 1% auto; /* 15% from the top and centered */
+                      padding: 30px;
+                      padding-top: 15px;
+                      border: 1px solid #888;
+                      width: 70%; /* Could be more or less, depending on screen size */                          
+                  }
+                </style>
 
 
   <!------ Modal Section

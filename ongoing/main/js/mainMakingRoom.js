@@ -146,7 +146,7 @@ function makingRoom() {
     //
   }
   else{
-    window.alert("칸을 모두 채워주세요.");
+    window.alert("입력되지 않은 정보가 있습니다.");
   }
 
 }
@@ -267,7 +267,7 @@ function addLi(){
     });
   }
   else{
-    alert("아무것도 안적었잖아요");   //♥이부분에 오류 메시지 추가해주세용♥
+    alert("닉네임을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
   }
 }
 
@@ -301,7 +301,7 @@ function confirmName(){
     alert("방 이름을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
   } else if (roomName.length > 10) {
     //방 이름이 10자를 초과함
-    alert("초과");   //♥이부분에 오류 메시지 추가해주세용♥
+    alert("10자 이내의 방 이름을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
   }
 }
 
@@ -347,3 +347,33 @@ $("#btn-logout").click(function()
    firebase.auth().signOut();
 });
 
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//자라나라 모달모달 - 더 알아보기
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalManual = document.getElementById('myModal-manual');
+ 
+// Get the button that opens the modal
+var btnManual = document.getElementById("openManual");
+
+// Get the <span> element that closes the modal
+var spanManual = document.getElementsByClassName("closeManual")[0];                                         
+
+// When the user clicks on the button, open the modal 
+btnManual.onclick = function() {
+    modalManual.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanManual.onclick = function() {
+    modalManual.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalManual) {
+        modalManual.style.display = "none";
+    }
+}
