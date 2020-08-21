@@ -78,7 +78,7 @@ a {
 }
 
 a:hover {
-    color: #428bca;
+    color: #3d8dd3;
 }
 
 
@@ -158,8 +158,8 @@ button {
 }
 
 button:hover {
-    background-color: #428bca;
-    border: #428bca 2px solid;
+    background-color: rgba(61,141,211,0.6);
+    border: rgba(61,141,211,0.6) 2px solid;
     border-radius: 2px;
     color: #fff;
     transition: 0.3s;
@@ -170,8 +170,8 @@ button:hover {
 }
 
 #newRoom {
-    background-color: #428bca;
-    border: #428bca 2px solid;
+    background-color: rgba(61,141,211,0.6);
+    border: rgba(61,141,211,0.6) 2px solid;
     border-radius: 2px;
     color: #fff;
     transition: 0.3s;
@@ -184,7 +184,7 @@ button:hover {
   
 #newRoom:hover {
     background: none;
-    border: white 2px solid;
+    border: 2px solid white;
     border-radius: 2px;
     color: #fff;
     transition: 0.3s;
