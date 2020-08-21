@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user)
         var roomList = new Array;
         var roomState = '';
         var html = '';
-        var link = '';
+        //var link = '';
 
         //firebase database에서 정보 받아오기
         snapshot.forEach(function(childSnapshot) {
@@ -51,11 +51,11 @@ firebase.auth().onAuthStateChanged(function(user)
 
          //현황 text화 
          if (roomCnt == 0) {
-           roomState = '-'
+           roomState = '-';
          } else if (roomCnt == -1) {
-           roomStae = '미달성'
+           roomStae = '포기';
          } else if(roomCnt == 1) {
-           roomState = '달성'
+           roomState = '완료';
          }
          roomList.push({name : roomName , state : roomState });
         });
@@ -64,7 +64,7 @@ firebase.auth().onAuthStateChanged(function(user)
         for (key in roomList) {
           html += '<tr>';
           html += '<td>' + roomList[key].name + '</td>';
-          html += '<td>' + roomList[key].count + '</td>';
+          html += '<td>' + roomList[key].state + '</td>';
           html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">입장</button> </td>'
           html += '</tr>';
         }
