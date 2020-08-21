@@ -64,21 +64,54 @@ $("#btn-signup").click(function()
                 var errorMessage = error.message;
     
                 console.log(errorCode);
-                onsole.log(errorMessage);
+                console.log(errorMessage);
     
-                window.alert("Message: " + errorMessage);
+                if ( errorMessage == "The email address is already in use by another account." ) {
+                    document.getElementById("confirmEmailResult").innerHTML = "이미 사용중인 이메일입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                    document.getElementById("confirmEmailResult").style.color = "red"
+                    document.getElementById("confirmPasswordResult").innerHTML = ""
+                    document.getElementById("confirmPasswordResultAgain").innerHTML = ""
+                    document.getElementById("plzFillin").innerHTML = ""
+                }
+
+                else if ( errorMessage == "Password should be at least 6 characters" ) {
+                    document.getElementById("confirmPasswordResult").innerHTML = "비밀번호는 6자 이상 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                    document.getElementById("confirmPasswordResult").style.color = "red"
+                    document.getElementById("confirmEmailResult").innerHTML = ""
+                    document.getElementById("confirmPasswordResultAgain").innerHTML = ""
+                    document.getElementById("plzFillin").innerHTML = ""
+                }
+
+                else if ( errorMessage == "The email address is badly formatted." ) {
+                    document.getElementById("confirmEmailResult").innerHTML = "올바른 형식의 이메일을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                    document.getElementById("confirmEmailResult").style.color = "red"
+                    document.getElementById("confirmPasswordResult").innerHTML = ""
+                    document.getElementById("confirmPasswordResultAgain").innerHTML = ""
+                    document.getElementById("plzFillin").innerHTML = ""
+                }
+
+
             });
         }
         else
         {
-            window.alert("Password do not match with the Confirm Password.");
+            document.getElementById("confirmPasswordResultAgain").innerHTML = "비밀번호가 일치하지 않습니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+            document.getElementById("confirmPasswordResultAgain").style.color = "red"
+            document.getElementById("confirmEmailResult").innerHTML = ""
+            document.getElementById("confirmPasswordResult").innerHTML = ""
+            document.getElementById("plzFillin").innerHTML = ""
         }
     }
     else
     {
-        window.alert("Form is incomplete. Please fill out all fields.");
+        document.getElementById("plzFillin").innerHTML = "입력되지 않은 정보가 있습니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("plzFillin").style.color = "red"
+        document.getElementById("confirmPasswordResult").innerHTML = ""
+        document.getElementById("confirmPasswordResultAgain").innerHTML = ""
+        document.getElementById("confirmEmailResult").innerHTML = ""
     }
 });
+
 
 // reset password
 $("#btn-resetPassword").click(function()
@@ -176,41 +209,51 @@ $("#btn-update").click(function()
 {
     var nickName = $("#nickName").val();
 
-    var rootRef = firebase.database().ref().child("Users");
-    var userID = firebase.auth().currentUser.uid;
-    var usersRef = rootRef.child(userID);
-    
-    rootRef.orderByChild('nickName').equalTo(nickName).once('value', function(snapshot){
-        if (snapshot.val() === null) {
-            // 중복되지않은 닉네임
-            var userData =
-            {
-                "nickName": nickName,
-            };
+    //닉네임 10자 이내 인지 확인하기
+    if (0 < nickName.length && nickName.length <= 10) {
 
-            usersRef.set(userData, function(error)
-            {
-                if(error)
+        var rootRef = firebase.database().ref().child("Users");
+        var userID = firebase.auth().currentUser.uid;
+        var usersRef = rootRef.child(userID);
+        
+        rootRef.orderByChild('nickName').equalTo(nickName).once('value', function(snapshot){
+            if (snapshot.val() === null) {
+                // 중복되지않은 닉네임
+                var userData =
                 {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
+                    "nickName": nickName,
+                };
 
-                    console.log(errorCode);
-                    onsole.log(errorMessage);
-
-                    window.alert("Message: " + errorMessage);
-                }
-                else
+                usersRef.set(userData, function(error)
                 {
-                    window.location.href = "../main/mainPage.html";
-                }
-            });
-        }
-        else
-        {
-            // 중복된 닉네임
-            //class를 추가해서 경고 문구가 뜨도록 하는 코드
-            $("#nickName").addClass("is-invalid");
-        }  
-    }); 
+                    if(error)
+                    {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+
+                        console.log(errorCode);
+                        onsole.log(errorMessage);
+
+                        window.alert("Message: " + errorMessage);
+                    }
+                    else
+                    {
+                        window.location.href = "../main/mainPage.html";
+                    }
+                });
+            }
+            else
+            {
+                // 중복된 닉네임
+                //class를 추가해서 경고 문구가 뜨도록 하는 코드
+                $("#nickName").addClass("is-invalid");   //♥이부분에 오류 메시지 추가해주세용♥
+            }  
+        }); 
+    } else if (nickName.length == 0) {
+        //닉네임을 입력하지 않음
+        alert("닉네임을 입력하세요");   //♥이부분에 오류 메시지 추가해주세용♥
+    } else if (nickName.length > 10) {
+        //닉네임이 10자를 초과함
+        alert("초과");   //♥이부분에 오류 메시지 추가해주세용♥
+    }
 });

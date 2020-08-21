@@ -32,25 +32,31 @@
                 </div>
                 <form action="">
                     <h3>회원가입</h3>
-                    <div class="form-wrapper">
-                        <input id="email" type="email" placeholder="  Email" class="form-control">
+                    <div class="form-wrapper" style="margin-bottom: 0;">
+                        <input id="email" type="email" placeholder="Email" class="form-control">
                         <i class="zmdi zmdi-email"></i>
+                        
                     </div>
+                    <span id="confirmEmailResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
                     <div class="form-wrapper">
-                        <input id="password" type="password" placeholder="  비밀번호" class="form-control">
+                        <input id="password" type="password" placeholder="비밀번호" class="form-control">
                         <i class="zmdi zmdi-lock"></i>
                     </div>
+                    <span id="confirmPasswordResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
                     <div class="form-wrapper">
-                        <input id="confirmPassword" type="password" placeholder="  비밀번호 확인" class="form-control">
+                        <input id="confirmPassword" type="password" placeholder="비밀번호 확인" class="form-control">
                         <i class="zmdi zmdi-lock"></i>
                     </div>
+                    <span id="confirmPasswordResultAgain" style="position: relative; z-index: 3; bottom: 17px;"></span>
                     <div class="form-group container-login100-form-btn">
                         <button id="btn-signup" type="button">
                             가입 완료
                             <i class="zmdi zmdi-arrow-right"></i>
                         </button>
+                        
                     </div>
-                    <div class="w-full text-center" style="margin-top: 49%; font-size: 15px;">
+                    <span id="plzFillin" style="position: relative; z-index: 3; top: 2px; left: 88px; bottom: 17px;"></span>
+                    <div class="w-full text-center" style="position: absolute; top: 540px; left:770px; z-index: 3; font-size: 15px;">
                         <a href="signin.html" class="text-dark">
                             이미 계정이 있으신가요?
                         </a>
