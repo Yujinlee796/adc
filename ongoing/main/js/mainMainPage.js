@@ -71,6 +71,10 @@ firebase.auth().onAuthStateChanged(function(user)
         $("#dynamicTbody").empty();
         $("#dynamicTbody").append(html);
       });
+    } else if(!user)
+    {
+      //signout 상태이면 쫓겨나는 코드
+      window.location.href = "../index.html";
     }
 });
 
