@@ -29,17 +29,37 @@ $("#btn-login").click(function()
         result.catch(function(error)
         {
             var errorCode = error.code;
-            var errorMessage = error.message;
 
             console.log(errorCode);
-            onsole.log(errorMessage);
 
-            window.alert("Message: " + errorMessage);
+            if ( errorCode == "auth/user-not-found" ) {
+                document.getElementById("confirmEmailResult").innerHTML = "가입되지 않은 email입니다.";
+                document.getElementById("confirmEmailResult").style.color = "red"
+                document.getElementById("confirmPasswordResult").innerHTML = ""
+                document.getElementById("plzFillin").innerHTML = ""
+            }
+
+            else if ( errorCode == "auth/invalid-email" ) {
+                document.getElementById("confirmEmailResult").innerHTML = "올바른 형식의 email을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                document.getElementById("confirmEmailResult").style.color = "red"
+                document.getElementById("confirmPasswordResult").innerHTML = ""
+                document.getElementById("plzFillin").innerHTML = ""
+            }
+
+            else if ( errorCode == "auth/wrong-password" ) {
+                document.getElementById("confirmPasswordResult").innerHTML = "잘못된 비밀번호입니다.";
+                document.getElementById("confirmPasswordResult").style.color = "red"
+                document.getElementById("confirmEmailResult").innerHTML = ""
+                document.getElementById("plzFillin").innerHTML = ""
+            }
         });
     }
     else
     {
-        window.alert("Form is incomplete. Please fill out all fields.");
+        document.getElementById("plzFillin").innerHTML = "입력되지 않은 정보가 있습니다.";
+        document.getElementById("plzFillin").style.color = "red"
+        document.getElementById("confirmPasswordResult").innerHTML = ""
+        document.getElementById("confirmEmailResult").innerHTML = ""
 
     }
 });
@@ -67,7 +87,7 @@ $("#btn-signup").click(function()
                 console.log(errorMessage);
     
                 if ( errorMessage == "The email address is already in use by another account." ) {
-                    document.getElementById("confirmEmailResult").innerHTML = "이미 사용중인 이메일입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                    document.getElementById("confirmEmailResult").innerHTML = "이미 사용중인 email입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
                     document.getElementById("confirmEmailResult").style.color = "red"
                     document.getElementById("confirmPasswordResult").innerHTML = ""
                     document.getElementById("confirmPasswordResultAgain").innerHTML = ""
@@ -83,7 +103,7 @@ $("#btn-signup").click(function()
                 }
 
                 else if ( errorMessage == "The email address is badly formatted." ) {
-                    document.getElementById("confirmEmailResult").innerHTML = "올바른 형식의 이메일을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                    document.getElementById("confirmEmailResult").innerHTML = "올바른 형식의 email을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
                     document.getElementById("confirmEmailResult").style.color = "red"
                     document.getElementById("confirmPasswordResult").innerHTML = ""
                     document.getElementById("confirmPasswordResultAgain").innerHTML = ""
@@ -123,22 +143,30 @@ $("#btn-resetPassword").click(function()
    {
        auth.sendPasswordResetEmail(email).then(function()
        {
-        window.alert("Email has been sent to you, Please check and verify.");
+        window.alert("입력해주신 email 주소로 비밀번호 재설정 메일이 발송되었습니다.");
+        window.location.href = "signin.html";
        })
        .catch(function(error)
        {
         var errorCode = error.code;
-        var errorMessage = error.message;
 
         console.log(errorCode);
-        onsole.log(errorMessage);
 
-        window.alert("Message: " + errorMessage);
+        if ( errorCode == "auth/invalid-email" ) {
+            document.getElementById("confirmEmailResult").innerHTML = "올바른 형식의 email을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+            document.getElementById("confirmEmailResult").style.color = "red"
+        }
+
+        else if ( errorCode == "auth/user-not-found" ) {
+            document.getElementById("confirmEmailResult").innerHTML = "가입할 때 사용하셨던 email을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+            document.getElementById("confirmEmailResult").style.color = "red"
+        }
        });
    }
    else
    {
-        window.alert("Please write your email first.");
+        document.getElementById("confirmEmailResult").innerHTML = "Email을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("confirmEmailResult").style.color = "red"
    }
 });
 
@@ -246,14 +274,17 @@ $("#btn-update").click(function()
             {
                 // 중복된 닉네임
                 //class를 추가해서 경고 문구가 뜨도록 하는 코드
-                $("#nickName").addClass("is-invalid");   //♥이부분에 오류 메시지 추가해주세용♥
+                document.getElementById("confirmNickResult").innerHTML = "이미 사용중인 닉네임입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+                document.getElementById("confirmNickResult").style.color = "red"
             }  
         }); 
     } else if (nickName.length == 0) {
         //닉네임을 입력하지 않음
-        alert("닉네임을 입력하세요");   //♥이부분에 오류 메시지 추가해주세용♥
+        document.getElementById("confirmNickResult").innerHTML = "닉네임을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("confirmNickResult").style.color = "red"
     } else if (nickName.length > 10) {
         //닉네임이 10자를 초과함
-        alert("초과");   //♥이부분에 오류 메시지 추가해주세용♥
+        document.getElementById("confirmNickResult").innerHTML = "10자 이하의 닉네임을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("confirmNickResult").style.color = "red"
     }
 });

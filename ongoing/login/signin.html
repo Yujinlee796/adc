@@ -36,33 +36,37 @@
                 <form action="">
                     <h3>로그인</h3>
                     <div class="form-wrapper">
-                        <input id="email" type="email" placeholder="  Email" class="form-control">
+                        <input id="email" type="email" placeholder="Email" class="form-control">
                         <i class="zmdi zmdi-email"></i>
                     </div>
+                    <span id="confirmEmailResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
                     <div class="form-wrapper">
-                        <input id="password" type="password" placeholder="  비밀번호" class="form-control">
+                        <input id="password" type="password" placeholder="비밀번호" class="form-control">
                         <i class="zmdi zmdi-lock"></i>
                     </div>
+                    <span id="confirmPasswordResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
                     <div class="form-group container-login100-form-btn">
                         <button id="btn-login" type="button">
                             로그인
                             <i class="zmdi zmdi-arrow-right"></i>
                         </button>
                     </div>
+
                     <div class="w-full text-center p-t-27 p-b-239">
                         <a href="forgetPassword.html" class="text-dark">
                             Email / 비밀번호
                         </a>
                         <span class="text-muted">
                             를 잊어버리셨나요?
-                        </span>
-                        
+                        </span><br>
+                        <span id="plzFillin"></span>
+                        <div class="w-full text-center" style="position: absolute; top: 50%; margin-top: 238px; left:50%; margin-left: 145px; z-index: 3; font-size: 15px;">
+                            <a href="signUp.html" class="text-dark">
+                                계정이 없으신가요?
+                            </a>
+                        </div>
                     </div>
-                    <div class="w-full text-center" style="margin-top: 52%; font-size: 15px;">
-                        <a href="signUp.html" class="text-dark">
-                            계정이 없으신가요?
-                        </a>
-                    </div>
+                    
                 </form>
             </div>
         </div>
