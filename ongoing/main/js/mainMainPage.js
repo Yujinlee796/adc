@@ -32,11 +32,15 @@ firebase.auth().onAuthStateChanged(function(user)
       .then(function(snapshot) {
         var userNickname = snapshot.child("nickName").val();
         console.log(userNickname);
-        document.getElementById("nickName").innerHTML = userNickname;
+        if (userNickname == null) {
+          window.location.href = "../login/accountSettings.html";
+        } else {
+          document.getElementById("nickName").innerHTML = userNickname;
+        }
       });
 
       //방목록 출력
-      var roomList = " ";
+      //var roomList = " ";
       firebase.database().ref('Usersroom/' + userID).once('value')
       .then(function(snapshot) {
         var roomList = new Array;
@@ -60,16 +64,27 @@ firebase.auth().onAuthStateChanged(function(user)
          roomList.push({name : roomName , state : roomState });
         });
 
-        //방목록 html에 띄우기
-        for (key in roomList) {
-          html += '<tr>';
-          html += '<td>' + roomList[key].name + '</td>';
-          html += '<td>' + roomList[key].state + '</td>';
-          html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">입장</button> </td>'
-          html += '</tr>';
+        if (roomList.length != 0) {
+          //방목록 표 제목 html에 띄우기
+          htmlTh += '<th>방이름</th>';
+          htmlTh += '<th>현황</th>';
+          htmlTh += '<th>입장</th>';
+          $("#dynamicThead").empty();
+          $("#dynamicThead").append(htmlTh);
+
+          //방목록 html에 띄우기
+          for (key in roomList) {
+            html += '<tr>';
+            html += '<td>' + roomList[key].name + '</td>';
+            html += '<td>' + roomList[key].state + '</td>';
+            html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">입장</button> </td>'
+            html += '</tr>';
+          }
+          $("#dynamicTbody").empty();
+          $("#dynamicTbody").append(html);
+        } else if (roomList.length == 0) {
+          document.getElementById("noRoom").innerHTML = "아직 참여 중인 방 리스트가 없습니다.";
         }
-        $("#dynamicTbody").empty();
-        $("#dynamicTbody").append(html);
       });
     } else if(!user)
     {
