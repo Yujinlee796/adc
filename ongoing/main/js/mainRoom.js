@@ -85,9 +85,11 @@ window.onload = function(){
             //닉네임과 스코어&상태를 가져오면, 출력하기
             $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID)).done(function(Nname, scoreAndstate = []){
               displayScoreBar(Nname, scoreAndstate[0]); //스코어바 출력하기
-              displayState(Nname, scoreAndstate[1]); //모달에 친구들의 달성 상태 출력하기
-              recentcntUpdate();
+              displayState(Nname, scoreAndstate[1]); //모달에 친구들의 달성 상태 출력하기(현재 recentcnt업데이트보다 먼저 발생중)
+              recentcntUpdate();  //얘 순서를 위로 올리긴 해야하는데...
             }).done(function(){
+              //현재 접속자의 오늘의 운동 달성 여부도 출력하자
+              displayTodayState();
               //동물 그림 출력하기(이게 forEach에 걸려있는거 안좋을듯. 추후 수정)
               displayImg();
             });
@@ -133,6 +135,11 @@ var x = setInterval(function() {
   var s = Math.floor((distance % (1000 * 60)) / 1000);
   document.getElementById("todayTimer").innerHTML = h + "시간 " + m + "분 " + s + "초";
 
+  //새벽 5시 되면, 페이지 reload 하기
+  if (h == 0 && m == 0 && s == 0) {
+    window.location.reload();
+  }
+
   
   //startDate가 로드되었다면, 몇일차 출력 (12시 기준으로 몇일차 출력 / 5시기준으로 바꿀라면 startBase->base로 할것)
   if (startDate != '') {
@@ -168,14 +175,20 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
         Nname = snapshot.child('nickName').val();
         //roomUsersNname.push(Nname);
         //console.log(Nname);
+        if (Nname != null) {
 
-        //만약 이 uid가 현재 접속중인 uid와 같다면, 해당 닉네임을 출력해줘라
-        if(roomUsersUid == currentUserID){
-          document.getElementById('nicknameData').innerHTML = Nname;
-          document.getElementById("nickName").innerHTML = Nname;
+          //만약 이 uid가 현재 접속중인 uid와 같다면, 해당 닉네임을 출력해줘라
+          if(roomUsersUid == currentUserID){
+            document.getElementById('nicknameData').innerHTML = Nname;
+            document.getElementById("nickName").innerHTML = Nname;
+          }
+
+          deferred.resolve(Nname);
+
+        } else {
+          //닉네임 설정을 건너뛰었다면 닉네임 설정부터 하고 와라
+          window.location.href = "../login/accountSettings.html"; //room에서는 닉네임 정보가 없이 방을 만들 수 없어서 이 코드가 작동하는진 확인불가
         }
-
-        deferred.resolve(Nname);
       });
   return deferred.promise();
 }
@@ -199,9 +212,6 @@ function getRoomUsersScore(roomUsersUid, currentUserID) {
           recentcnt = state;
           lastClick = snapshot.child('lastClick').val();
           fitcnt = score;
-
-          //현재 접속자의 오늘의 운동 달성 여부도 출력하자
-          displayTodayState(state);
         }
 
         deferred.resolve(score, state);
@@ -273,8 +283,8 @@ function displayImg() {
 //============================================================================//
 //(다은코드) 현재 접속중인 유저의 recentcnt에 따라 완료/-/포기 여부 출력
 //============================================================================//
-function displayTodayState(state) {
-  switch(state) {
+function displayTodayState() {
+  switch(recentcnt) {
     case 1:
       document.getElementById("todayState").innerHTML = '완료';
       break;
