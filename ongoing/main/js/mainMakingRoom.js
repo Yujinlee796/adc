@@ -150,7 +150,9 @@ function makingRoom() {
     //
   }
   else{
-    window.alert("입력되지 않은 정보가 있습니다.");
+    document.getElementById("plzFillin").innerHTML = "입력되지 않은 정보가 있습니다.";
+    document.getElementById("break").innerHTML = "<br>";
+    document.getElementById("plzFillin").style.color = "red"
   }
 
 }
@@ -257,12 +259,18 @@ function addLi(){
               
       if (snapshot.val() === null) {
         //존재하지 않는 닉네임일때
-        alert(invitedNname + "은(는) 존재하지 않는 닉네임입니다.");  //♥이부분에 오류 메시지 추가해주세용♥
+        document.getElementById("confirmNickResult").innerHTML = (invitedNname + "은(는) 존재하지 않는 닉네임입니다.");
+        document.getElementById("confirmNickResult").style.color = "red"
+        document.getElementById("plzFillin").innerHTML = "";
+        document.getElementById("break").innerHTML = "";
       }
       else {
         //존재하는 닉네임일때
         liNode.appendChild(txtNode);
         listNode.appendChild(liNode);
+        document.getElementById("confirmNickResult").innerHTML = "";
+        document.getElementById("plzFillin").innerHTML = "";
+        document.getElementById("break").innerHTML = "";
           
         $('#invitedNname').val("");   //초대 성공하면 기존에 input부분에 써놓은거 지우는 코드
         //나중에 이걸로 변경
@@ -271,7 +279,10 @@ function addLi(){
     });
   }
   else{
-    alert("닉네임을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
+    document.getElementById("confirmNickResult").innerHTML = "닉네임을 입력해 주세요.";
+    document.getElementById("confirmNickResult").style.color = "red"
+    document.getElementById("plzFillin").innerHTML = "";
+    document.getElementById("break").innerHTML = "";
   }
 }
 
@@ -289,23 +300,33 @@ function confirmName(){
       if (snapshot.val() === null) {
         // 중복되지않은 방이름
         //alert("사용가능한 방이름입니다.");
-        document.getElementById("confirmNameResult").innerHTML = "사용 가능한 방 이름입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
+        document.getElementById("confirmNameResult").innerHTML = "사용 가능한 방 이름입니다.";
         document.getElementById("confirmNameResult").style.color = "greenyellow"
+        document.getElementById("plzFillin").innerHTML = "";
+        document.getElementById("break").innerHTML = "";
       }
       else
       {
         // 중복된 방이름
         //alert("중복된 방이름입니다.");
-        document.getElementById("confirmNameResult").innerHTML = "이미 사용중인 방 이름입니다.";  //추후에, 이경우엔 style 속성에 color 초록색 넣기
+        document.getElementById("confirmNameResult").innerHTML = "이미 사용중인 방 이름입니다.";
         document.getElementById("confirmNameResult").style.color = "red"
+        document.getElementById("plzFillin").innerHTML = "";
+        document.getElementById("break").innerHTML = "";
       }
     });
   } else if (roomName.length == 0) {
     //방 이름을 입력하지 않음
-    alert("방 이름을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
+    document.getElementById("confirmNameResult").innerHTML = "방 이름을 입력해 주세요.";
+    document.getElementById("confirmNameResult").style.color = "red"
+    document.getElementById("plzFillin").innerHTML = "";
+    document.getElementById("break").innerHTML = "";
   } else if (roomName.length > 10) {
     //방 이름이 10자를 초과함
-    alert("10자 이내의 방 이름을 입력해 주세요.");   //♥이부분에 오류 메시지 추가해주세용♥
+    document.getElementById("confirmNameResult").innerHTML = "10자 이내의 방 이름을 입력해 주세요.";
+    document.getElementById("confirmNameResult").style.color = "red"
+    document.getElementById("plzFillin").innerHTML = "";
+    document.getElementById("break").innerHTML = "";
   }
 }
 

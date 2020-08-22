@@ -55,7 +55,9 @@
                 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
                 <!--===달력====-->
 
-                <h3 style="text-align: center; color: white; font-weight: bold; font-size: 20px;">새로운 방 만들기</h3> <br>
+                <h3 style="text-align: center; color: white; font-weight: bold; font-size: 20px;">새로운 방 만들기</h3>
+                <span id="plzFillin"></span><span id="break"></span>
+                <br>
                 
                 <div>
                     <!--<span>방 이름: </span>-->
@@ -67,10 +69,10 @@
                 <br>
                 <div>
                     <!--<span>운동목표: </span>-->
-                    <input placeholder="운동 목표" id="room_goal" />
+                    <input placeholder="운동 목표 (예: 매일 조깅 30분)" id="room_goal" />
                     <br><br>
                     <!--<span>내기: </span>-->
-                    <input placeholder="내기 내용" id="room_bet" />
+                    <input placeholder="내기 내용 (예: 안 한 날마다 딱밤 한 대)" id="room_bet" />
                 </div>
                 <br>
 
@@ -83,6 +85,7 @@
                     <input id="invitedNname" type="text" placeholder="초대할 멤버의 닉네임">
                     <button id="btn-invite" onclick="addLi()">추가</button>
                     <br>
+                    <span id="confirmNickResult"></span>
                     <!--<span>참여 멤버: </span>-->
                     <ul id = "invitedList" style="font-size: 15px; color: white; margin-top: 12px;">
                         <!--초대할 닉네임 입력하면 여기에 추가됨-->
@@ -96,6 +99,7 @@
                     <br><br>
 
                     <button id="complete" onclick="makingRoom()">방 만들기</button>
+                    
                 </div>
                 
                 <!-- (다은코드 종료) -->

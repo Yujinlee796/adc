@@ -120,7 +120,7 @@ a:hover {
 }
 
 
-#confirmNameResult {
+#confirmNameResult, #confirmNickResult, #plzFillin {
     font-size: 13px;
     font-weight: lighter;
     margin-bottom: 0;
