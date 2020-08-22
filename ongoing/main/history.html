@@ -1,14 +1,7 @@
-<!--
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    상단바에 생기는 이상한 녀석들..수정필요
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
--->
-
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>방 ｜ 핏투게더</title>
+        <title>방 ｜ 방 히스토리</title>
     
     
         <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -21,7 +14,8 @@
         <link rel="stylesheet" href="assets/css/styleRoom.css">
     </head>
 
-    <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
+    <!--<body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">-->
+    <body>
         <header id="header" class="fixed-top">
             <span class="logo" style="float: left;">
                 <div class="greet" style="display: flex;">
@@ -48,133 +42,10 @@
 
         </header>
 
-
-        <div class="main-box">
-               
-          <div class="align-left">
-            <p id="roomTitle">
-              <span id="titleData"><!--방이름 출력되는 부분--></span>
-              <span id="fromStartDate"><!--몇일차 출력되는 부분--></span>
-            </p>
-            
-              <span id="endDate"><!--종료일 출력되는 부분--></span>
-            
-            <div class="boxes">
-              <p class="goal" id="box"> 
-                <a id="editGoals" href="#">
-                  <span id="goalText">
-                    
-                      <!--목표 출력되는 부분-->
-                    
-                  </span>
-                </a>
-              </p>
-              
-              <p class="punishment" id="box">
-                <a id="editPunishment" href="#">
-                  <span id="bettingText">
-                    
-                      <!--내기 출력되는 부분-->
-                    
-                  </span>
-                </a>
-              </p>
-              
-              <div class="ranking" id="box">
-                <div id="scoreBar">
-                  <!--<div class="progress">
-                    <div class="progress-done">10점</div>
-                  </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
-                  <!-----스코어바 생성 부분-----></div>
-              </div>
-              
-            </div>
-          </div>
-          
-          <div class="align-right">
-            <!--글씨 크기 수정-->
-            <h2 style="color: #3d8dd3; margin-bottom: 30px; font-size: 20px;">
-              오늘의 운동 기록까지 남은 시간<br><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;">" </span>
-              <span id="todayTimer" style="font-size: 50px;"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;"> "</span>
-            </h2>
-            <p>
-              <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
-              <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;"><!--오늘의 운동 완료 여부--></span>
-            </p>
-            <a href="#" id="openStatePopup" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
-            <table class="table" style="margin-top: 30px;">
-              <tr>
-                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                  <img id="profileImg" src="" style="width: 250px;">
-    
-                </td>
-                <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
-                  <span id="nicknameData" style="font-size: 20px; color: white;"> <!--닉네임 출력되는 부분--> </span>
-                </td>
-    
-              </tr>
-    
-              <tr>
-    
-                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px;">
-                  <button onclick="plusOneAndReload()" id="successBtn">완료</button>
-                </td>
-    
-              </tr>
-    
-              <tr>
-    
-                <td style="border-top: none;">
-                  
-                  <!--성공 실패 버튼-->
-                  
-                  <button onclick="giveUpAndReload()" id="resultBtn" >포기</button>
-                  <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
-                </td>
-                
-              </tr>
-    
-            </table>
-              
-              
-
-          </div>
+        <div style="text-align: center; margin-top: 150px;">
+          <img src="assets/img/ready.jpg"/>
         </div>
-
-        <div id="myModal-goal" class="modal">
-          <div class="modal-content">
-            <span class="closeGoal">&times;</span>
-            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">목표 수정하기</h2>
-            <input type="text" id="edittedGoals" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 목표를 입력하세요.">
-            <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button>
-          </div>
-        </div>
-
-        <div id="myModal-punishment" class="modal">
-          <div class="modal-content">
-            <span class="closePun">&times;</span>
-            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">내기 수정하기</h2>
-            <input type="text" id="edittedPunishment" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
-            <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button>
-          </div>
-        </div>
-
-        <div id="myModal-state" class="modal">
-          <div class="modal-content">
-            <span class="closeState">&times;</span>
-              <div class="main-container">
-                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">친구들의 달성 상황</h2>
-                  <table id="stateTable">
-                      <!--동적할당되는 표의 형태
-                      <tr>
-                          <td style="color: skyblue;">닉네임</td>
-                          <td style="color: tomato;">현황</td>
-                      </tr>
-                      -->
-                  </table>
-              </div>
-          </div>
-        </div>
+        
 
         <div id="myModal-manual" class="modalManual">
           <div class="modal-contentManual">
@@ -313,7 +184,7 @@
         <script src="assets/js/main.js"></script>-->
 
         <!--이 html에 해당하는 JS File-->
-        <script src="js/mainRoom.js"></script>
+        <script src="js/main.js"></script>
 
     </body>
 </html>

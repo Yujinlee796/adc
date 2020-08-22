@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>닉네임 설정 ｜ 핏투게더</title>
+        <title>닉네임 재설정 ｜ 핏투게더</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
@@ -31,7 +31,7 @@
                     <a href="../index.html"><img src="design_files/images/accountSettingsMainImage.png"></a>
                 </div>
                 <form action="">
-                    <h3>닉네임 설정</h3>
+                    <h3>닉네임 재설정</h3>
                     <div class="form-wrapper">
                         <input id="nickName" type="text" placeholder="닉네임 (10자 이하)" class="form-control">
                     </div>
@@ -105,13 +105,6 @@
                 {
                     var userID = firebase.auth().currentUser.uid;
 
-                    firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
-                    {
-                        if(snapshot.val())
-                        {
-                            window.location.href = "../main/mainPage.html"; //이미 설정한 닉네임이 있다면 쫓겨나는 코드
-                        }
-                    });
                 } else if (!user) {
                     window.location.href = "../index.html"; //로그아웃상태면 쫓겨나는
                 }
