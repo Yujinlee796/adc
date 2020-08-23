@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'InfinitySans-BoldA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+body {
+    font-family: 'InfinitySans-RegularA1';
+    background-attachment: fixed;
+    background-size: cover;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.fixed-top {
+    background-color: rgba(0,0,0,0.3);
+    padding: 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+nav {
+    z-index: 2;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    float: left;
+    margin-right: 60px;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+.nav-menu {
+    float: right;
+}
+
+h1 {
+    color: white;
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #3d8dd3;
+}
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+본문 오브젝트 위치 및 크기
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+#info {
+    width: 300px;
+    border: none;
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    margin-left: -150px;
+    text-align: center;
+}
+
+#profileImage {
+    width: 200px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#nickNameProfile {
+    color: white;
+    font-size: 30px;
+    font-family: 'InfinitySans-BoldA1';
+}
+
+.profileDivider1 {
+    height: 1px;
+    width: 300px;
+    background-color: white;
+    position: absolute;
+    top: 410px;
+    left: 50%;
+    margin-left: -150px;
+}
+
+.modify {
+    width: 230px;
+    padding-right: 35px;
+    padding-left: 35px;
+    position: absolute;
+    top: 430px;
+    left: 50%;
+    margin-left: -150px;
+    color: white;
+}
+
+#nickMod {
+    float: left;
+}
+
+#pwMod {
+    float: right;
+}

@@ -30,6 +30,7 @@ var firebaseConfig = {
                   {
                     var userNname = snapshot.child('nickName').val();
                     document.getElementById("nickName").innerHTML = userNname;
+                    document.getElementById("nickNameProfile").innerHTML = userNname;
   
                   } else 
                   {
