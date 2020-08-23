@@ -137,6 +137,28 @@ a:hover {
   margin-top: 0;
 }
 
+#quit {
+  margin-left: 10px;
+  font-size: 15px;
+  border: 1px solid white;
+  border-radius: 2px;
+  background: none;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: 'InfinitySans-RegularA1';
+}
+
+#quit:hover {
+  border: 1px solid rgba(61,141,211,0.6);
+  border-radius: 2px;
+  background-color: rgba(61,141,211,0.6);
+  color: white;
+  transition: 0.3s;
+  font-family: 'InfinitySans-RegularA1';
+}
+
+
 .boxes {
   position: absolute;
   left: 50%;

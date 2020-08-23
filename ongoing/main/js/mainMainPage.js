@@ -86,7 +86,7 @@ firebase.auth().onAuthStateChanged(function(user)
           $("#dynamicTbody").empty();
           $("#dynamicTbody").append(html);
         } else if (roomList.length == 0) {
-          document.getElementById("noRoom").innerHTML = "아직 참여 중인 방 리스트가 없습니다.";
+          document.getElementById("noRoom").innerHTML = "아직 참여 중인 방이 없습니다.<br>위의 버튼을 눌러 방을 생성하세요!";
         }
       });
     } else if(!user)
