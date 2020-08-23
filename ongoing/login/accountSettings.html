@@ -119,6 +119,12 @@
                     window.location.href = "../index.html"; //로그아웃상태면 쫓겨나는
                 }
             });
+
+
+            /*history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.go(1);
+            };  //뒤로가기 방지*/
         </script>
     </body>
 </html>
