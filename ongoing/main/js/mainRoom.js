@@ -31,14 +31,14 @@ var firebaseConfig = {
   var lastClick = '';
   var currentUserID = '';
 
-  
+
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //(다은코드) 페이지 로드시 필요한 정보 가져오고, 출력하는 모든 코드 부분
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 window.onload = function(){
 
     roomName = getURLParameter();  //방 이름 받아오기
- 
+
     //============================================================================//
     //(다은코드) 현재 방 정보 받아오고 띄우기
     //============================================================================//
@@ -51,8 +51,10 @@ window.onload = function(){
         startDate = snapshot.child("startDate").val();
         if(startDate != '' && endDate != '') {
           period = calculatePeriod(startDate, endDate);
+          //방 터트리는 코드 추가
+          endGame(endDate);
         }
-      
+
         document.getElementById("goalText").innerHTML = printGoals;
         document.getElementById("bettingText").innerHTML = printBetting;
         document.getElementById("titleData").innerHTML = printTitle;
@@ -140,7 +142,7 @@ var x = setInterval(function() {
     window.location.reload();
   }
 
-  
+
   //startDate가 로드되었다면, 몇일차 출력 (12시 기준으로 몇일차 출력 / 5시기준으로 바꿀라면 startBase->base로 할것)
   if (startDate != '') {
 
@@ -237,7 +239,7 @@ function recentcntUpdate() {
   if (lastBaseMinusNow < 0) {
     //새로운 기회 획득 가능
     recentcnt = 0;
-    
+
     //데이터베이스에 업데이트하기
     if (currentUserID != ''){
       firebase.database().ref('Usersroom/' + currentUserID + '/' + roomName).update({
@@ -248,10 +250,10 @@ function recentcntUpdate() {
         {
           var errorCode = error.code;
           var errorMessage = error.message;
-  
+
           console.log(errorCode);
           onsole.log(errorMessage);
-  
+
           window.alert("Message: " + errorMessage);
         }
       });
@@ -324,7 +326,7 @@ function createScore(score, i) {
   divElem2.appendChild(elemTxt);
 
   divElem.appendChild(divElem2);
-  
+
   return divElem;
 }
 
@@ -371,7 +373,7 @@ function calculatePeriod(sDate, eDate) {
 //============================================================================//
 function revisePrintEndDate(printEndDate) {
   var d = new Date(printEndDate);
-  
+
   var currentYear = d.getFullYear();
   if (d.getMonth()+1 >= 10) {
     var currentMonth = (d.getMonth()+1);
@@ -379,7 +381,7 @@ function revisePrintEndDate(printEndDate) {
   else {
     var currentMonth = '0'+(d.getMonth()+1);
   };
-    
+
   if (d.getDate() >= 10) {
     var currentDate = d.getDate();
   }
@@ -629,7 +631,7 @@ function judgement() {
     lastBase.setMinutes(0);
     lastBase.setSeconds(0);
   }
-  
+
   return (lastBase - now);
 }
 
@@ -697,6 +699,29 @@ function getURLParameter() {
 }
 
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(유진코드) 방 터트리는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function endGame(eDate) {
+  var now = new Date()
+  var end = new Date(eDate)
+
+  var distance = end - now;
+  var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  //유진 수정 코드
+  if( d <= 0 ) {
+    console.log("nowIn!")  //for test
+    setRoomNameAndMove("byeroom.html",roomName);
+  }
+  else { return 0; }
+}
+
+
+//유진코드(공통 js로 뺄것)
+function setRoomNameAndMove(url,rName) {
+  window.location.href = url + "?roomName=" + rName;
+}
 
 
 
@@ -824,7 +849,7 @@ window.onload = setTimeout(function() {
   if (successOrFailure === 1) {
     var imgSrc = 'assets/img/charCatSuccess.png';
   }
-  
+
   else if (successOrFailure === 0) {
     var imgSrc = 'assets/img/charCat.png';
   }
@@ -832,7 +857,7 @@ window.onload = setTimeout(function() {
   else if (successOrFailure === -1) {
     var imgSrc = 'assets/img/charCatFail.png';
   }
-  
+
   document.getElementById('profileImg').src = imgSrc;
 
   console.log(imgSrc);
@@ -1002,14 +1027,14 @@ firebase.database().ref('Users/rv2UkGj4xWQoAEEYiKiHHLQeY883/').once('value').the
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalGoal = document.getElementById('myModal-goal');
- 
+
 // Get the button that opens the modal
 var btnGoal = document.getElementById("editGoals");
 
 // Get the <span> element that closes the modal
-var spanGoal = document.getElementsByClassName("closeGoal")[0];                                          
+var spanGoal = document.getElementsByClassName("closeGoal")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btnGoal.onclick = function() {
     modalGoal.style.display = "block";
 }
@@ -1029,7 +1054,7 @@ window.onclick = function(event) {
 
 function editGoals() {
   var newGoal = document.getElementById("edittedGoals").value;
-  
+
   if (newGoal == "") {
     document.getElementById("plzFillinGoal").innerHTML = "목표를 입력하지 않으셨습니다.";
     document.getElementById("breakGoal").innerHTML = "<br>";
@@ -1052,14 +1077,14 @@ function editGoals() {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalPun = document.getElementById('myModal-punishment');
- 
+
 // Get the button that opens the modal
 var btnPun = document.getElementById("editPunishment");
 
 // Get the <span> element that closes the modal
-var spanPun = document.getElementsByClassName("closePun")[0];                                         
+var spanPun = document.getElementsByClassName("closePun")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btnPun.onclick = function() {
     modalPun.style.display = "block";
 }
@@ -1102,14 +1127,14 @@ function editPunishment() {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalState = document.getElementById('myModal-state');
- 
+
 // Get the button that opens the modal
 var btnState = document.getElementById("openStatePopup");
 
 // Get the <span> element that closes the modal
-var spanState = document.getElementsByClassName("closeState")[0];                                         
+var spanState = document.getElementsByClassName("closeState")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btnState.onclick = function() {
     modalState.style.display = "block";
 }
@@ -1133,14 +1158,14 @@ window.onclick = function(event) {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalManual = document.getElementById('myModal-manual');
- 
+
 // Get the button that opens the modal
 var btnManual = document.getElementById("openManual");
 
 // Get the <span> element that closes the modal
-var spanManual = document.getElementsByClassName("closeManual")[0];                                         
+var spanManual = document.getElementsByClassName("closeManual")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btnManual.onclick = function() {
     modalManual.style.display = "block";
 }
@@ -1170,7 +1195,7 @@ function displayState(Nname, state) {
 
   tdElemLeft.classList.add('Nname');
   tdElemLeft.appendChild(elemTxtLeft);
-  
+
   switch(state) {
     case 1:
       tdElemRight.classList.add('stateTrue');
@@ -1195,4 +1220,3 @@ function displayState(Nname, state) {
   stateTable.appendChild(trElem);
   return trElem;
 }
-
