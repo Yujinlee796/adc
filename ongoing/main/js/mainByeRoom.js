@@ -265,7 +265,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
   }
 
 //=================히스토리 버튼 누르면 개인 history page로 이동 ===============================//
-function gohistory(){
+function goHistory(){
   window.location.href = "history.html";
 }
 
