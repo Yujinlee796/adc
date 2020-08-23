@@ -352,13 +352,18 @@ modal
   border: 2px solid #000;
   color: #000;
   font-family: "InfinitySans-RegularA1";
-
   border-radius: 2px;
   height: 35px;
   transition: 0.3s;
   cursor: pointer;
 }
 
+#plzFillinGoal, #plzFillinPun {
+  font-size: 13px;
+  font-weight: lighter;
+  margin-bottom: 0;
+  margin-left: 53px;
+}
 
 
   .modal {
@@ -416,7 +421,7 @@ modal
   font-weight: bold;
 }
 
-.closeGoal:hover .closeGoal:focus {
+.closeGoal:hover, .closeGoal:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;

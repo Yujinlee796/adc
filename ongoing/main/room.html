@@ -25,7 +25,7 @@
         <header id="header" class="fixed-top">
             <span class="logo" style="float: left;">
                 <div class="greet" style="display: flex;">
-                    <h1><a href="mainPage.html">핏투게더</a></h1>
+                    <h1>핏투게더</h1>
                     <span style=
                     "color: white; font-size: 15px; margin-top: 30px; margin-left: 20px;">
                         환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
@@ -146,6 +146,7 @@
             <span class="closeGoal">&times;</span>
             <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">목표 수정하기</h2>
             <input type="text" id="edittedGoals" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 목표를 입력하세요.">
+            <span id="breakGoal"></span><span id="plzFillinGoal"></span>
             <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button>
           </div>
         </div>
@@ -155,6 +156,7 @@
             <span class="closePun">&times;</span>
             <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">내기 수정하기</h2>
             <input type="text" id="edittedPunishment" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
+            <span id="breakPun"></span><span id="plzFillinPun"></span>
             <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button>
           </div>
         </div>
@@ -188,7 +190,7 @@
                   <span>❷  방 만들기 <button id="right">바로가기</button> 버튼을 클릭하여 새로운 홈트레이닝 방을 생성해 보세요.</span><br><br>
                   <span>❸  운동 목표와 내기, 운동 종료 날짜를 설정하고, 함께 운동할 친구들을 초대하세요.</span><br><br>
                   <span>❹  오늘의 운동을 완료했다면 <button id="right">완료</button> 버튼을, 포기했다면 <button id="reverse">포기</button> 버튼을 누르세요.</span><br><br>
-                  <span>❺  <button id='reverse'>리셋</button> 버튼을 누름으로써 오늘의 운동 내역을 초기화할 수 있습니다.</span><br><br>
+                  <span>❺  <button id='reverse'>리셋</button> 버튼을 누름으로써 오늘의 운동 내역을 초기화 할 수 있습니다.</span><br><br>
                   <span>❻  스코어 바를 통해 나와 친구들의 현재 점수를 확인할 수 있어요.</span><br><br>
                   <span>❼  <a>친구들의 달성 현황</a>에서 친구들이 오늘의 운동을 완료했는지 확인할 수 있어요.</span>
                 </p>
@@ -199,9 +201,10 @@
                 <div class="section-title-divider"></div>
                 <p class='caution'>
                   <span>❶  그 날의 운동 기록은 다음 날 새벽 5시에 초기화됩니다.</span><br><br>
-                  <span>❷  방 안에서 <a>목표</a>와 <a>내기</a> 텍스트를 클릭하면 내용을 수정할 수 있어요.</span><br><br>
-                  <span>❸  운동 종료 날짜가 지나면 방은 사라지며 방 정보가 <a>내 정보</a>의 <a>나의 운동 히스토리</a>에 기록됩니다.</span><br><br>
-                  <span><span style="color: red;">❹  한 번 설정한 닉네임과 방 이름은 변경할 수 없으니 주의해주세요.</span></span>
+                  <span>❷  방 내부에서 <a>목표</a>와 <a>내기</a> 텍스트를 클릭하면 내용을 수정할 수 있어요.</span><br><br>
+                  <span>❸  운동 종료 날짜가 지나면 방은 사라지며 방 정보가 <a>방 히스토리</a>에 기록됩니다.</span><br><br>
+                  <span>❹  닉네임은 <a>내 프로필</a>에서 변경할 수 있어요.</span><br><br>
+                  <span><span style="color: red;">❺  한 번 설정한 방 이름은 변경할 수 없으니 주의해주세요.</span></span>
                 </p>
               </div>
             </div>
@@ -209,6 +212,14 @@
         </div>
 
         <style>
+          @font-face {
+              font-family: 'InfinitySans-RegularA1';
+              src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+              font-weight: normal;
+              font-style: normal;
+          }
+
+
           .howToUse, .caution {
             border: none;
             width: 820px;
@@ -225,6 +236,7 @@
             color: white;
             transition: 0.3s;
             cursor: pointer;
+            font-family: 'InfinitySans-RegularA1';
           }
       
           .howToUse #right:hover, .caution #right:hover {
@@ -233,6 +245,7 @@
             background: none;
             color: black;
             transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
           }
       
           .howToUse #reverse, .caution #reverse {
@@ -242,6 +255,7 @@
             color: black;
             transition: 0.3s;
             cursor: pointer;
+            font-family: 'InfinitySans-RegularA1';
           }
       
           .howToUse #reverse:hover, .caution #reverse:hover {
@@ -250,6 +264,7 @@
             background-color: #3d8dd3;
             color: white;
             transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
           }
       
       

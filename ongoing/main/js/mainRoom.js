@@ -311,7 +311,7 @@ function createScore(score, i) {
   //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
   var style = document.createElement('style');
   style.type = 'text/css';
-  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #fcfa7a); box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #f33886); box-shadow: 0 3px 3px -5px #fff, 0 2px 5px #fff; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
   document.getElementsByTagName('head')[0].appendChild(style);
 
   //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌
@@ -1029,11 +1029,20 @@ window.onclick = function(event) {
 
 function editGoals() {
   var newGoal = document.getElementById("edittedGoals").value;
-  firebase.database().ref("Rooms/" + roomName).update({
+  
+  if (newGoal == "") {
+    document.getElementById("plzFillinGoal").innerHTML = "목표를 입력하지 않으셨습니다.";
+    document.getElementById("breakGoal").innerHTML = "<br>";
+    document.getElementById("plzFillinGoal").style.color = "red"
+  }
+
+  else {
+    firebase.database().ref("Rooms/" + roomName).update({
       goals: newGoal
   });
-alert("목표가 새로 설정되었습니다.");
-window.location.reload();
+  alert("목표가 새로 설정되었습니다.");
+  window.location.reload();
+  }
 };
 
 
@@ -1070,11 +1079,20 @@ window.onclick = function(event) {
 
 function editPunishment() {
   var newBetting = document.getElementById("edittedPunishment").value;
-  firebase.database().ref("Rooms/" + roomName).update({
-    betting: newBetting
-  });
-alert("내기가 새로 설정되었습니다.");
-window.location.reload();
+
+  if (newBetting == "") {
+    document.getElementById("plzFillinPun").innerHTML = "내기를 입력하지 않으셨습니다.";
+    document.getElementById("breakPun").innerHTML = "<br>";
+    document.getElementById("plzFillinPun").style.color = "red"
+  }
+
+  else {
+    firebase.database().ref("Rooms/" + roomName).update({
+      betting: newBetting
+    });
+    alert("내기가 새로 설정되었습니다.");
+    window.location.reload();
+  }
 };
 
 
