@@ -9,8 +9,8 @@
 <html>
     <head>
         <title>방 ｜ 핏투게더</title>
-    
-    
+
+
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
@@ -31,10 +31,10 @@
                         환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
                     </span>
                 </div>
-                
+
 
             </span>
-            
+
             <nav class="nav-menu">
                 <ul>
                     <li><a id="openManual" href="#more">이용 가이드</a></li>
@@ -50,36 +50,36 @@
 
 
         <div class="main-box">
-               
+
           <div class="align-left">
             <p id="roomTitle">
               <span id="titleData"><!--방이름 출력되는 부분--></span>
               <span id="fromStartDate"><!--몇일차 출력되는 부분--></span>
             </p>
-            
-              <span id="endDate"><!--종료일 출력되는 부분--></span><button id='quit'>조기 종료</button>
-            
+
+              <span id="endDate"><!--종료일 출력되는 부분--></span><button onclick="roomQuit()" id='quit'>조기 종료</button>
+
             <div class="boxes">
-              <p class="goal" id="box"> 
+              <p class="goal" id="box">
                 <a id="editGoals" href="#">
                   <span id="goalText">
-                    
+
                       <!--목표 출력되는 부분-->
-                    
+
                   </span>
                 </a>
               </p>
-              
+
               <p class="punishment" id="box">
                 <a id="editPunishment" href="#">
                   <span id="bettingText">
-                    
+
                       <!--내기 출력되는 부분-->
-                    
+
                   </span>
                 </a>
               </p>
-              
+
               <div class="ranking" id="box">
                 <div id="scoreBar">
                   <!--<div class="progress">
@@ -87,10 +87,10 @@
                   </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
                   <!-----스코어바 생성 부분-----></div>
               </div>
-              
+
             </div>
           </div>
-          
+
           <div class="align-right">
             <!--글씨 크기 수정-->
             <h2 style="color: #3d8dd3; margin-bottom: 30px; font-size: 20px;">
@@ -106,37 +106,37 @@
               <tr>
                 <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
                   <img id="profileImg" src="" style="width: 250px;">
-    
+
                 </td>
                 <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
                   <span id="nicknameData" style="font-size: 20px; color: white;"> <!--닉네임 출력되는 부분--> </span>
                 </td>
-    
+
               </tr>
-    
+
               <tr>
-    
+
                 <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px;">
                   <button onclick="plusOneAndReload()" id="successBtn">완료</button>
                 </td>
-    
+
               </tr>
-    
+
               <tr>
-    
+
                 <td style="border-top: none;">
-                  
+
                   <!--성공 실패 버튼-->
-                  
+
                   <button onclick="giveUpAndReload()" id="resultBtn" >포기</button>
                   <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
                 </td>
-                
+
               </tr>
-    
+
             </table>
-              
-              
+
+
 
           </div>
         </div>
@@ -228,7 +228,7 @@
             margin-left: -310px;
             font-size: 15px;
           }
-      
+
           .howToUse #right, .caution #right {
             border: 1px solid #3d8dd3;
             border-radius: 2px;
@@ -238,7 +238,7 @@
             cursor: pointer;
             font-family: 'InfinitySans-RegularA1';
           }
-      
+
           .howToUse #right:hover, .caution #right:hover {
             border: 1px solid #000;
             border-radius: 2px;
@@ -247,7 +247,7 @@
             transition: 0.3s;
             font-family: 'InfinitySans-RegularA1';
           }
-      
+
           .howToUse #reverse, .caution #reverse {
             border: 1px solid black;
             border-radius: 2px;
@@ -257,7 +257,7 @@
             cursor: pointer;
             font-family: 'InfinitySans-RegularA1';
           }
-      
+
           .howToUse #reverse:hover, .caution #reverse:hover {
             border: 1px solid #3d8dd3;
             border-radius: 2px;
@@ -266,8 +266,8 @@
             transition: 0.3s;
             font-family: 'InfinitySans-RegularA1';
           }
-      
-      
+
+
           .howToUse a, .caution a {
             color: black;
             font-weight: bold;
@@ -275,7 +275,7 @@
             transition: 0.3s;
             cursor: pointer;
           }
-      
+
           .howToUse a:hover, .caution a:hover {
             color: #3d8dd3;
             font-weight: bold;
@@ -310,7 +310,7 @@
               padding: 30px;
               padding-top: 15px;
               border: 1px solid #888;
-              width: 70%; /* Could be more or less, depending on screen size */                          
+              width: 70%; /* Could be more or less, depending on screen size */
           }
         </style>
 

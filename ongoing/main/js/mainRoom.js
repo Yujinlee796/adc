@@ -720,8 +720,10 @@ function setRoomNameAndMove(url,rName) {
   window.location.href = url + "?roomName=" + rName;
 }
 
-
-
+//=======방 조기종료 함수 ===============//
+function roomQuit() {
+  setRoomNameAndMove("byeRoom.html",roomName);
+}
 
 
 //버튼
