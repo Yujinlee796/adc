@@ -72,6 +72,7 @@ window.onload = function(){
      });
 
       delUsersRoom(roomName,currentUserID); //usersRoom에서 data 삭제 //
+      makeUserHistory(roomName);
     }
    else if (!user) { window.location.href = "../index.html";} //signout 상태이면 쫓겨나는 코드
    else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
@@ -84,6 +85,24 @@ window.onload = function(){
 function delUsersRoom(rName,currentUserID) {
   firebase.database().ref('Usersroom/' + currentUserID +'/' + rName).remove();
   console.log("delete");
+}
+
+//===========================================================================//
+//Userhistory에 data 업데이트 //
+//==========================================================================//
+function makeUserHistory(name) {
+  firebase.database().ref('Userhistory/' + currentUserID +'/'+roomName).set("0", function(error)
+  {
+   if(error){
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    console.log(errorCode);
+    console.log(errorMessage);
+
+    window.alert("Message: " + errorMessage);
+   }
+ });
 }
 //============================================================================//
 //각 uid에 대해 닉네임 가져오기
@@ -245,10 +264,16 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     return deferred.promise();
   }
 
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  //logout
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  $("#btn-logout").click(function()
-  {
-     firebase.auth().signOut();
-  });
+//=================히스토리 버튼 누르면 개인 history page로 이동 ===============================//
+function gohistory(){
+  window.location.href = "history.html";
+}
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//logout
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$("#btn-logout").click(function()
+{
+    firebase.auth().signOut();
+});
