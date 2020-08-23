@@ -707,11 +707,8 @@ function endGame(eDate) {
   var end = new Date(eDate)
 
   var distance = end - now;
-  var d = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-  //유진 수정 코드
-  if( d <= 0 ) {
-    console.log("nowIn!")  //for test
+  if( distance < 0 ) {
     setRoomNameAndMove("byeroom.html",roomName);
   }
   else { return 0; }
