@@ -25,6 +25,8 @@ $("#btn-login").click(function()
     if(email != "" && password != "")
     {
          var result = firebase.auth().signInWithEmailAndPassword(email, password);
+         document.getElementById("loading").style.display = "block";
+         
 
         result.catch(function(error)
         {
@@ -37,6 +39,8 @@ $("#btn-login").click(function()
                 document.getElementById("confirmEmailResult").style.color = "red"
                 document.getElementById("confirmPasswordResult").innerHTML = ""
                 document.getElementById("plzFillin").innerHTML = ""
+
+                document.getElementById("loading").style.display = "none";
             }
 
             else if ( errorCode == "auth/invalid-email" ) {
@@ -44,6 +48,8 @@ $("#btn-login").click(function()
                 document.getElementById("confirmEmailResult").style.color = "red"
                 document.getElementById("confirmPasswordResult").innerHTML = ""
                 document.getElementById("plzFillin").innerHTML = ""
+
+                document.getElementById("loading").style.display = "none";
             }
 
             else if ( errorCode == "auth/wrong-password" ) {
@@ -51,8 +57,12 @@ $("#btn-login").click(function()
                 document.getElementById("confirmPasswordResult").style.color = "red"
                 document.getElementById("confirmEmailResult").innerHTML = ""
                 document.getElementById("plzFillin").innerHTML = ""
+
+                document.getElementById("loading").style.display = "none";
             }
+
         });
+        
     }
     else
     {
@@ -77,6 +87,7 @@ $("#btn-signup").click(function()
         if(password == cPassword)
         {
             var result = firebase.auth().createUserWithEmailAndPassword(email, password);
+            document.getElementById("loading").style.display = "block";
 
             result.catch(function(error)
             {
@@ -92,6 +103,8 @@ $("#btn-signup").click(function()
                     document.getElementById("confirmPasswordResult").innerHTML = ""
                     document.getElementById("confirmPasswordResultAgain").innerHTML = ""
                     document.getElementById("plzFillin").innerHTML = ""
+
+                    document.getElementById("loading").style.display = "none";
                 }
 
                 else if ( errorMessage == "Password should be at least 6 characters" ) {
@@ -100,6 +113,8 @@ $("#btn-signup").click(function()
                     document.getElementById("confirmEmailResult").innerHTML = ""
                     document.getElementById("confirmPasswordResultAgain").innerHTML = ""
                     document.getElementById("plzFillin").innerHTML = ""
+
+                    document.getElementById("loading").style.display = "none";
                 }
 
                 else if ( errorMessage == "The email address is badly formatted." ) {
@@ -108,6 +123,8 @@ $("#btn-signup").click(function()
                     document.getElementById("confirmPasswordResult").innerHTML = ""
                     document.getElementById("confirmPasswordResultAgain").innerHTML = ""
                     document.getElementById("plzFillin").innerHTML = ""
+
+                    document.getElementById("loading").style.display = "none";
                 }
 
 
@@ -120,6 +137,8 @@ $("#btn-signup").click(function()
             document.getElementById("confirmEmailResult").innerHTML = ""
             document.getElementById("confirmPasswordResult").innerHTML = ""
             document.getElementById("plzFillin").innerHTML = ""
+
+            document.getElementById("loading").style.display = "none";
         }
     }
     else
@@ -243,6 +262,7 @@ $("#btn-update").click(function()
         var rootRef = firebase.database().ref().child("Users");
         var userID = firebase.auth().currentUser.uid;
         var usersRef = rootRef.child(userID);
+        document.getElementById("loading").style.display = "block";
         
         rootRef.orderByChild('nickName').equalTo(nickName).once('value', function(snapshot){
             if (snapshot.val() === null) {
@@ -263,6 +283,8 @@ $("#btn-update").click(function()
                         onsole.log(errorMessage);
 
                         window.alert("Message: " + errorMessage);
+
+                        document.getElementById("loading").style.display = "none";
                     }
                     else
                     {
@@ -276,15 +298,27 @@ $("#btn-update").click(function()
                 //class를 추가해서 경고 문구가 뜨도록 하는 코드
                 document.getElementById("confirmNickResult").innerHTML = "이미 사용중인 닉네임입니다."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
                 document.getElementById("confirmNickResult").style.color = "red"
+
+                document.getElementById("loading").style.display = "none";
             }  
         }); 
     } else if (nickName.length == 0) {
         //닉네임을 입력하지 않음
         document.getElementById("confirmNickResult").innerHTML = "닉네임을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
         document.getElementById("confirmNickResult").style.color = "red"
+
+        document.getElementById("loading").style.display = "none";
     } else if (nickName.length > 10) {
         //닉네임이 10자를 초과함
         document.getElementById("confirmNickResult").innerHTML = "10자 이하의 닉네임을 입력해 주세요."; //추후에, 이경우엔 style 속성에 color 빨간색 넣고
         document.getElementById("confirmNickResult").style.color = "red"
+
+        document.getElementById("loading").style.display = "none";
     }
 });
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+로딩중 숨기고 보여주기
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
