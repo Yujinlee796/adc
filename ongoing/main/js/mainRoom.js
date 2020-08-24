@@ -723,7 +723,12 @@ function setRoomNameAndMove(url,rName) {
 
 //=======방 조기종료 함수 ===============//
 function roomQuit() {
-  setRoomNameAndMove("byeRoom.html",roomName);
+  if(confirm("방을 정말 삭제하시겠습니까?") == true){
+    setRoomNameAndMove("byeRoom.html",roomName);
+  }
+  else{
+    return;
+  }
 }
 
 
