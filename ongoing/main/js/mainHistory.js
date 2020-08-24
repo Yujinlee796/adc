@@ -1,19 +1,4 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCqHKmX1adJ9qCPMnSWyP1p5JRzEruoe1E",
-    authDomain: "fittogether-d628a.firebaseapp.com",
-    databaseURL: "https://fittogether-d628a.firebaseio.com",
-    projectId: "fittogether-d628a",
-    storageBucket: "fittogether-d628a.appspot.com",
-    messagingSenderId: "169218684132",
-    appId: "1:169218684132:web:3134f8df18470da201a8f1",
-    measurementId: "G-2MK17W9C5C"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
-  firebase.auth.Auth.Persistence.LOCAL;
 
 /*현재 존재하는 방목록 업로드*/
 firebase.auth().onAuthStateChanged(function(user)
@@ -47,13 +32,13 @@ firebase.auth().onAuthStateChanged(function(user)
 
         //firebase database에서 정보 받아오기
         snapshot.forEach(function(childSnapshot) {
-         var roomName = childSnapshot.val();
-         roomList.push({name : roomName)};
-        });
+         var roomName = childSnapshot.key;
+         roomList.push({name : roomName});
+       });
 
         if (roomList.length != 0) {
           //방목록 표 제목 html에 띄우기
-          htmlTh += '<th>방이름</th>';ㄴ
+          htmlTh += '<th>방이름</th>';
           htmlTh += '<th>입장</th>';
           $("#dynamicThead").empty();
           $("#dynamicThead").append(htmlTh);
@@ -79,12 +64,10 @@ firebase.auth().onAuthStateChanged(function(user)
 });
 
 
-  //makingRoom.html로 연결
-function newRoom() {
-  var link ='makingRoom.html';
-  location.href = link;
+//URL 이동 함수
+function setRoomNameAndMove(url,rName) {
+  window.location.href = url + "?roomName=" + rName;
 }
-
 
 // logout
 $("#btn-logout").click(function()

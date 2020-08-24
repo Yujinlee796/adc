@@ -44,7 +44,7 @@ window.onload = function(){
       document.getElementById("goalText").innerHTML = printGoals;
       document.getElementById("bettingText").innerHTML = printBetting;
       document.getElementById("titleData").innerHTML = printTitle;
-      document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
+      document.getElementById("endDate").innerHTML = revisePrintEndDate(startDate) + '~' + revisePrintEndDate(endDate) + '종료';
     });
    } else { alert('방 이름을 불러오지 못했습니다.');}
 
@@ -66,13 +66,16 @@ window.onload = function(){
        //닉네임과 스코어&상태를 가져오면, 출력하기
        $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID))
        .done(function(Nname, scoreAndstate = []){
-         displayScoreBar(Nname, scoreAndstate[0]); //스코어바 출력하기
+         displayScoreBar(Nname, scoreAndstate); //스코어바 출력하기
        });
      });
      });
 
-      delUsersRoom(roomName,currentUserID); //usersRoom에서 data 삭제 //
-      makeUserHistory(roomName);
+     if(confirm("이 방을 내 히스토리에 남기시겠습니까?") == true ){
+       delUsersRoom(roomName,currentUserID); //usersRoom에서 data 삭제 //
+       makeUserHistory(roomName);
+     }
+
     }
    else if (!user) { window.location.href = "../index.html";} //signout 상태이면 쫓겨나는 코드
    else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
@@ -222,31 +225,6 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
   }
 
 
-  //=============================================================================//
-  //변경된 정보들 데이터베이스에 업데이트하는 함수
-  //=============================================================================//
-  function usersroomUpdate() {
-    if (currentUserID != ''){
-      firebase.database().ref('Usersroom/' + currentUserID + '/' + roomName).set({
-          fitcnt : fitcnt,
-          recentcnt : recentcnt,
-          lastClick : lastClick,
-      },
-      function(error) {
-        if(error)
-        {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-
-          console.log(errorCode);
-          onsole.log(errorMessage);
-
-          window.alert("Message: " + errorMessage);
-        }
-      });
-    }
-  }
-
 
   //============================================================================//
   //각 uid에 대해 score(fitcnt)와 state(recentcnt) 가져오기
@@ -258,12 +236,35 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     firebase.database().ref('Usersroom/' + roomUsersUid + '/' + roomName).once('value')
         .then(function(snapshot) {
           score = snapshot.child('fitcnt').val();
-
-          deferred.resolve(score, state);
+          deferred.resolve(score);
         });
     return deferred.promise();
   }
 
+  //============================================================================//
+  //각 uid에 대해 스코어바와 점수 출력하기
+  //============================================================================//
+  function displayScoreBar(Nname, score) {
+    scoreBar.appendChild(createNname(Nname));
+    scoreBar.appendChild(createScore(score, Nname));
+    //console.log('display');
+    createMotion(score, Nname)
+  }
+
+  //---------------------------------------------------------------------------//
+  //모션 넣어주는 함수(스코어 넣으면 그만큼 width 키우는 것)
+  //---------------------------------------------------------------------------//
+  function createMotion(score, i) {
+    var progress = document.querySelector('.progress-done-' + i);
+
+    if(period != 0) {
+      progress.style.width = (score/period)*100 + '%';
+      progress.style.opacity = 1;
+    } else {
+      alert('방 정보가 로드되기 전에 스코어 바를 출력하려는 오류가 발생했습니다.');
+    }
+  }
+  
 //=================히스토리 버튼 누르면 개인 history page로 이동 ===============================//
 function goHistory(){
   window.location.href = "history.html";
