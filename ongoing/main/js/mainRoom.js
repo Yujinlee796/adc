@@ -58,6 +58,7 @@ window.onload = function(){
         document.getElementById("goalText").innerHTML = printGoals;
         document.getElementById("bettingText").innerHTML = printBetting;
         document.getElementById("titleData").innerHTML = printTitle;
+        document.title = printTitle + ' ｜ 핏투게더';
         document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
       });
     } else { alert('방 이름을 불러오지 못했습니다.');}
