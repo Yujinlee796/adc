@@ -69,7 +69,7 @@ firebase.auth().onAuthStateChanged(function(user)
 
         if (roomList.length != 0) {
           //방목록 표 제목 html에 띄우기
-          htmlTh += '<th>방이름</th>';
+          htmlTh += '<th>방 이름</th>';
           htmlTh += '<th>현황</th>';
           htmlTh += '<th>입장</th>';
           $("#dynamicThead").empty();
