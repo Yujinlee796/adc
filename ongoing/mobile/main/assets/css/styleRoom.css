@@ -49,73 +49,121 @@ body {
 
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-내비게이션 바
+모바일용네비바
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-
-
 nav ul {
-    list-style: none;
+  list-style: none;
+  font-size: 40px;
 }
 
 nav li {
-    float: left;
-    margin-right: 60px;
-    font-size: 13px;
-    margin-top: 20px;
+  margin-bottom: 80px;
+  margin-top: 120px;
 }
 
-.nav-menu {
-    float: right;
-}
 
 h1 {
-    color: white;
-    font-size: 30px;
-    margin-left: 50px;
+  color: white;
+  font-size: 60px;
+  margin-left: 50px;
 }
 
 a {
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-    cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 a:hover {
-    color: #3d8dd3;
+  color: #3d8dd3;
 }
-  
+
+
+
+input[id="hamburger"] {
+  display: none;
+}
+input[id="hamburger"] + label {
+  display: block;
+  width: 80px;
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+  float: right;
+  margin-top: 45px;
+  margin-right: 40px;
+}
+input[id="hamburger"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  border-radius: 30px;
+  background: #fff;
+  transition: all 0.35s;
+}
+input[id="hamburger"] + label span:nth-child(1) {
+  top: 0;
+}
+input[id="hamburger"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+input[id="hamburger"] + label span:nth-child(3) {
+  bottom: 0;
+}
+input[id="hamburger"]:checked + label {
+  z-index: 2;
+}
+input[id="hamburger"]:checked + label span {
+  background: #fff;
+}
+input[id="hamburger"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+input[id="hamburger"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+input[id="hamburger"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+div[class="sidebar"] {
+  width: 80%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  top: 0;
+  right: -80%;
+  z-index: 1;
+  transition: all 0.35s;
+  overflow: auto;
+}
+input[id="hamburger"]:checked + label + div {
+  right: 0;
+}
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-본문 양쪽 분할
+본문 위아래 분할
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-
+/*
 .align-left {
-  position: absolute;
-  font-size: 20px;
-  width: 50%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  height: 100%;
+  font-size: 25px;
+  width: 100%;
+
   text-align: center;
 }
 
 .align-right {
-  position: absolute;
-  font-size: 20px;
-  width: 50%;
-  padding-top: 180px;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  height: 100%;
+  font-size: 25px;
+  width: 100%;
+
   text-align: center;
-}
+}*/
 
 
 /*
@@ -410,7 +458,7 @@ modal
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */                          
 }
-/* The Close Button */
+/* The Close Button *//*
 .closeGoal {
     color: #aaa;
     float: right;
@@ -465,7 +513,7 @@ modal
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
+}*/
 
 
 

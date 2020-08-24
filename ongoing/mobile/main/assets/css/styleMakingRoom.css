@@ -36,28 +36,25 @@ body {
     width: 100%;
 }
 
-nav {
-    z-index: 2;
-}
-
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+모바일용네비바
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
 nav ul {
     list-style: none;
+    font-size: 40px;
 }
 
 nav li {
-    float: left;
-    margin-right: 60px;
-    font-size: 13px;
-    margin-top: 20px;
+    margin-bottom: 80px;
+    margin-top: 120px;
 }
 
-.nav-menu {
-    float: right;
-}
 
 h1 {
     color: white;
-    font-size: 30px;
+    font-size: 60px;
     margin-left: 50px;
 }
 
@@ -72,35 +69,104 @@ a:hover {
     color: #3d8dd3;
 }
 
+
+
+input[id="hamburger"] {
+    display: none;
+  }
+  input[id="hamburger"] + label {
+    display: block;
+    width: 80px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    float: right;
+    margin-top: 45px;
+    margin-right: 40px;
+  }
+  input[id="hamburger"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background: #fff;
+    transition: all 0.35s;
+  }
+  input[id="hamburger"] + label span:nth-child(1) {
+    top: 0;
+  }
+  input[id="hamburger"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input[id="hamburger"] + label span:nth-child(3) {
+    bottom: 0;
+  }
+  input[id="hamburger"]:checked + label {
+    z-index: 2;
+  }
+  input[id="hamburger"]:checked + label span {
+    background: #fff;
+  }
+  input[id="hamburger"]:checked + label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  input[id="hamburger"]:checked + label span:nth-child(2) {
+    opacity: 0;
+  }
+  input[id="hamburger"]:checked + label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+  div[class="sidebar"] {
+    width: 80%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    right: -80%;
+    z-index: 1;
+    transition: all 0.35s;
+    overflow: auto;
+  }
+  input[id="hamburger"]:checked + label + div {
+    right: 0;
+  }
+
+
+
+  
 .main-box {
     font-family: 'InfinitySans-RegularA1';
-    z-index: 1;
     padding-right: 40px;
     padding-left: 40px;
-    padding-bottom: 20px;
-    font-size: 20px;
+    padding-bottom: 60px;
+    font-size: 25px;
     border: none;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    width: 440px;
+    width: 600px;
     position: absolute;
-    top: 100px;
+    top: 200px;
     left: 50%;
-    margin-left: -260px;
+    margin-left: -340px;
     margin-bottom: 20px;
   }
 
 .main-box input {
     font-family: 'InfinitySans-RegularA1';
-    font-size: 15px;
+    font-size: 25px;
     border-radius: 4px;
     border: none;
-    padding: 5px;
-    width: 350px;
+    padding: 10px;
+    width: 459px;
 }
 
 .main-box button {
-    font-size: 15px;
+    height: 53px;
+    font-size: 25px;
     border-radius: 4px;
     border: 1px solid rgba(61,141,211,0.6);
     padding: 5px;
@@ -111,7 +177,7 @@ a:hover {
 }
 
 .main-box button:hover {
-    font-size: 15px;
+    font-size: 25px;
     border-radius: 4px;
     border: 1px solid white;
     padding: 5px;
@@ -121,7 +187,7 @@ a:hover {
 
 
 #confirmNameResult, #confirmNickResult, #plzFillin {
-    font-size: 13px;
+    font-size: 25px;
     font-weight: lighter;
     margin-bottom: 0;
 }
@@ -129,23 +195,12 @@ a:hover {
 
 
 #complete {
-    width: 80px;
-    position: relative;
-    left: 175px;
+    width: 200px;
+    height: 70px;
+    margin: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-
-.closeManual {
-    color: #aaa;
-    float: right;
-    margin-top: 0;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .closeManual:hover, .closeManual:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }

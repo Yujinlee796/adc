@@ -22,31 +22,41 @@
     </head>
 
     <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
-        <header id="header" class="fixed-top">
-            <span class="logo" style="float: left;">
-                <div class="greet" style="display: flex;">
-                    <h1>핏투게더</h1>
-                    <span style=
-                    "color: white; font-size: 15px; margin-top: 30px; margin-left: 20px;">
-                        환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
-                    </span>
-                </div>
-                
-
-            </span>
+      <header id="header" class="fixed-top">
+        <span class="logo" style="float: left;">
+            <div class="greet" style="display: flex;">
+                <h1>핏투게더</h1>
+                <span style=
+                "color: white; font-size: 30px; margin-top: 62px; margin-left: 20px;">
+                    환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
+                </span>
+            </div>
             
-            <nav class="nav-menu">
-                <ul>
-                    <li><a id="openManual" href="#more">이용 가이드</a></li>
-                    <li><a href="makingRoom.html">방 만들기</a></li>
-                    <li><a href="mainPage.html">방 목록</a></li>
-                    <li><a href="history.html">방 히스토리</a></li>
-                    <li><a href="myProfile.html">내 프로필</a></li>
-                    <li><a id="btn-logout" href="#logout">로그아웃</a></li>
-                </ul>
-            </nav>
-
-        </header>
+    
+        </span>
+        
+        <input type='checkbox' id='hamburger'>
+        <label for="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <div class="sidebar">
+          <nav class="nav-menu">
+            <ul>
+                <li><a id="openManual" href="#more">이용 가이드</a></li>
+                <li><a href="makingRoom.html">방 만들기</a></li>
+                <li><a href="mainPage.html">방 목록</a></li>
+                <li><a href="history.html">방 히스토리</a></li>
+                <li><a href="myProfile.html">내 프로필</a></li>
+                <li><a id="btn-logout" href="#logout">로그아웃</a></li>
+            </ul>
+        </nav>
+        </div>
+    
+    
+    
+      </header>
 
 
             <div class="main-box">
@@ -56,7 +66,7 @@
                 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
                 <!--===달력====-->
 
-                <h3 style="text-align: center; color: white; font-weight: bold; font-size: 20px;">새로운 방 만들기</h3>
+                <h3 style="text-align: center; color: white; font-weight: bold; font-size: 60px;">새로운 방 만들기</h3>
                 <span id="plzFillin"></span><span id="break"></span>
                 <br>
                 
@@ -88,16 +98,16 @@
                     <br>
                     <span id="confirmNickResult"></span>
                     <!--<span>참여 멤버: </span>-->
-                    <ul id = "invitedList" style="font-size: 15px; color: white; margin-top: 12px;">
+                    <ul id = "invitedList" style="font-size: 25px; color: white; margin-top: 12px;">
                         <!--초대할 닉네임 입력하면 여기에 추가됨-->
                     </ul>
                     <!--<div class="invalid-feedback">
                                 중복된 닉네임입니다.
                     </div>
                     <p id = "invitedUsers">초대된 인원: </p>-->
-                    <span style="color: white; font-size: 12px;">내기 종료 날짜를 설정해 주세요.</span> <br>
-                    <input style="margin-top: 7px; padding: 5px; color: #757575; font-size: 15px;" type="datetime-local" id="room_date"/>
-                    <br><br>
+                    <span style="color: white; font-size: 25px;">내기 종료 날짜를 설정해 주세요.</span> <br>
+                    <input style="margin-top: 7px; padding: 10px; color: #757575; font-size: 25px;" type="datetime-local" id="room_date"/>
+                    <br><br><br><br>
 
                     <button id="complete" onclick="makingRoom()">방 만들기</button>
                     
@@ -136,10 +146,9 @@
 
         <div id="myModal-manual" class="modalManual">
           <div class="modal-contentManual">
-            <span class="closeManual">&times;</span>
             <div class="main-container">
               <div>
-                <h2 style="color: black; text-align: center; font-weight: bolder;">핏투게더 이용하기</h2>
+                <h2 style="color: black; text-align: center; font-weight: bolder; font-size: 35px">핏투게더 이용하기</h2>
                 <div class="section-title-divider"></div>
                 <p class="howToUse">
                   <span>❶  회원가입 후 닉네임을 설정하세요.</span><br><br>
@@ -153,7 +162,7 @@
               </div>
               <br>
               <div>
-                <h2 style="color: black; text-align: center; font-weight: bolder;">알고 넘어가기</h2>
+                <h2 style="color: black; text-align: center; font-weight: bolder; font-size: 35px">알고 넘어가기</h2>
                 <div class="section-title-divider"></div>
                 <p class='caution'>
                   <span>❶  그 날의 운동 기록은 다음 날 새벽 5시에 초기화됩니다.</span><br><br>
@@ -163,8 +172,11 @@
                   <span><span style="color: red;">❺  한 번 설정한 방 이름은 변경할 수 없으니 주의해주세요.</span></span>
                 </p>
               </div>
+              <br>
+              <button class="closeManual">닫기</button>
             </div>
           </div>
+          
         </div>
 
         <style>
@@ -178,11 +190,8 @@
 
           .howToUse, .caution {
             border: none;
-            width: 820px;
-            position: relative;
-            left: 50%;
-            margin-left: -260px;
-            font-size: 15px;
+            
+            font-size: 25px;
           }
 
           .howToUse #right, .caution #right {
@@ -193,6 +202,7 @@
             transition: 0.3s;
             cursor: pointer;
             font-family: 'InfinitySans-RegularA1';
+            font-size: 25px;
           }
 
           .howToUse #right:hover, .caution #right:hover {
@@ -204,6 +214,36 @@
             font-family: 'InfinitySans-RegularA1';
           }
 
+          .closeManual {
+            border: 1px solid #3d8dd3;
+            border-radius: 2px;
+            background-color: #3d8dd3;
+            color: white;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: 'InfinitySans-RegularA1';
+            font-size: 30px;
+            height: 70px;
+            width: 150px;
+            margin: auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .closeManual:hover {
+            border: 1px solid #000;
+            border-radius: 2px;
+            background: none;
+            color: black;
+            transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
+            font-size: 30px;
+            
+          }
+
+
           .howToUse #reverse, .caution #reverse {
             border: 1px solid black;
             border-radius: 2px;
@@ -212,6 +252,7 @@
             transition: 0.3s;
             cursor: pointer;
             font-family: 'InfinitySans-RegularA1';
+            font-size: 25px;
           }
 
           .howToUse #reverse:hover, .caution #reverse:hover {
@@ -263,10 +304,11 @@
           .modal-contentManual {
               background-color: #fff;
               margin: 1% auto; /* 15% from the top and centered */
-              padding: 30px;
-              padding-top: 15px;
+              padding: 50px;
+              padding-top: 30px;
               border: 1px solid #888;
-              width: 55%; /* Could be more or less, depending on screen size */
+              width: 80%; /* Could be more or less, depending on screen size */
+             
           }
         </style>
 
