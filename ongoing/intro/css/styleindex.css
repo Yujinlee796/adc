@@ -74,12 +74,12 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 15px;
   transition: background 0.5s;
 }
-
+/*
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 15px;
   }
-}
+}*/
 
 .back-to-top:focus {
   background: rgba(0, 0, 0, 0.2);
@@ -102,12 +102,12 @@ h1, h2, h3, h4, h5, h6 {
   background: url(../img/introBackground.jpg) top center;
   background-size: cover;
 }
-
+/*
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
   }
-}
+}*/
 
 #hero .hero-logo {
   margin: 0 0 10px 0;
@@ -132,13 +132,13 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   color: #fff;
 }
-
+/*
 @media (max-width: 768px) {
   #hero h1 {
     font-size: 28px;
     line-height: 36px;
   }
-}
+}*/
 
 #hero h2 {
   font-size: 27px;
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
   margin-top: 35px;
 }
-
+/*
 @media (max-width: 768px) {
   #hero h2 {
     font-size: 24px;
@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
   #hero h2 .rotating {
     display: block;
   }
-}
+}*/
 
 #hero .rotating > .animated {
   display: inline-block;
@@ -222,6 +222,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+/*
 #header {
   background: #111;
   padding: 20px 0;
@@ -268,11 +269,12 @@ h1, h2, h3, h4, h5, h6 {
 .is-sticky #header {
   background: rgba(0, 0, 0, 0.85);
 }
-
+*/
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Nav Menu Essentials */
+/*
 .nav-menu, .nav-menu * {
   margin: 0;
   padding: 0;
@@ -308,9 +310,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-menu ul li {
   min-width: 180px;
-}
+}*/
 
-/* Nav Menu Arrows */
+/* Nav Menu Arrows *//*
 .sf-arrows .sf-with-ul {
   padding-right: 30px;
 }
@@ -326,9 +328,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .sf-arrows ul .sf-with-ul:after {
   content: "\f105";
-}
+}*/
 
-/* Nav Meu Container */
+/* Nav Meu Container *//*
 #nav-menu-container {
   float: right;
   margin: 5px 0;
@@ -338,9 +340,9 @@ h1, h2, h3, h4, h5, h6 {
   #nav-menu-container {
     display: none;
   }
-}
+}*/
 
-/* Nav Meu Styling */
+/* Nav Meu Styling *//*
 .nav-menu a {
   padding: 10px 15px;
   text-decoration: none;
@@ -380,9 +382,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-menu ul ul {
   margin: 0;
-}
+}*/
 
-/* Mobile Nav Toggle */
+/* Mobile Nav Toggle *//*
 #mobile-nav-toggle {
   position: fixed;
   right: 0;
@@ -405,9 +407,9 @@ h1, h2, h3, h4, h5, h6 {
   #mobile-nav-toggle {
     display: inline;
   }
-}
+}*/
 
-/* Mobile Nav Styling */
+/* Mobile Nav Styling *//*
 #mobile-nav {
   position: fixed;
   top: 0;
@@ -477,9 +479,9 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   background: rgba(0, 0, 0, 0.6);
   display: none;
-}
+}*/
 
-/* Mobile Nav body classes */
+/* Mobile Nav body classes *//*
 body.mobile-nav-active {
   overflow: hidden;
 }
@@ -490,7 +492,7 @@ body.mobile-nav-active #mobile-nav {
 
 body.mobile-nav-active #mobile-nav-toggle {
   color: #fff;
-}
+}*/
 
 /*--------------------------------------------------------------
 # Sections
@@ -532,7 +534,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #about .about-img img {
   max-width: 100%;
 }
-
+/*
 @media (max-width: 768px) {
   #about .about-img {
     height: auto;
@@ -541,7 +543,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     margin-left: 0;
     padding-bottom: 30px;
   }
-}
+}*/
 
 #about .about-content {
   background: #fff;
@@ -565,7 +567,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /* Services Section
---------------------------------*/
+--------------------------------*//*
 #services {
   background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/services-bg.jpg") fixed center center;
   background-size: cover;
@@ -612,10 +614,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 #services .service-description {
   margin-left: 80px;
   line-height: 24px;
-}
+}*/
 
 /* Subscribe Section
---------------------------------*/
+--------------------------------*//*
 #subscribe {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/subscribe-bg.jpg) fixed center center;
   background-size: cover;
@@ -655,10 +657,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 #subscribe .subscribe-btn:hover {
   background: #1d64be;
   border: 2px solid #1d64be;
-}
+}*/
 
 /* Portfolio Section
---------------------------------*/
+--------------------------------*//*
 #portfolio {
   background: #fff;
   padding: 80px 0;
@@ -712,10 +714,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #portfolio .portfolio-item:hover .details span {
   transform: translate3d(0, 0, 0);
-}
+}*/
 
 /* Testimonials Section
---------------------------------*/
+--------------------------------*//*
 #testimonials {
   background: #f6f6f6;
   padding: 80px 0;
@@ -771,10 +773,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   right: -9px;
   position: relative;
   top: 4px;
-}
+}*/
 
 /* Team Section
---------------------------------*/
+--------------------------------*//*
 #team {
   background: #fff;
   padding: 80px 0 60px 0;
@@ -821,10 +823,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 #team .member .social i {
   font-size: 18px;
   margin: 0 2px;
-}
+}*/
 
 /* Contact Section
---------------------------------*/
+--------------------------------*//*
 #contact {
   background: #f7f7f7;
   padding: 80px 0;
@@ -893,7 +895,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #contact .form button[type="submit"]:hover {
   background: #9FC93C;
-}
+}*/
 
 /*--------------------------------------------------------------
 # Footer

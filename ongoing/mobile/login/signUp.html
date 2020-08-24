@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>회원가입 ｜ 핏투게더</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            
+            
+            <!-- MATERIAL DESIGN ICONIC FONT -->
+        <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+                
+            <!-- STYLE CSS -->
+        <link rel="stylesheet" href="design_files/css/styleSignUp.css">
+
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+        
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+    </head>
+
+    <body>
+        <div id="loading">
+            <img id="loadingImg" src="design_files/images/loadingImg.gif">
+        </div>
+        <div class="wrapper" style="background-image: url('design_files/images/thunderstorm.jpg');">
+            <div class="inner">
+
+                <form action="">
+                    <h3>회원가입</h3>
+                    <div class="form-wrapper" style="margin-bottom: 0;">
+                        <input id="email" type="email" placeholder="Email" class="form-control">
+                        <i class="zmdi zmdi-email"></i>
+                        
+                    </div>
+                    <span id="confirmEmailResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
+                    <div class="form-wrapper">
+                        <input id="password" type="password" placeholder="비밀번호 (6자 이상)" class="form-control">
+                        <i class="zmdi zmdi-lock"></i>
+                    </div>
+                    <span id="confirmPasswordResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
+                    <div class="form-wrapper">
+                        <input id="confirmPassword" type="password" placeholder="비밀번호 확인" class="form-control">
+                        <i class="zmdi zmdi-lock"></i>
+                    </div>
+                    <span id="confirmPasswordResultAgain" style="position: relative; z-index: 3; bottom: 17px;"></span>
+                    <div class="form-group container-login100-form-btn">
+                        <button id="btn-signup" type="button">
+                            가입 완료
+                            <i class="zmdi zmdi-arrow-right"></i>
+                        </button>
+                        
+                    </div>
+                    <span id="plzFillin" style="width: 200px; position: absolute; top: 50%; margin-top: 120px; left:50%; margin-left: -100px; z-index: 3; text-align: center;"></span>
+                    <div class="w-full text-center" style="width: 200px; position: absolute; top: 50%; margin-top: 210px; left:50%; margin-left: -100px; z-index: 3; font-size: 15px;">
+                        <a href="signin.html" class="text-dark">
+                            이미 계정이 있으신가요?
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script src="js/login.js"></script>
+
+        <!--유저가 accountsettings을 했는지 확인하고 안했으면 어카운팅세팅html로 넘어가라는거 같은디-->
+        <!--이 코드를 signin에도 추가해볼것. 회원가입만하고, 어카운팅세팅안한 유저가 로그인했을때 다시 세팅할수있도록-->
+        <script>
+            firebase.auth().onAuthStateChanged(function(user)
+            {
+                if(user)
+                {
+                    var userID = firebase.auth().currentUser.uid;
+
+                    firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
+                    {
+                        if(snapshot.val())
+                        {
+                            window.location.href = "../main/mainPage.html";
+                        }
+                        else
+                        {
+                            window.location.href = "accountSettings.html";
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
