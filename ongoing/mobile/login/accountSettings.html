@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>닉네임 설정 ｜ 핏투게더</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            
+            
+            <!-- MATERIAL DESIGN ICONIC FONT -->
+        <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+                
+            <!-- STYLE CSS -->
+        <link rel="stylesheet" href="design_files/css/styleAccountSettings.css">
+
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+        
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+    </head>
+
+    <body>
+        <div id="loading">
+            <img id="loadingImg" src="design_files/images/loadingImg.gif">
+        </div>
+        <div class="wrapper" style="background-image: url('design_files/images/accountSettingsBackground.jpg');">
+            <div class="inner">
+                <form action="">
+                    <h3>닉네임 설정</h3>
+                    <div class="form-wrapper">
+                        <input id="nickName" type="text" placeholder="닉네임 (10자 이내)" class="form-control">
+                    </div>
+                    <span id="confirmNickResult" style="position: relative; z-index: 3; bottom: 17px;"></span>
+                    <!--
+                    <div class="form-wrapper">
+                        <select name="" id="gender" class="form-control">
+                            <option value="" disabled selected>성별</option>
+                            <option value="Female">여성</option>
+                            <option value="Male">남성</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <i class="zmdi zmdi-caret-down" style="font-size: 17px;"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input id="age" type="number" placeholder="나이" class="form-control">
+                    </div>
+                    -->
+                    <!--필요없는 정보 부분(원래있던거)
+                    <div class="form-group">
+                        <input id="firstName" type="text" placeholder="First Name" class="form-control">
+                        <input id="secondName" type="text" placeholder="Second Name" class="form-control">
+                    </div>
+                    <div class="form-wrapper">
+                        <select name="" id="country" class="form-control">
+                            <option value="" disabled selected>Country</option>
+                            <option value="South Korea">South Korea</option>
+                            <option value="North Korea">North Korea</option>
+                        </select>
+                        <i class="zmdi zmdi-caret-down" style="font-size: 17px;"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input id="phone" type="number" placeholder="Phone" class="form-control">
+                        <i class="zmdi zmdi-tablet-mac"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <select name="" id="gender" class="form-control">
+                            <option value="" disabled selected>Gender</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <i class="zmdi zmdi-caret-down" style="font-size: 17px;"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input id="address" type="text" placeholder="Address" class="form-control">
+                        <i class="zmdi zmdi-pin"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input id="bio" type="text" placeholder="Bio" class="form-control">
+                        <i class="zmdi zmdi-account-box-mail"></i>
+                    </div>
+                    -->
+                    <div class="form-group container-login100-form-btn">
+                        <button id="btn-update" type="button">
+                            설정 완료
+                            <i class="zmdi zmdi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script src="js/login.js"></script>
+
+        <script>
+            firebase.auth().onAuthStateChanged(function(user)
+            {
+                if(user)
+                {
+                    var userID = firebase.auth().currentUser.uid;
+
+                    firebase.database().ref('Users/' + userID).once('value').then(function(snapshot)
+                    {
+                        if(snapshot.val())
+                        {
+                            window.location.href = "../main/mainPage.html"; //이미 설정한 닉네임이 있다면 쫓겨나는 코드
+                        }
+                    });
+                } else if (!user) {
+                    window.location.href = "../index.html"; //로그아웃상태면 쫓겨나는
+                }
+            });
+
+
+            /*history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.go(1);
+            };  //뒤로가기 방지*/
+        </script>
+    </body>
+</html>

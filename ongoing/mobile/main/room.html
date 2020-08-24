@@ -1,0 +1,334 @@
+<!--
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    상단바에 생기는 이상한 녀석들..수정필요
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>방 ｜ 핏투게더</title>
+
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+        <link rel="stylesheet" href="assets/css/styleRoom.css">
+    </head>
+
+    <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
+        <header id="header" class="fixed-top">
+            <span class="logo" style="float: left;">
+                <div class="greet" style="display: flex;">
+                    <h1>핏투게더</h1>
+                    <span style=
+                    "color: white; font-size: 15px; margin-top: 30px; margin-left: 20px;">
+                        환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
+                    </span>
+                </div>
+
+
+            </span>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a id="openManual" href="#more">이용 가이드</a></li>
+                    <li><a href="makingRoom.html">방 만들기</a></li>
+                    <li><a href="mainPage.html">방 목록</a></li>
+                    <li><a href="history.html">방 히스토리</a></li>
+                    <li><a href="myProfile.html">내 프로필</a></li>
+                    <li><a id="btn-logout" href="#logout">로그아웃</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+
+        <div class="main-box">
+
+          <div class="align-left">
+            <p id="roomTitle">
+              <span id="titleData">-<!--방이름--></span>
+              <span id="fromStartDate"><!--며칠차--></span>
+            </p>
+
+              <span id="endDate"><!--끝나는날짜--></span><button onclick="roomQuit()" id='quit'>조기 종료</button>
+
+            <div class="boxes">
+              <p class="goal" id="box">
+                <a id="editGoals" href="#">
+                  <span id="goalText">
+
+                      -
+
+                  </span>
+                </a>
+              </p>
+
+              <p class="punishment" id="box">
+                <a id="editPunishment" href="#">
+                  <span id="bettingText">
+
+                      -<!--내기 출력되는 부분-->
+
+                  </span>
+                </a>
+              </p>
+
+              <div class="ranking" id="box">
+                <div id="scoreBar">
+                  <!--<div class="progress">
+                    <div class="progress-done">10점</div>
+                  </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
+                  <!-----스코어바 생성 부분-----></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="align-right">
+            <!--글씨 크기 수정-->
+            <h2 style="color: #3d8dd3; margin-bottom: 30px; font-size: 20px;">
+              오늘의 운동 기록까지 남은 시간<br><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;">" </span>
+              <span id="todayTimer" style="font-size: 50px;"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;"> "</span>
+            </h2>
+            <p>
+              <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
+              <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;">-<!--오늘의 운동 완료 여부--></span>
+            </p>
+            <a href="#" id="openStatePopup" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
+            <table class="table" style="margin-top: 30px;">
+              <tr>
+                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
+                  <img id="profileImg" src="assets/img/none.png" style="width: 250px;">
+
+                </td>
+                <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
+                  <span id="nicknameData" style="font-size: 20px; color: white;">- <!--닉네임 출력되는 부분--> </span>
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px;">
+                  <button onclick="plusOneAndReload()" id="successBtn">완료</button>
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td style="border-top: none;">
+
+                  <!--성공 실패 버튼-->
+
+                  <button onclick="giveUpAndReload()" id="resultBtn" >포기</button>
+                  <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
+                </td>
+
+              </tr>
+
+            </table>
+
+
+
+          </div>
+        </div>
+
+        <div id="myModal-goal" class="modal">
+          <div class="modal-content">
+            <span class="closeGoal">&times;</span>
+            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">목표 수정하기</h2>
+            <input type="text" id="edittedGoals" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 목표를 입력하세요.">
+            <span id="breakGoal"></span><span id="plzFillinGoal"></span>
+            <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button>
+          </div>
+        </div>
+
+        <div id="myModal-punishment" class="modal">
+          <div class="modal-content">
+            <span class="closePun">&times;</span>
+            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">내기 수정하기</h2>
+            <input type="text" id="edittedPunishment" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
+            <span id="breakPun"></span><span id="plzFillinPun"></span>
+            <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button>
+          </div>
+        </div>
+
+        <div id="myModal-state" class="modal">
+          <div class="modal-content">
+            <span class="closeState">&times;</span>
+              <div class="main-container">
+                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">친구들의 달성 상황</h2>
+                  <table id="stateTable">
+                      <!--동적할당되는 표의 형태
+                      <tr>
+                          <td style="color: skyblue;">닉네임</td>
+                          <td style="color: tomato;">현황</td>
+                      </tr>
+                      -->
+                  </table>
+              </div>
+          </div>
+        </div>
+
+        <div id="myModal-manual" class="modalManual">
+          <div class="modal-contentManual">
+            <span class="closeManual">&times;</span>
+            <div class="main-container">
+              <div>
+                <h2 style="color: black; text-align: center; font-weight: bolder;">핏투게더 이용하기</h2>
+                <div class="section-title-divider"></div>
+                <p class="howToUse">
+                  <span>❶  회원가입 후 닉네임을 설정하세요.</span><br><br>
+                  <span>❷  방 만들기 <button id="right">바로가기</button> 버튼을 클릭하여 새로운 홈트레이닝 방을 생성해 보세요.</span><br><br>
+                  <span>❸  운동 목표와 내기, 운동 종료 날짜를 설정하고, 함께 운동할 친구들을 초대하세요.</span><br><br>
+                  <span>❹  오늘의 운동을 완료했다면 <button id="right">완료</button> 버튼을, 포기했다면 <button id="reverse">포기</button> 버튼을 누르세요.</span><br><br>
+                  <span>❺  <button id='reverse'>리셋</button> 버튼을 누름으로써 오늘의 운동 내역을 초기화 할 수 있습니다.</span><br><br>
+                  <span>❻  스코어 바를 통해 나와 친구들의 현재 점수를 확인할 수 있어요.</span><br><br>
+                  <span>❼  <a>친구들의 달성 현황</a>에서 친구들이 오늘의 운동을 완료했는지 확인할 수 있어요.</span>
+                </p>
+              </div>
+              <br>
+              <div>
+                <h2 style="color: black; text-align: center; font-weight: bolder;">알고 넘어가기</h2>
+                <div class="section-title-divider"></div>
+                <p class='caution'>
+                  <span>❶  그 날의 운동 기록은 다음 날 새벽 5시에 초기화됩니다.</span><br><br>
+                  <span>❷  방 내부에서 <a>목표</a>와 <a>내기</a> 텍스트를 클릭하면 내용을 수정할 수 있어요.</span><br><br>
+                  <span>❸  운동 종료 날짜가 지나면 방은 사라지며 방 정보가 <a>방 히스토리</a>에 기록됩니다.</span><br><br>
+                  <span>❹  닉네임은 <a>내 프로필</a>에서 변경할 수 있어요.</span><br><br>
+                  <span><span style="color: red;">❺  한 번 설정한 방 이름은 변경할 수 없으니 주의해주세요.</span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          @font-face {
+              font-family: 'InfinitySans-RegularA1';
+              src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+              font-weight: normal;
+              font-style: normal;
+          }
+
+
+          .howToUse, .caution {
+            border: none;
+            width: 820px;
+            position: relative;
+            left: 50%;
+            margin-left: -260px;
+            font-size: 15px;
+          }
+
+          .howToUse #right, .caution #right {
+            border: 1px solid #3d8dd3;
+            border-radius: 2px;
+            background-color: #3d8dd3;
+            color: white;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: 'InfinitySans-RegularA1';
+          }
+
+          .howToUse #right:hover, .caution #right:hover {
+            border: 1px solid #000;
+            border-radius: 2px;
+            background: none;
+            color: black;
+            transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
+          }
+
+          .howToUse #reverse, .caution #reverse {
+            border: 1px solid black;
+            border-radius: 2px;
+            background: none;
+            color: black;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: 'InfinitySans-RegularA1';
+          }
+
+          .howToUse #reverse:hover, .caution #reverse:hover {
+            border: 1px solid #3d8dd3;
+            border-radius: 2px;
+            background-color: #3d8dd3;
+            color: white;
+            transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
+          }
+
+
+          .howToUse a, .caution a {
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            cursor: pointer;
+          }
+
+          .howToUse a:hover, .caution a:hover {
+            color: #3d8dd3;
+            font-weight: bold;
+          }
+
+
+          .section-title-divider {
+            width: 50px;
+            height: 3px;
+            background: rgba(61,141,211,1);
+            margin: 0 auto;
+            margin-bottom: 20px;
+          }
+
+          .modalManual {
+              display: none; /* Hidden by default */
+              position: fixed; /* Stay in place */
+              z-index: 2; /* Sit on top */
+              left: 0;
+              top: 0;
+              width: 100%; /* Full width */
+              height: 100%; /* Full height */
+              overflow: auto; /* Enable scroll if needed */
+              background-color: rgb(0,0,0); /* Fallback color */
+              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          }
+
+          /* Modal Content/Box */
+          .modal-contentManual {
+              background-color: #fff;
+              margin: 1% auto; /* 15% from the top and centered */
+              padding: 30px;
+              padding-top: 15px;
+              border: 1px solid #888;
+              width: 55%; /* Could be more or less, depending on screen size */
+          }
+        </style>
+
+        <script src="assets/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/venobox/venobox.min.js"></script>
+        <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+        <script src="assets/vendor/counterup/counterup.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+
+        <!-- Template Main JS File --><!--
+        <script src="assets/js/main.js"></script>-->
+
+        <!--이 html에 해당하는 JS File-->
+        <script src="js/mainRoom.js"></script>
+
+    </body>
+</html>

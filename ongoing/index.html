@@ -76,6 +76,17 @@
 </script>
 
 
+<script type="text/javascript">
+  var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android',
+                                 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson', 'MeeGo');
+  for (var word in mobileKeyWords) {
+    if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+      location.href = "mobile/index.html";
+      break;
+    };
+  };
+</script>
+
 
 
   <!--<div id="preloader"></div>-->
