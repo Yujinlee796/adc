@@ -41,7 +41,6 @@ firebase.auth().onAuthStateChanged(function(user)
       firebase.database().ref('Userhistory/' + userID).once('value')
       .then(function(snapshot) {
         var roomList = new Array;
-        var roomState = '';
         var htmlTh = '';
         var html = '';
         //var link = '';
@@ -49,7 +48,7 @@ firebase.auth().onAuthStateChanged(function(user)
         //firebase database에서 정보 받아오기
         snapshot.forEach(function(childSnapshot) {
          var roomName = childSnapshot.val();
-         roomList.push({name : roomName});
+         roomList.push({name : roomName)};
         });
 
         if (roomList.length != 0) {
@@ -63,7 +62,7 @@ firebase.auth().onAuthStateChanged(function(user)
           for (key in roomList) {
             html += '<tr>';
             html += '<td>' + roomList[key].name + '</td>';
-            html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">상세보기</button> </td>'
+            html += '<td> <button onclick ="setRoomNameAndMove(\'byeRoom.html\',\'' + roomList[key].name + '\')">상세보기</button> </td>'
             html += '</tr>';
           }
           $("#dynamicTbody").empty();
