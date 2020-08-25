@@ -80,16 +80,23 @@ window.onload = function(){
 
         firebase.database().ref('Rooms/' + roomName + '/Users').once('value').then(function(snapshot)
         {
-          //방에 참여 중인 멤버의 uid 받아오기
           snapshot.forEach(function(childSnapshot) {
+            //방에 참여 중인 멤버의 uid 받아오기
             var roomUsersUid = childSnapshot.key;
             roomUsers.push(roomUsersUid);
 
+            //각 uid에 대해 fitcnt 가져오기
+            var score = childSnapshot.child("fitcnt").val();
+            //접속 중인 유저의 fitcnt값은 전역변수에 저장
+            if(roomUsersUid == currentUserID){
+              fitcnt = score;
+            }
+
             //닉네임과 스코어&상태를 가져오면, 출력하기
-            $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersScore(roomUsersUid, currentUserID)).done(function(Nname, scoreAndstate = []){
-              displayScoreBar(Nname, scoreAndstate[0]); //스코어바 출력하기
-              displayState(Nname, scoreAndstate[1]); //모달에 친구들의 달성 상태 출력하기(현재 recentcnt업데이트보다 먼저 발생중)
-              recentcntUpdate();  //얘 순서를 위로 올리긴 해야하는데...
+            $.when(getRoomUsersNname(roomUsersUid, currentUserID), getRoomUsersState(roomUsersUid, currentUserID)).done(function(Nname, state){
+              recentcntUpdate();  //얘 순서를 display 전, getRoomUsersState 후로 바꿔야함
+              displayScoreBar(Nname, score); //스코어바 출력하기
+              displayState(Nname, state); //모달에 친구들의 달성 상태 출력하기
             }).done(function(){
               //현재 접속자의 오늘의 운동 달성 여부도 출력하자
               displayTodayState();
@@ -103,6 +110,7 @@ window.onload = function(){
       } else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
     });
 }
+
 
 
 
@@ -199,13 +207,12 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 //============================================================================//
 //각 uid에 대해 score(fitcnt)와 state(recentcnt) 가져오기
 //============================================================================//
-function getRoomUsersScore(roomUsersUid, currentUserID) {
+function getRoomUsersState(roomUsersUid, currentUserID) {
 
   var deferred = $.Deferred();
 
   firebase.database().ref('Usersroom/' + roomUsersUid + '/' + roomName).once('value')
       .then(function(snapshot) {
-        score = snapshot.child('fitcnt').val();
         state = snapshot.child('recentcnt').val();
         //roomUsersState.push(state);
         //console.log(score);
@@ -214,10 +221,9 @@ function getRoomUsersScore(roomUsersUid, currentUserID) {
         if(roomUsersUid == currentUserID){
           recentcnt = state;
           lastClick = snapshot.child('lastClick').val();
-          fitcnt = score;
         }
 
-        deferred.resolve(score, state);
+        deferred.resolve(state);
       });
   return deferred.promise();
 }
@@ -638,13 +644,30 @@ function judgement() {
 
 //=============================================================================//
 //변경된 정보들 데이터베이스에 업데이트하는 함수
+//현재 이름은 usersroomUpdate이지만, 실제 기능은 Usersroom의 recentcnt, lastClick과
+//Rooms의 해당 유저의 fitcnt 업데이트를 수행함. (추후에 이름 변경 필요)
 //=============================================================================//
 function usersroomUpdate() {
   if (currentUserID != ''){
     firebase.database().ref('Usersroom/' + currentUserID + '/' + roomName).set({
-        fitcnt : fitcnt,
         recentcnt : recentcnt,
         lastClick : lastClick,
+    },
+    function(error) {
+      if(error)
+      {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorCode);
+        onsole.log(errorMessage);
+
+        window.alert("Message: " + errorMessage);
+      }
+    });
+
+    firebase.database().ref('Rooms/' + roomName + '/Users/'+ currentUserID + '/').set({
+        fitcnt : fitcnt,
     },
     function(error) {
       if(error)
