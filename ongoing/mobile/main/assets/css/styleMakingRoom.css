@@ -143,30 +143,30 @@ input[id="hamburger"] {
     padding-right: 40px;
     padding-left: 40px;
     padding-bottom: 60px;
-    font-size: 25px;
+    font-size: 30px;
     border: none;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    width: 600px;
+    width: 700px;
     position: absolute;
     top: 200px;
     left: 50%;
-    margin-left: -340px;
+    margin-left: -390px;
     margin-bottom: 20px;
   }
 
 .main-box input {
     font-family: 'InfinitySans-RegularA1';
-    font-size: 25px;
+    font-size: 30px;
     border-radius: 4px;
     border: none;
     padding: 10px;
-    width: 459px;
+    width: 537px;
 }
 
 .main-box button {
-    height: 53px;
-    font-size: 25px;
+    height: 59px;
+    font-size: 30px;
     border-radius: 4px;
     border: 1px solid rgba(61,141,211,0.6);
     padding: 5px;
@@ -177,7 +177,7 @@ input[id="hamburger"] {
 }
 
 .main-box button:hover {
-    font-size: 25px;
+    font-size: 30px;
     border-radius: 4px;
     border: 1px solid white;
     padding: 5px;
@@ -187,7 +187,7 @@ input[id="hamburger"] {
 
 
 #confirmNameResult, #confirmNickResult, #plzFillin {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: lighter;
     margin-bottom: 0;
 }

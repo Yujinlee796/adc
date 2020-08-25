@@ -189,9 +189,9 @@ table {
     position: absolute;
     top: 600px;
     left: 50%;
-    margin-left: -350px;
+    margin-left: -400px;
     text-align: center;
-    width: 700px;
+    width: 800px;
 
     background-color: rgba(255,255,255,0.2);
     border-collapse: collapse;
@@ -201,8 +201,8 @@ table {
 th, td {
     border: solid rgba(0,0,0,0.3) 5px;
     padding: 10px;
-    width: 150px;
-    font-size: 25px;
+    width: 200px;
+    font-size: 30px;
 }
 
 #noRoom {
@@ -233,9 +233,7 @@ table button {
     color: #fff;
     transition: 0.3s;
     font-family: 'InfinitySans-RegularA1';
-    font-size: 25px;
-    height: 50px;
-    width: 70px;
+    font-size: 30px;
     cursor: pointer;
 }
 
@@ -246,9 +244,7 @@ table button:hover {
     color: #fff;
     transition: 0.3s;
     font-family: 'InfinitySans-RegularA1';
-    font-size: 25px;
-    height: 50px;
-    width: 70px;
+    font-size: 30px;
 }
 
 #newRoom {

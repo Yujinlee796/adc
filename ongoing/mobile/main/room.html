@@ -61,13 +61,29 @@
 
         <div class="main-box">
 
-          <div class="align-left">
+          <button id="settings"><img id="settingsIcon" src="assets/img/settings.png"></button>
+
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            방이름 및 날짜, 끝내기 버튼
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
             <p id="roomTitle">
               <span id="titleData">-<!--방이름--></span>
               <span id="fromStartDate"><!--며칠차--></span>
             </p>
 
-              <span id="endDate"><!--끝나는날짜--></span><button onclick="roomQuit()" id='quit'>조기 종료</button>
+              <div id="endAndFinish">
+                <span id="endDate"><!--끝나는날짜--></span>
+                <br><button onclick="roomQuit()" id='quit'>끝내기</button>
+              </div>
+
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            목표와 내기
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
+
 
             <div class="boxes">
               <p class="goal" id="box">
@@ -90,43 +106,30 @@
                 </a>
               </p>
 
-              <div class="ranking" id="box">
-                <div id="scoreBar">
-                  <!--<div class="progress">
-                    <div class="progress-done">10점</div>
-                  </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
-                  <!-----스코어바 생성 부분-----></div>
-              </div>
-
             </div>
-          </div>
 
-          <div class="align-right">
-            <!--글씨 크기 수정-->
-            <h2 style="color: #3d8dd3; margin-bottom: 30px; font-size: 20px;">
-              오늘의 운동 기록까지 남은 시간<br><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;">" </span>
-              <span id="todayTimer" style="font-size: 50px;"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;"> "</span>
-            </h2>
-            <p>
-              <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
-              <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;">-<!--오늘의 운동 완료 여부--></span>
-            </p>
-            <a href="#" id="openStatePopup" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
-            <table class="table" style="margin-top: 30px;">
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            성공 버튼 누르는 표
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
+
+
+            <table class="table">
               <tr>
-                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                  <img id="profileImg" src="assets/img/none.png" style="width: 250px;">
+                <td style="border-top: none;" rowspan="3" style="width: 300px;"> <!--프로필그림-->
+                  <img id="profileImg" src="assets/img/none.png" style="width: 290px;">
 
                 </td>
-                <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
-                  <span id="nicknameData" style="font-size: 20px; color: white;">- <!--닉네임 출력되는 부분--> </span>
+                <td style="border-top: none; border-bottom: 1px solid white; width: 330px; text-align: center;">
+                  <span id="nicknameData" style="font-size: 30px; color: white;">- <!--닉네임 출력되는 부분--> </span>
                 </td>
 
               </tr>
 
               <tr>
 
-                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px;">
+                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 65px; padding-left: 65px;">
                   <button onclick="plusOneAndReload()" id="successBtn">완료</button>
                 </td>
 
@@ -134,7 +137,7 @@
 
               <tr>
 
-                <td style="border-top: none;">
+                <td style="border-top: none; padding: 0 68px;">
 
                   <!--성공 실패 버튼-->
 
@@ -147,43 +150,99 @@
             </table>
 
 
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            스코어바
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
 
-          </div>
+            <div class="ranking" id="box">
+              <div id="scoreTitle">
+                오늘까지의 총 점수
+              </div>
+              <div id="scoreBar">
+                <!--<div class="progress">
+                  <div class="progress-done">10점</div>
+                </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
+                <!-----스코어바 생성 부분-----></div>
+            </div>
+
+
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            남은 시간
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
+
+            <!--글씨 크기 수정-->
+            <div id="leftTime">
+              <h2 style="color: #3d8dd3; margin-bottom: 30px; font-size: 40px;">
+                오늘의 운동 기록까지 남은 시간<br><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;">" </span>
+                <span id="todayTimer" style="font-size: 60px;"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;"> "</span>
+              </h2>
+            </div>
+
+
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            현황 보기
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
+
+            <div id='state'>
+              <p>
+                <span style="margin-bottom: 8px; color: white; font-size: 30px;" class="currentResult">오늘 나의 달성 상황</span> <br>
+                <span id="todayState" style="font-size: 60px; color: white; font-weight: bolder;">-<!--오늘의 운동 완료 여부--></span>
+              </p>
+              <button id='friends' style="font-size: 30px;">친구들의 달성 상황 확인하러 가기</button>
+            </div>
+
+
+
+
+
+          <!--
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            modal region
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          -->
         </div>
 
         <div id="myModal-goal" class="modal">
           <div class="modal-content">
-            <span class="closeGoal">&times;</span>
             <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">목표 수정하기</h2>
             <input type="text" id="edittedGoals" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 목표를 입력하세요.">
             <span id="breakGoal"></span><span id="plzFillinGoal"></span>
-            <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button>
+            <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button><button class="closeGoal">수정 취소</button>
           </div>
         </div>
 
         <div id="myModal-punishment" class="modal">
           <div class="modal-content">
-            <span class="closePun">&times;</span>
             <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">내기 수정하기</h2>
             <input type="text" id="edittedPunishment" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
             <span id="breakPun"></span><span id="plzFillinPun"></span>
-            <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button>
+            <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button><button class="closePun">수정 취소</button>
           </div>
         </div>
 
         <div id="myModal-state" class="modal">
           <div class="modal-content">
-            <span class="closeState">&times;</span>
               <div class="main-container">
-                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">친구들의 달성 상황</h2>
-                  <table id="stateTable">
+                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">친구들의 달성 상황</h2> <br>
+                  <div class="stateTablePlace">
+                    <table id="stateTable">
                       <!--동적할당되는 표의 형태
                       <tr>
                           <td style="color: skyblue;">닉네임</td>
                           <td style="color: tomato;">현황</td>
                       </tr>
                       -->
-                  </table>
+                    </table>
+                  </div>
+
+                  <br>
+                  <button class="closeState">닫기</button>
               </div>
           </div>
         </div>
@@ -334,7 +393,7 @@
           .modalManual {
               display: none; /* Hidden by default */
               position: fixed; /* Stay in place */
-              z-index: 2; /* Sit on top */
+              z-index: 3; /* Sit on top */
               left: 0;
               top: 0;
               width: 100%; /* Full width */
