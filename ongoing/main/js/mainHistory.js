@@ -52,8 +52,10 @@ firebase.auth().onAuthStateChanged(function(user)
           }
           $("#dynamicTbody").empty();
           $("#dynamicTbody").append(html);
-        } else if (roomList.length == 0) {
-          document.getElementById("noHistory").innerHTML = "아직 히스토리가 없습니다.<br>";
+        }
+        else if (roomList.length == 0) {
+          document.getElementById("noHistory").innerHTML = "아직 히스토리가 없습니다."; //css 넣어줘염,,
+          console.log("히스토리 없음");
         }
       });
     } else if(!user)
