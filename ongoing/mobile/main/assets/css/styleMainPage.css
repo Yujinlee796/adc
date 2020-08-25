@@ -42,31 +42,29 @@ body {
     z-index: 1;
 }
 
+
+
+
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-내비게이션 바
+모바일용네비바
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-
-
 nav ul {
     list-style: none;
+    font-size: 40px;
 }
 
 nav li {
-    float: left;
-    margin-right: 60px;
-    font-size: 13px;
-    margin-top: 20px;
+    margin-bottom: 80px;
+    margin-top: 120px;
 }
 
-.nav-menu {
-    float: right;
-}
 
 h1 {
     color: white;
-    font-size: 30px;
+    font-size: 60px;
     margin-left: 50px;
 }
 
@@ -82,6 +80,74 @@ a:hover {
 }
 
 
+
+input[id="hamburger"] {
+    display: none;
+  }
+  input[id="hamburger"] + label {
+    display: block;
+    width: 80px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    float: right;
+    margin-top: 45px;
+    margin-right: 40px;
+  }
+  input[id="hamburger"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background: #fff;
+    transition: all 0.35s;
+  }
+  input[id="hamburger"] + label span:nth-child(1) {
+    top: 0;
+  }
+  input[id="hamburger"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input[id="hamburger"] + label span:nth-child(3) {
+    bottom: 0;
+  }
+  input[id="hamburger"]:checked + label {
+    z-index: 2;
+  }
+  input[id="hamburger"]:checked + label span {
+    background: #fff;
+  }
+  input[id="hamburger"]:checked + label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  input[id="hamburger"]:checked + label span:nth-child(2) {
+    opacity: 0;
+  }
+  input[id="hamburger"]:checked + label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+  div[class="sidebar"] {
+    width: 80%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    right: -80%;
+    z-index: 1;
+    transition: all 0.35s;
+    overflow: auto;
+  }
+  input[id="hamburger"]:checked + label + div {
+    right: 0;
+  }
+
+
+
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 본문 오브젝트 위치
@@ -90,28 +156,28 @@ a:hover {
 
 
 #makingRoomTitle {
-    font-size: 40px;
+    font-size: 60px;
     color: white;
     position: absolute;
-    top: 110px;
+    top: 200px;
     left: 50%;
-    width: 300px;
-    margin-left: -150px;
+    width: 500px;
+    margin-left: -250px;
     text-align: center;
 }
 
 #newRoom {
     position: absolute;
-    top: 175px;
+    top: 300px;
     left: 50%;
-    margin-left: -100px;
+    margin-left: -150px;
 }
 
 #roomListTitle {
-    font-size: 40px;
+    font-size: 60px;
     color: white;
     position: absolute;
-    top: 280px;
+    top: 500px;
     left: 50%;
     width: 400px;
     margin-left: -200px;
@@ -121,11 +187,11 @@ a:hover {
 table {
     color: white;
     position: absolute;
-    top: 355px;
+    top: 600px;
     left: 50%;
-    margin-left: -250px;
+    margin-left: -400px;
     text-align: center;
-    width: 500px;
+    width: 800px;
 
     background-color: rgba(255,255,255,0.2);
     border-collapse: collapse;
@@ -135,7 +201,8 @@ table {
 th, td {
     border: solid rgba(0,0,0,0.3) 5px;
     padding: 10px;
-    width: 150px;
+    width: 200px;
+    font-size: 30px;
 }
 
 #noRoom {
@@ -166,9 +233,7 @@ table button {
     color: #fff;
     transition: 0.3s;
     font-family: 'InfinitySans-RegularA1';
-    font-size: 16px;
-    height: 35px;
-    width: 57px;
+    font-size: 30px;
     cursor: pointer;
 }
 
@@ -179,9 +244,7 @@ table button:hover {
     color: #fff;
     transition: 0.3s;
     font-family: 'InfinitySans-RegularA1';
-    font-size: 16px;
-    height: 35px;
-    width: 57px;
+    font-size: 30px;
 }
 
 #newRoom {
@@ -191,9 +254,9 @@ table button:hover {
     color: #fff;
     transition: 0.3s;
     font-family: 'InfinitySans-RegularA1';
-    font-size: 30px;
-    width: 200px;
-    height: 60px;
+    font-size: 50px;
+    width: 300px;
+    height: 100px;
     cursor: pointer;
 }
   
@@ -204,27 +267,8 @@ table button:hover {
     color: #fff;
     transition: 0.3s;
     font-family: 'InfinitySans-RegularA1';
-    font-size: 30px;
-    width: 200px;
-    height: 60px;
+    font-size: 50px;
+    width: 300px;
+    height: 100px;
 }
 
-/*
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-modal
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
-
-.closeManual {
-    color: #aaa;
-    float: right;
-    margin-top: 0;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .closeManual:hover, .closeManual:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }

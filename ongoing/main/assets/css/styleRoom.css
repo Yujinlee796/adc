@@ -88,6 +88,26 @@ a:hover {
   
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+settings button
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+#settings {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 107px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+#settingsIcon {
+  width: 30px;
+  
+}
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 본문 양쪽 분할
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */

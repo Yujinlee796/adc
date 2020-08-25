@@ -49,73 +49,121 @@ body {
 
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-내비게이션 바
+모바일용네비바
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-
-
 nav ul {
-    list-style: none;
+  list-style: none;
+  font-size: 40px;
 }
 
 nav li {
-    float: left;
-    margin-right: 60px;
-    font-size: 13px;
-    margin-top: 20px;
+  margin-bottom: 80px;
+  margin-top: 120px;
 }
 
-.nav-menu {
-    float: right;
-}
 
 h1 {
-    color: white;
-    font-size: 30px;
-    margin-left: 50px;
+  color: white;
+  font-size: 60px;
+  margin-left: 50px;
 }
 
 a {
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-    cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 a:hover {
-    color: #3d8dd3;
+  color: #3d8dd3;
 }
-  
+
+
+
+input[id="hamburger"] {
+  display: none;
+}
+input[id="hamburger"] + label {
+  display: block;
+  width: 80px;
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+  float: right;
+  margin-top: 45px;
+  margin-right: 40px;
+}
+input[id="hamburger"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  border-radius: 30px;
+  background: #fff;
+  transition: all 0.35s;
+}
+input[id="hamburger"] + label span:nth-child(1) {
+  top: 0;
+}
+input[id="hamburger"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+input[id="hamburger"] + label span:nth-child(3) {
+  bottom: 0;
+}
+input[id="hamburger"]:checked + label {
+  z-index: 2;
+}
+input[id="hamburger"]:checked + label span {
+  background: #fff;
+}
+input[id="hamburger"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+input[id="hamburger"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+input[id="hamburger"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+div[class="sidebar"] {
+  width: 80%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  top: 0;
+  right: -80%;
+  z-index: 1;
+  transition: all 0.35s;
+  overflow: auto;
+}
+input[id="hamburger"]:checked + label + div {
+  right: 0;
+}
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-본문 양쪽 분할
+본문 위아래 분할
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-
+/*
 .align-left {
-  position: absolute;
-  font-size: 20px;
-  width: 50%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  height: 100%;
+  font-size: 25px;
+  width: 100%;
+
   text-align: center;
 }
 
 .align-right {
-  position: absolute;
-  font-size: 20px;
-  width: 50%;
-  padding-top: 180px;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  height: 100%;
+  font-size: 25px;
+  width: 100%;
+
   text-align: center;
-}
+}*/
 
 
 /*
@@ -124,23 +172,47 @@ a:hover {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
 
-#roomTitle {
-  margin-top: 100px;
-  font-size: 40px;
-  color: white;
-  margin-bottom: 0;
+#settings {
+  position: absolute;
+  right: 0;
+  top: 185px;
+  margin-right: 38px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
-#endDate {
-  font-size: 15px;
-  color: white;
-  margin-top: 0;
+#settingsIcon {
+  width: 70px;
 }
+
+#roomTitle {
+  font-size: 60px;
+  color: white;
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -250px;
+  top: 120px;
+  text-align: center;
+}
+
+#endAndFinish {
+  font-size: 30px;
+  color: white;
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -250px;
+  top: 270px;
+  text-align: center;
+}
+
 
 #quit {
-  margin-left: 10px;
-  font-size: 15px;
-  border: 1px solid white;
+  margin-top: 10px;
+  font-size: 25px;
+  border: 3px solid white;
   border-radius: 2px;
   background: none;
   color: white;
@@ -162,8 +234,8 @@ a:hover {
 .boxes {
   position: absolute;
   left: 50%;
-  margin-left: -225px;
-  top: 180px;
+  margin-left: -250px;
+  top: 355px;
 }
 
 .goal {
@@ -172,10 +244,10 @@ a:hover {
   border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 450px;
+  width: 500px;
   text-align: center;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .punishment {
@@ -184,10 +256,10 @@ a:hover {
   border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 450px;
+  width: 500px;
   text-align: center;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .ranking {
@@ -196,17 +268,22 @@ a:hover {
   border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 75px;
-  padding-right: 75px;
-  width: 300px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 700px;
   text-align: center;
-  height: 300px;
-  overflow: auto;
-  overflow-y: scroll;
   color: white;
-  font-size: 13px;
+  font-size: 30px;
   margin-bottom: 50px;
-  overflow: auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  top: 1600px;
+}
+
+#scoreTitle {
+  font-size: 40px;
+  margin-bottom: 30px;
 }
 
 /*
@@ -219,57 +296,95 @@ a:hover {
 
 #successBtn {
   background-color: rgba(61,141,211,0.6);
-  border: rgba(61,141,211,0.6) 2px solid;
+  border: rgba(61,141,211,0.6) 3px solid;
   border-radius: 2px;
   color: #fff;
   transition: 0.3s;
-  font-family: 'InfinitySans-RegularA1';
-  font-size: 20px;
-  width: 130px;
-  height: 50px;
+  font-family:'InfinitySans-RegularA1';
+  font-size: 35px;
+  width: 200px;
+  height: 80px;
   cursor: pointer;
 }
 
 #successBtn:hover {
   background: none;
-  border: #fff 2px solid;
+  border: #fff 3px solid;
   border-radius: 2px;
   color: #fff;
   transition: 0.3s;
   font-family: 'InfinitySans-RegularA1';
-  font-size: 20px;
-  width: 130px;
-  height: 50px;
+  font-size: 35px;
+  width: 200px;
+  height: 80px;
 }
 
 #resultBtn {
   background: none;
-  border: white 2px solid;
+  border: white 3px solid;
   border-radius: 2px;
   color: #fff;
   transition: 0.3s;
   font-family: 'InfinitySans-RegularA1';
-  font-size: 16px;
+  font-size: 30px;
   height: 50px;
-  width: 63px;
+  width: 95px;
+  margin: auto;
   cursor: pointer;
 }
 
 #resultBtn:hover {
   background-color: rgba(61,141,211,0.6);
-  border: rgba(61,141,211,0.6) 2px solid;
+  border: rgba(61,141,211,0.6) 3px solid;
   border-radius: 2px;
   color: #fff;
   transition: 0.3s;
   font-family: 'InfinitySans-RegularA1';
-  font-size: 16px;
-  width: 63px;
+  font-size: 30px;
   height: 50px;
+  width: 95px;
 }
 
 
-table {
-  margin: 0 auto;
+.table {
+  position: absolute;
+  left: 50%;
+  margin-left: -315px;
+  top: 830px;
+}
+
+#leftTime {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 650px;
+}
+
+
+#state {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 1200px;
+}
+
+#friends {
+  font-size: 30px;
+  width: 500px;
+  height: 70px;
+  border: solid 3px white;
+  border-radius: 2px;
+  background: none;
+  color: white;
+  font-family: 'InfinitySans-RegularA1';
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#friends:hover {
+  border: solid 3px rgba(61,141,211,0.6);
+  background-color: rgba(61,141,211,0.6);
 }
 
 
@@ -283,9 +398,9 @@ table {
       background-color: #d8d8d8;
       border-radius: 20px;
       position: relative;
-      margin: 15px 0;
-      height: 20px;
-      width: 300px;
+      margin: 30px 0;
+      height: 40px;
+      width: 700px;
   }
 /*  
   .progress-done {
@@ -345,53 +460,63 @@ modal
 
 
 .modal h2 {
+  font-size: 45px;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.modal input, #done {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%)
+.modal input {
+  border: 2px;
+  font-size: 30px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 70%;
 }
 
 
-#done {
-  width: 100px;
+#done, .closeGoal, .closePun, .closeState {
+  width: 120px;
   background: #3d8dd3;
-  border: 2px solid #3d8dd3;
+  border: 3px solid #3d8dd3;
   color: #fff;
   font-family: "InfinitySans-RegularA1";
-
   border-radius: 2px;
-  height: 35px;
-  margin-right: 15px;
+  height: 45px;
+  font-size: 25px;
 }
 
-#done:hover {
-  width: 100px;
+#done {
+  margin-right: 20px;
+}
+
+.closeState {
+  margin-top: 30px;
+}
+
+#done:hover, .closeGoal:hover, .closePun:hover, .closeState:hover {
+  width: 120px;
   background: none;
-  border: 2px solid #000;
+  border: 3px solid #000;
   color: #000;
   font-family: "InfinitySans-RegularA1";
   border-radius: 2px;
-  height: 35px;
+  height: 45px;
   transition: 0.3s;
   cursor: pointer;
 }
 
 #plzFillinGoal, #plzFillinPun {
-  font-size: 13px;
+  font-size: 25px;
   font-weight: lighter;
   margin-bottom: 0;
-  margin-left: 53px;
+  
 }
 
 
   .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
+    z-index: 3; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -399,18 +524,19 @@ modal
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    text-align: center;
 }
 
 /* Modal Content/Box */
 .modal-content {
     background-color: #fff;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 50% auto; /* 15% from the top and centered */
     padding: 30px;
-    padding-top: 15px;
+    padding-bottom: 60px;
     border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */                          
+    width: 70%; /* Could be more or less, depending on screen size */                          
 }
-/* The Close Button */
+/* The Close Button *//*
 .closeGoal {
     color: #aaa;
     float: right;
@@ -465,17 +591,17 @@ modal
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
+}*/
 
 
 
 /* 친구들의 달성 현황 볼때 동적으로 생성되는 table의 디자인 */
 #stateTable {
   width: 60%;
-  height: 100px;
-  margin: auto;
   text-align: center;
   font-family: 'InfinitySans-RegularA1';
+  font-size: 30px;
+  margin: auto;
 }
 
 
@@ -496,4 +622,8 @@ modal
 
 .stateYet {
   color: gray;
+}
+
+.modal, .modalManual {
+  z-index: 3;
 }

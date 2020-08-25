@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 }*/
 
 #hero h2 {
-  font-size: 15px;
+  font-size: 19px;
   line-height: 26px;
   margin-bottom: 20px;
   margin-top: 35px;
@@ -168,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "InfinitySans-RegularA1";
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 19px;
   letter-spacing: 1px;
   display: inline-block;
   border-radius: 2px;
@@ -177,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-get-started {
-  width: 80px;
+  width: 120px;
   background: rgba(61,141,211,0.6);
   border: 2px solid rgba(61,141,211,0.6);
   color: #fff;
@@ -188,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-get-started:hover {
-  width: 80px;
+  width: 120px;
   background: none;
   border: 2px solid #fff;
   color: #fff;
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-services {
-  width: 80px;
+  width: 120px;
   border: 2px solid #fff;
   color: #fff;
   font-family: "InfinitySans-RegularA1";
@@ -208,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-services:hover {
-  width: 80px;
+  width: 120px;
   background: rgba(61,141,211,0.6);
   border: 2px solid rgba(61,141,211,0.6);
   font-family: "InfinitySans-RegularA1";
@@ -497,7 +497,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Sections Common
 --------------------------------*/
 .section-title {
-  font-size: 20px;
+  font-size: 25px;
   color: #111;
   text-transform: uppercase;
   text-align: center;
@@ -545,13 +545,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #about .about-content {
   background: #fff;
-  padding: 23px;
+  margin: 10%;
 }
 
 #about .about-title {
   color: #333;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 35px;
   margin-top: 10px;
   text-align: center;
@@ -560,6 +560,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 #about .about-text {
   line-height: 26px;
   margin-bottom: 30px;
+  text-align: center;
+
 }
 
 

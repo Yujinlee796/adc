@@ -13,8 +13,15 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) 전역변수 선언 - 방 이름 중복 확인했는지 확인
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+var confirmCount = 0;
 
- //접속중인 유저 닉네임 먼저 리스트에 넣기
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//(다은코드) 접속중인 유저 닉네임 먼저 리스트에 넣기
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 firebase.auth().onAuthStateChanged(function(user)
     {
         if(user)
@@ -65,94 +72,109 @@ function makingRoom() {
   var invitedList = document.querySelectorAll("#invitedList li");
   var roomDate = document.getElementById("room_date").value;
   //방 개설 날짜 기록
-  var startDate = getTimeStamp()
+  var startDate = getTimeStamp();
 
+  //입렵칸을 모두 채웠는지 확인
   if(roomName != "" && roomGoal != "" && roomBet != "" && roomDate != "")
   {
-    var rootRoomRef = firebase.database().ref().child("Rooms");
-    var roomRef = rootRoomRef.child(roomName);
-    var roomUsersRef = roomRef.child("Users");
+    //방이름 중복 확인을 완료하였는지 확인
+    if(confirmCount == 1) {
+      var rootRoomRef = firebase.database().ref().child("Rooms");
+      var roomRef = rootRoomRef.child(roomName);
+      var roomUsersRef = roomRef.child("Users");
 
-    var rootUsersRef = firebase.database().ref().child("Users");  //닉네임에 해당하는 uid 찾기용 경로
-    
-    var roomUsersUidRef = roomUsersRef.child(userID);  //먼저 현재 접속 유저부터 Room/roomName/Users넣기
-    roomUsersUidRef.set({"state":true});
+      var rootUsersRef = firebase.database().ref().child("Users");  //닉네임에 해당하는 uid 찾기용 경로
+      
+      var roomUsersUidRef = roomUsersRef.child(userID);  //먼저 현재 접속 유저부터 Room/roomName/Users넣기
+      roomUsersUidRef.set({fitcnt : 0});
 
-    //먼저 Users에 넣고
-    var tempNname = "";
-    for(var i = 0; i < invitedList.length; i++)
-    {
-      tempNname = invitedList[i].innerHTML;
-      rootUsersRef.orderByChild('nickName').equalTo(tempNname).once('value', function(snapshot){
-        snapshot.forEach(function(childSnapshot){
-          
-          //유저가 초대한 닉네임을 가진 사용자의 uid 가져오기
-          var invitedUid = childSnapshot.key;
-          
-          //그 uid를 Room/roomName/Users에 입력
-          var roomUsersUidRef = roomUsersRef.child(invitedUid);
-          roomUsersUidRef.set({"state":true});
+      //먼저 Users에 넣고
+      var tempNname = "";
+      for(var i = 0; i < invitedList.length; i++)
+      {
+        tempNname = invitedList[i].innerHTML;
+        rootUsersRef.orderByChild('nickName').equalTo(tempNname).once('value', function(snapshot){
+          snapshot.forEach(function(childSnapshot){
+            
+            //유저가 초대한 닉네임을 가진 사용자의 uid 가져오기
+            var invitedUid = childSnapshot.key;
+            
+            //그 uid를 Room/roomName/Users에 입력
+            var roomUsersUidRef = roomUsersRef.child(invitedUid);
+            roomUsersUidRef.set({fitcnt : 0});
 
-          //Usersroom에 유저별 room data 업뎃
-          firebase.database().ref('Usersroom/' + invitedUid + '/' + roomName).set({
-              //name : roomName,
-              fitcnt : 0,
-              recentcnt : 0,
-              lastClick : startDate,
-          },
-          function(error) {
-            if(error)
-            {
-              var errorCode = error.code;
-              var errorMessage = error.message;
+            //Usersroom에 유저별 room data 업뎃
+            firebase.database().ref('Usersroom/' + invitedUid + '/' + roomName).set({
+                //name : roomName,
+                //fitcnt : 0,
+                recentcnt : 0,
+                lastClick : startDate,
+            },
+            function(error) {
+              if(error)
+              {
+                var errorCode = error.code;
+                var errorMessage = error.message;
 
-              console.log(errorCode);
-              onsole.log(errorMessage);
+                console.log(errorCode);
+                onsole.log(errorMessage);
 
-              window.alert("Message: " + errorMessage);
-            }
+                window.alert("Message: " + errorMessage);
+              }
+            });
           });
         });
-      });
-    }
+      }
 
-    //후에 나머지 정보들도 Rooms/roomName에다가 넣기
-    var roomData =
-    {
-      name : roomName,
-      betting : roomBet,
-      goals : roomGoal,
-      endDate : roomDate,
-      startDate : startDate,
-    };
-    firebase.database().ref('Rooms/' + roomName).set(roomData, function(error)
-    {
-      if(error)
+      //후에 나머지 정보들도 Rooms/roomName에다가 넣기
+      var roomData =
       {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        name : roomName,
+        betting : roomBet,
+        goals : roomGoal,
+        endDate : roomDate,
+        startDate : startDate,
+      };
+      firebase.database().ref('Rooms/' + roomName).set(roomData, function(error)
+      {
+        if(error)
+        {
+          var errorCode = error.code;
+          var errorMessage = error.message;
 
-        console.log(errorCode);
-        onsole.log(errorMessage);
+          console.log(errorCode);
+          onsole.log(errorMessage);
 
-        window.alert("Message: " + errorMessage);
-      }
-      else{
-        var result = confirm("방이 성공적으로 만들어졌습니다. 지금 바로 새로 만든 방으로 이동할까요?")
-        if(result) {
-          setRoomNameAndMove("room.html", roomName);
-        } else {
-          window.location.href = "mainPage.html";
+          window.alert("Message: " + errorMessage);
         }
-      }
-    });
-
-    //
+        else{
+          var result = confirm("방이 성공적으로 만들어졌습니다. 지금 바로 새로 만든 방으로 이동할까요?");
+          if(result) {
+            setRoomNameAndMove("room.html", roomName);
+          } else {
+            window.location.href = "mainPage.html";
+          }
+        }
+      });
+    } else if (confirmCount == 0) {
+      //중복확인 버튼을 아직 안누르는 경우(문구 수정 부탁)
+      alert("먼저 방 이름 중복확인을 진행해주세요.");
+      //document.getElementById("plzFillin").innerHTML = "먼저 방 이름 중복확인을 진행해주세요.";
+      //document.getElementById("break").innerHTML = "<br>";
+      //document.getElementById("plzFillin").style.color = "red"
+    } else if (confirmCount == -1) {
+      //중복확인에서 오류가 난 경우(문구 수정 부탁)
+      alert("방 이름 중복확인을 완료해주세요.");
+      //document.getElementById("plzFillin").innerHTML = "방 이름 중복확인을 완료해주세요.";
+      //document.getElementById("break").innerHTML = "<br>";
+      //document.getElementById("plzFillin").style.color = "red"
+    }
   }
   else{
-    document.getElementById("plzFillin").innerHTML = "입력되지 않은 정보가 있습니다.";
-    document.getElementById("break").innerHTML = "<br>";
-    document.getElementById("plzFillin").style.color = "red"
+    alert("입력되지 않은 정보가 있습니다.");
+    //document.getElementById("plzFillin").innerHTML = "입력되지 않은 정보가 있습니다.";
+    //document.getElementById("break").innerHTML = "<br>";
+    //document.getElementById("plzFillin").style.color = "red"
   }
 
 }
@@ -289,6 +311,8 @@ function addLi(){
 
 //(다은코드)방 이름 confirm
 function confirmName(){
+  console.log(confirmCount);
+  console.log("버튼 누름");
   var roomName = document.getElementById('room_name').value;
 
   //방 이름 10자 이내 인지 확인하기
@@ -304,6 +328,8 @@ function confirmName(){
         document.getElementById("confirmNameResult").style.color = "greenyellow"
         document.getElementById("plzFillin").innerHTML = "";
         document.getElementById("break").innerHTML = "";
+
+        confirmCount = 1; //중복확인 승인됨
       }
       else
       {
@@ -313,6 +339,8 @@ function confirmName(){
         document.getElementById("confirmNameResult").style.color = "red"
         document.getElementById("plzFillin").innerHTML = "";
         document.getElementById("break").innerHTML = "";
+
+        confirmCount = -1; //중복확인 반려됨
       }
     });
   } else if (roomName.length == 0) {
@@ -321,15 +349,18 @@ function confirmName(){
     document.getElementById("confirmNameResult").style.color = "red"
     document.getElementById("plzFillin").innerHTML = "";
     document.getElementById("break").innerHTML = "";
+
+    confirmCount = -1; //중복확인 반려됨
   } else if (roomName.length > 10) {
     //방 이름이 10자를 초과함
     document.getElementById("confirmNameResult").innerHTML = "10자 이내의 방 이름을 입력해 주세요.";
     document.getElementById("confirmNameResult").style.color = "red"
     document.getElementById("plzFillin").innerHTML = "";
     document.getElementById("break").innerHTML = "";
+
+    confirmCount = -1; //중복확인 반려됨
   }
 }
-
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //(다은코드) (공통JS로 뺄것) 현재 시간 표준 포맷을 뽑는 함수
@@ -371,7 +402,6 @@ $("#btn-logout").click(function()
 {
    firebase.auth().signOut();
 });
-
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
