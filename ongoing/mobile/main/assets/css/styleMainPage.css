@@ -209,15 +209,15 @@ th, td {
     color: white;
     background: none;
     border: none;
-    width: 500px;
+    width: 700px;
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
-    font-size: 15px;
+    font-size: 30px;
     position: absolute;
-    top: 318px;
+    top: 600px;
     left: 50%;
-    margin-left: -250px;
+    margin-left: -350px;
 }
 
 

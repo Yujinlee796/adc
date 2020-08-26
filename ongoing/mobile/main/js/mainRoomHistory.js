@@ -71,16 +71,6 @@ window.onload = function(){
      });
      });
 
-     if(confirm("이 방을 내 히스토리에 남기시겠습니까?") == true ){
-       delUsersRoom(roomName,currentUserID); //Usersroom에서 data 삭제 //
-       makeUserHistory(roomName);
-     }
-     else {
-       delRoom(roomName);  //Rooms data 삭제
-       delUsersRoom(roomName,currentUserID); //Usersroom data 삭제
-       window.alert("방이 삭제되었습니다.")
-     }
-
     }
    else if (!user) { window.location.href = "../index.html";} //signout 상태이면 쫓겨나는 코드
    else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
@@ -95,15 +85,7 @@ function delUsersRoom(rName,currentUserID) {
   console.log("delete");
 }
 
-//==========================================================================//
-//History에 남기지 않을 경우 Rooms에서 data 삭제
 //===========================================================================//
-function delRoom(rName) {
-  firebase.database().ref('Rooms/' + rName).remove();
-  console.log("delete");
-}
-
-//==========================================================================//
 //Userhistory에 data 업데이트 //
 //==========================================================================//
 function makeUserHistory(name) {
@@ -120,7 +102,6 @@ function makeUserHistory(name) {
    }
  });
 }
-
 //============================================================================//
 //각 uid에 대해 닉네임 가져오기
 //============================================================================//

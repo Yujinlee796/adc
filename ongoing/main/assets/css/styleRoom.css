@@ -59,10 +59,14 @@ nav ul {
 }
 
 nav li {
-    float: left;
-    margin-right: 60px;
-    font-size: 13px;
-    margin-top: 20px;
+  float: left;
+  margin-right: 40px;
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+nav li:last-child {
+  margin-right: 50px;
 }
 
 .nav-menu {

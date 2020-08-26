@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -43,49 +43,50 @@
         </nav>
 
     </header>
-    <script type="text/javascript">
-      function deviceKind() {
-    
-        var flag;
-    //모바일 Device종류(윈도우 폰은 앞으로 나오지 않기 때문에 빼도 무방하나 아직 쓰는 사람이 존재하기에..)
-    
-        var mobileFlag = /Mobile|iP(hone|od)|Windows (CE|Phone)|Minimo|Opera M(obi|ini)|BlackBerry|Nokia/;
-        //모바일일경우
-    
-        if (navigator.userAgent.match(mobileFlag) && !navigator.userAgent.match(/iPad/)) {
-    
-            flag = "Mobile";
-    
-        }
-            //모바일 Device와 Android가 포함이 안되어 있을 경우
-    
-        else if (navigator.userAgent.match(/iPad|Android/)) {
-    
-            flag = "Tablet";
-    
-        }
-            //그 외의 경우 모두 테블릿
-    
-        else {
-    
-            flag = "PC(Mobile, Tablet 외)";
-    
-        }
-        console.log(flag);
-        if (flag === "PC(Mobile, Tablet 외)") {
-          location.href = "../../main/byeRoom.html";
-        }
-      };
-      deviceKind();
-    
-    
-    </script>
+  </script>
+
+  <script type="text/javascript">
+    function deviceKind() {
+  
+      var flag;
+  //모바일 Device종류(윈도우 폰은 앞으로 나오지 않기 때문에 빼도 무방하나 아직 쓰는 사람이 존재하기에..)
+  
+      var mobileFlag = /Mobile|iP(hone|od)|Windows (CE|Phone)|Minimo|Opera M(obi|ini)|BlackBerry|Nokia/;
+      //모바일일경우
+  
+      if (navigator.userAgent.match(mobileFlag) && !navigator.userAgent.match(/iPad/)) {
+  
+          flag = "Mobile";
+  
+      }
+          //모바일 Device와 Android가 포함이 안되어 있을 경우
+  
+      else if (navigator.userAgent.match(/iPad|Android/)) {
+  
+          flag = "Tablet";
+  
+      }
+          //그 외의 경우 모두 테블릿
+  
+      else {
+  
+          flag = "PC(Mobile, Tablet 외)";
+  
+      }
+      console.log(flag);
+      if (flag === "PC(Mobile, Tablet 외)") {
+        location.href = "../../main/roomHistory.html";
+      }
+    };
+    deviceKind();
+  
+  
+  </script>
 
             <div class="main-box">
 
               <div class="align-left">
                 <p id="roomTitle">
-                  <h1> 축하합니다! 긴 여정을 마쳤습니다. </h1>
                   <span id="titleData"> <!--방이름 출력되는 부분--></span>
                 </p>
 
@@ -123,10 +124,6 @@
           <div class="align-right">
             <!--글씨 크기 수정-->
 
-              <p>
-               <span style="margin-bottom: 8px; color: white;" class="currentResult">최종 결과</span> <br>
-               <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;"><!--오늘의 운동 완료 여부--></span>
-             </p>
               <table class="table" style="margin-top: 30px;">
               <tr>
                 <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
@@ -296,7 +293,7 @@
       <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 
       <!-- 이 html 전용 JS File -->
-      <script src="js/mainByeRoom.js"></script>
+      <script src="js/mainRoomHistory.js"></script>
 
 </body>
 

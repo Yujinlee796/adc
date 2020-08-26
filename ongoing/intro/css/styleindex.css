@@ -22,6 +22,7 @@ body {
   background: #fff;
   color: #666666;
   font-family: "InfinitySans-RegularA1";
+  cursor: default;
 }
 
 a {
@@ -532,7 +533,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #about .about-img img {
-  max-width: 100%;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /*
 @media (max-width: 768px) {
@@ -547,18 +552,23 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #about .about-content {
   background: #fff;
+  margin: 10%;
 }
 
 #about .about-title {
   color: #333;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 20px;
   margin-bottom: 35px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 #about .about-text {
   line-height: 26px;
   margin-bottom: 30px;
+  text-align: center;
+
 }
 
 

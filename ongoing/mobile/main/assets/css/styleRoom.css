@@ -175,24 +175,22 @@ input[id="hamburger"]:checked + label + div {
 #settings {
   position: absolute;
   right: 0;
-  top: 185px;
-  margin-right: 38px;
+  top: 200px;
+  margin-right: 18px;
   border: none;
   background: none;
   cursor: pointer;
 }
 
 #settingsIcon {
-  width: 70px;
+  width: 45px;
 }
 
 #roomTitle {
   font-size: 60px;
   color: white;
-  width: 500px;
+  width: 100%;
   position: absolute;
-  left: 50%;
-  margin-left: -250px;
   top: 120px;
   text-align: center;
 }

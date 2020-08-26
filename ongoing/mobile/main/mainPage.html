@@ -52,7 +52,43 @@
 
 
   </header>
-
+  <script type="text/javascript">
+    function deviceKind() {
+  
+      var flag;
+  //모바일 Device종류(윈도우 폰은 앞으로 나오지 않기 때문에 빼도 무방하나 아직 쓰는 사람이 존재하기에..)
+  
+      var mobileFlag = /Mobile|iP(hone|od)|Windows (CE|Phone)|Minimo|Opera M(obi|ini)|BlackBerry|Nokia/;
+      //모바일일경우
+  
+      if (navigator.userAgent.match(mobileFlag) && !navigator.userAgent.match(/iPad/)) {
+  
+          flag = "Mobile";
+  
+      }
+          //모바일 Device와 Android가 포함이 안되어 있을 경우
+  
+      else if (navigator.userAgent.match(/iPad|Android/)) {
+  
+          flag = "Tablet";
+  
+      }
+          //그 외의 경우 모두 테블릿
+  
+      else {
+  
+          flag = "PC(Mobile, Tablet 외)";
+  
+      }
+      console.log(flag);
+      if (flag === "PC(Mobile, Tablet 외)") {
+        location.href = "../../main/mainPage.html";
+      }
+    };
+    deviceKind();
+  
+  
+  </script>
 
                 <div class="main">
                     <span id="makingRoomTitle">새로운 방 만들기</span> <br>
