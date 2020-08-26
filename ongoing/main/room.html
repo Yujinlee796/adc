@@ -28,7 +28,10 @@
         <header id="header" class="fixed-top">
             <span class="logo" style="float: left;">
                 <div class="greet" style="display: flex;">
-                    <h1>핏투게더</h1>
+                  <h1>
+                    <a href="mainPage.html">핏투게더</a>
+                  </h1>
+
                     <span style=
                     "color: white; font-size: 15px; margin-top: 30px; margin-left: 20px;">
                         환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
@@ -50,8 +53,107 @@
             </nav>
 
         </header>
+        <script type="text/javascript">
+          function deviceKind() {
+      
+            var flag;
+        //모바일 Device종류(윈도우 폰은 앞으로 나오지 않기 때문에 빼도 무방하나 아직 쓰는 사람이 존재하기에..)
+      
+            var mobileFlag = /Mobile|iP(hone|od)|Windows (CE|Phone)|Minimo|Opera M(obi|ini)|BlackBerry|Nokia/;
+            //모바일일경우
+      
+            if (navigator.userAgent.match(mobileFlag) && !navigator.userAgent.match(/iPad/)) {
+      
+                flag = "Mobile";
+      
+            }
+                //모바일 Device와 Android가 포함이 안되어 있을 경우
+      
+            else if (navigator.userAgent.match(/iPad|Android/)) {
+      
+                flag = "Tablet";
+      
+            }
+                //그 외의 경우 모두 테블릿
+      
+            else {
+      
+                flag = "PC(Mobile, Tablet 외)";
+      
+            }
+            console.log(flag);
+            if (flag === "Mobile") {
+              location.href = "../mobile/main/room.html";
+            }
+    
+            else if (flag === "Tablet") {
+              location.href = "../mobile/main/room.html";
+            }
+            };
+          deviceKind();
+      
+      
+      </script>
 
 
+      <!--
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      크롬이나 엣지 아니면 out이야
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      -->
+      <script type="text/javascript">
+        /* 
+        * http://tonks.tistory.com/107 
+        */ 
+        
+
+        function isBrowserCheck(){
+
+          var agent = navigator.userAgent.toLowerCase();
+          var browserName;
+          var word; 
+          var info = {  name: "N/A" , version: -1  }; 
+
+          if ( navigator.appName == "Microsoft Internet Explorer" ){    // IE old version ( IE 10 or Lower ) 
+                  word = "msie "; 
+          } 
+          else if ( agent.search( "trident" ) > -1 ) word = "trident/.*rv:";    // IE 11 
+          else if ( agent.search( "edge/" ) > -1  ) word = "edge/";        // Microsoft Edge 
+          else  { 
+            if (agent.indexOf("chrome") != -1) {
+                browserName = "Chrome";
+            }
+            else {
+                browserName = "cannotAccess"
+            }
+          } 
+
+
+          var reg = new RegExp( word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})" ); 
+
+          if (  reg.exec( agent ) != null  ){ 
+
+                  info.version = parseFloat( RegExp.$1 + RegExp.$2 ); 
+
+                  info.name = ( word == "edge/" ) ? "Edge" : "IE"; 
+                  browserName = info.name;
+          } 
+
+          
+          console.log(browserName);
+
+          if (browserName === "Chrome" || browserName === "Edge") {
+
+          }
+
+          else {
+            location.href = "error/browserError.html";
+          }
+          };
+          
+          isBrowserCheck();
+
+        </script>
         <div class="main-box">
 
           <div class="align-left">
