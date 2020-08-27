@@ -1,4 +1,17 @@
-
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCqHKmX1adJ9qCPMnSWyP1p5JRzEruoe1E",
+  authDomain: "fittogether-d628a.firebaseapp.com",
+  databaseURL: "https://fittogether-d628a.firebaseio.com",
+  projectId: "fittogether-d628a",
+  storageBucket: "fittogether-d628a.appspot.com",
+  messagingSenderId: "169218684132",
+  appId: "1:169218684132:web:3134f8df18470da201a8f1",
+  measurementId: "G-2MK17W9C5C"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 /*현재 존재하는 방목록 업로드*/
 firebase.auth().onAuthStateChanged(function(user)
@@ -38,8 +51,8 @@ firebase.auth().onAuthStateChanged(function(user)
 
         if (roomList.length != 0) {
           //방목록 표 제목 html에 띄우기
-          htmlTh += '<th>방이름</th>';
-          htmlTh += '<th>입장</th>';
+          htmlTh += '<th>방 이름</th>';
+          htmlTh += '<th>상세보기</th>';
           $("#dynamicThead").empty();
           $("#dynamicThead").append(htmlTh);
 
@@ -54,7 +67,7 @@ firebase.auth().onAuthStateChanged(function(user)
           $("#dynamicTbody").append(html);
         }
         else if (roomList.length == 0) {
-          document.getElementById("noHistory").innerHTML = "아직 히스토리가 없습니다."; //css 넣어줘염,,
+          document.getElementById("noHistory").innerHTML = "히스토리에 방이 없습니다."; //css 넣어줘염,,
           console.log("히스토리 없음");
         }
       });
@@ -84,14 +97,14 @@ $("#btn-logout").click(function()
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalManual = document.getElementById('myModal-manual');
-
+ 
 // Get the button that opens the modal
 var btnManual = document.getElementById("openManual");
 
 // Get the <span> element that closes the modal
-var spanManual = document.getElementsByClassName("closeManual")[0];
+var spanManual = document.getElementsByClassName("closeManual")[0];                                         
 
-// When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal 
 btnManual.onclick = function() {
     modalManual.style.display = "block";
 }

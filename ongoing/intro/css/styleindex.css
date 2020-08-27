@@ -23,7 +23,13 @@ body {
   color: #666666;
   font-family: "InfinitySans-RegularA1";
   cursor: default;
+  -ms-overflow-style: none;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 
 a {
   color: #1d64be;

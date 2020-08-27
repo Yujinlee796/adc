@@ -1,0 +1,257 @@
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+기본 세팅
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face { font-family: 'InfinitySans-BoldA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face { font-family: 'JSArirang-Regular';
+          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSArirang-RegularA1.woff') format('woff');
+          font-weight: normal;
+          font-style: normal; }
+  
+body {
+    font-family: 'InfinitySans-RegularA1';
+    background-attachment: fixed;
+    background-size: cover;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.fixed-top {
+    background-color: rgba(0,0,0,0.3);
+    padding: 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+
+
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+모바일용네비바
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+nav ul {
+    list-style: none;
+    font-size: 40px;
+}
+
+nav li {
+    margin-bottom: 80px;
+    margin-top: 120px;
+}
+
+
+h1 {
+    color: white;
+    font-size: 60px;
+    margin-left: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #3d8dd3;
+}
+
+
+
+input[id="hamburger"] {
+    display: none;
+  }
+  input[id="hamburger"] + label {
+    display: block;
+    width: 80px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    float: right;
+    margin-top: 45px;
+    margin-right: 40px;
+  }
+  input[id="hamburger"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background: #fff;
+    transition: all 0.35s;
+  }
+  input[id="hamburger"] + label span:nth-child(1) {
+    top: 0;
+  }
+  input[id="hamburger"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input[id="hamburger"] + label span:nth-child(3) {
+    bottom: 0;
+  }
+  input[id="hamburger"]:checked + label {
+    z-index: 2;
+  }
+  input[id="hamburger"]:checked + label span {
+    background: #fff;
+  }
+  input[id="hamburger"]:checked + label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  input[id="hamburger"]:checked + label span:nth-child(2) {
+    opacity: 0;
+  }
+  input[id="hamburger"]:checked + label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+  div[class="sidebar"] {
+    width: 80%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    right: -80%;
+    z-index: 1;
+    transition: all 0.35s;
+    overflow: auto;
+  }
+  input[id="hamburger"]:checked + label + div {
+    right: 0;
+  }
+
+
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+본문 오브젝트 위치
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+
+
+#roomListTitle {
+    font-size: 60px;
+    color: white;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    text-align: center;
+}
+
+table {
+    color: white;
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    margin-left: -400px;
+    text-align: center;
+    width: 800px;
+
+    background-color: rgba(255,255,255,0.2);
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+th, td {
+    border: solid rgba(0,0,0,0.3) 5px;
+    padding: 10px;
+    width: 200px;
+    font-size: 30px;
+}
+
+#noHistory {
+    color: white;
+    background: none;
+    border: none;
+    width: 700px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -350px;
+}
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+버튼 디자인
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+table button {
+    background: none;
+    border: white 2px solid;
+    border-radius: 2px;
+    color: #fff;
+    transition: 0.3s;
+    font-family: 'InfinitySans-RegularA1';
+    font-size: 30px;
+    cursor: pointer;
+}
+
+table button:hover {
+    background-color: rgba(61,141,211,0.6);
+    border: rgba(61,141,211,0.6) 2px solid;
+    border-radius: 2px;
+    color: #fff;
+    transition: 0.3s;
+    font-family: 'InfinitySans-RegularA1';
+    font-size: 30px;
+}
+
+#newRoom {
+    background-color: rgba(61,141,211,0.6);
+    border: rgba(61,141,211,0.6) 2px solid;
+    border-radius: 2px;
+    color: #fff;
+    transition: 0.3s;
+    font-family: 'InfinitySans-RegularA1';
+    font-size: 50px;
+    width: 300px;
+    height: 100px;
+    cursor: pointer;
+}
+  
+#newRoom:hover {
+    background: none;
+    border: 2px solid white;
+    border-radius: 2px;
+    color: #fff;
+    transition: 0.3s;
+    font-family: 'InfinitySans-RegularA1';
+    font-size: 50px;
+    width: 300px;
+    height: 100px;
+}
+

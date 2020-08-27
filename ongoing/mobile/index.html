@@ -53,27 +53,12 @@
 </head>
 
 <body>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
-
-
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCqHKmX1adJ9qCPMnSWyP1p5JRzEruoe1E",
-    authDomain: "fittogether-d628a.firebaseapp.com",
-    databaseURL: "https://fittogether-d628a.firebaseio.com",
-    projectId: "fittogether-d628a",
-    storageBucket: "fittogether-d628a.appspot.com",
-    messagingSenderId: "169218684132",
-    appId: "1:169218684132:web:3134f8df18470da201a8f1",
-    measurementId: "G-2MK17W9C5C"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-</script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
 <script type="text/javascript">
   function deviceKind() {
@@ -378,6 +363,34 @@
   <script src="intro/js/custom.js"></script>
 
   <script src="intro/contactform/contactform.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCqHKmX1adJ9qCPMnSWyP1p5JRzEruoe1E",
+        authDomain: "fittogether-d628a.firebaseapp.com",
+        databaseURL: "https://fittogether-d628a.firebaseio.com",
+        projectId: "fittogether-d628a",
+        storageBucket: "fittogether-d628a.appspot.com",
+        messagingSenderId: "169218684132",
+        appId: "1:169218684132:web:3134f8df18470da201a8f1",
+        measurementId: "G-2MK17W9C5C"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      var database = firebase.database();
+      firebase.auth.Auth.Persistence.LOCAL;
+  </script>
+
+  <script>
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+        if(user)
+        {
+            window.location.href = "../main/mainPage.html";
+        }
+    });
+  </script>
 
 
   <!--알아보기 태그-->
