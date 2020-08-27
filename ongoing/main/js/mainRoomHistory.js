@@ -117,7 +117,6 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 
           //만약 이 uid가 현재 접속중인 uid와 같다면, 해당 닉네임을 출력해줘라
           if(roomUsersUid == currentUserID){
-            document.getElementById('nicknameData').innerHTML = Nname;
             document.getElementById("nickName").innerHTML = Nname;
           }
 
@@ -228,7 +227,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 
     var deferred = $.Deferred();
 
-    firebase.database().ref('Usersroom/' + roomUsersUid + '/' + roomName).once('value')
+    firebase.database().ref('Rooms/' + roomName + '/Users/' + roomUsersUid).once('value')
         .then(function(snapshot) {
           score = snapshot.child('fitcnt').val();
           deferred.resolve(score);
