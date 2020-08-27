@@ -247,7 +247,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 
     var deferred = $.Deferred();
 
-    firebase.database().ref('Usersroom/' + roomUsersUid + '/' + roomName).once('value')
+    firebase.database().ref('Rooms/' + roomName + '/Users/' + roomUsersUid).once('value')
         .then(function(snapshot) {
           score = snapshot.child('fitcnt').val();
           deferred.resolve(score);
