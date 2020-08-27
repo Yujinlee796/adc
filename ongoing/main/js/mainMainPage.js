@@ -56,11 +56,11 @@ firebase.auth().onAuthStateChanged(function(user)
          var roomName = childSnapshot.key;
          var roomCnt = childSnapshot.child("recentcnt").val();
 
-         //현황 text화 
+         //현황 text화
          if (roomCnt == 0) {
            roomState = '-';
          } else if (roomCnt == -1) {
-           roomStae = '포기';
+           roomState = '포기';
          } else if(roomCnt == 1) {
            roomState = '완료';
          }
@@ -117,14 +117,14 @@ $("#btn-logout").click(function()
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalManual = document.getElementById('myModal-manual');
- 
+
 // Get the button that opens the modal
 var btnManual = document.getElementById("openManual");
 
 // Get the <span> element that closes the modal
-var spanManual = document.getElementsByClassName("closeManual")[0];                                         
+var spanManual = document.getElementsByClassName("closeManual")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btnManual.onclick = function() {
     modalManual.style.display = "block";
 }
