@@ -176,7 +176,7 @@ input[id="hamburger"]:checked + label + div {
   position: absolute;
   right: 0;
   top: 200px;
-  margin-right: 18px;
+  margin-right: 45px;
   border: none;
   background: none;
   cursor: pointer;
@@ -189,9 +189,11 @@ input[id="hamburger"]:checked + label + div {
 #roomTitle {
   font-size: 60px;
   color: white;
-  width: 100%;
+  width: 800px;
   position: absolute;
   top: 120px;
+  left: 50%;
+  margin-left: -400px;
   text-align: center;
 }
 
@@ -352,18 +354,22 @@ input[id="hamburger"]:checked + label + div {
 }
 
 #leftTime {
-  width: 100%;
+  width: 800px;
   text-align: center;
   position: absolute;
   top: 650px;
+  left: 50%;
+  margin-left: -400px;
 }
 
 
 #state {
-  width: 100%;
+  width: 500px;
   text-align: center;
   position: absolute;
   top: 1200px;
+  left: 50%;
+  margin-left: -250px;
 }
 
 #friends {

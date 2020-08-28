@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>홈 ｜ 핏투게더</title>
+  <title>히스토리 상세보기 ｜ 핏투게더</title>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -12,122 +12,131 @@
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
-  <link rel="stylesheet" href="assets/css/styleRoom.css">
+  <link rel="stylesheet" href="assets/css/styleRoomHistory.css">
 </head>
 
-<body>
+<body style="background-image: url(assets/img/historyBackground.png);">
+  <header id="header" class="fixed-top">
+    <span class="logo" style="float: left;">
+        <div class="greet" style="display: flex;">
+          <h1>
+            <a href="mainPage.html">핏투게더</a>
+          </h1>
+            <span style=
+            "color: white; font-size: 30px; margin-top: 62px; margin-left: 20px;">
+                환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
+            </span>
+        </div>
+        
 
-  <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
-    <header id="header" class="fixed-top">
-        <span class="logo" style="float: left;">
-            <div class="greet" style="display: flex;">
-              <h1>
-                <a href="mainPage.html">핏투게더</a>
-              </h1>
-                <span style=
-                "color: white; font-size: 15px; margin-top: 30px; margin-left: 20px;">
-                    환영합니다, <span id="nickName" style="color: #3d8dd3"></span>님!
-                </span>
-            </div>
+    </span>
+    
+    <input type='checkbox' id='hamburger'>
+    <label for="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <div class="sidebar">
+      <nav class="nav-menu">
+        <ul>
+            <li><a id="openManual" href="#more">이용 가이드</a></li>
+            <li><a href="makingRoom.html">방 만들기</a></li>
+            <li><a href="mainPage.html">방 목록</a></li>
+            <li><a href="history.html">방 히스토리</a></li>
+            <li><a href="myProfile.html">내 프로필</a></li>
+            <li><a id="btn-logout" href="#logout">로그아웃</a></li>
+        </ul>
+    </nav>
+    </div>
 
 
-        </span>
 
-        <nav class="nav-menu">
-            <ul>
-                <li><a id="openManual" href="#more">이용 가이드</a></li>
-                <li><a href="makingRoom.html">방 만들기</a></li>
-                <li><a href="mainPage.html">방 목록</a></li>
-                <li><a href="history.html">방 히스토리</a></li>
-                <li><a href="myProfile.html">내 프로필</a></li>
-                <li><a id="btn-logout" href="#logout">로그아웃</a></li>
-            </ul>
-        </nav>
+  </header>
 
-    </header>
+
+    <script type="text/javascript">
+      function deviceKind() {
+
+        var flag;
+    //모바일 Device종류(윈도우 폰은 앞으로 나오지 않기 때문에 빼도 무방하나 아직 쓰는 사람이 존재하기에..)
+
+        var mobileFlag = /Mobile|iP(hone|od)|Windows (CE|Phone)|Minimo|Opera M(obi|ini)|BlackBerry|Nokia/;
+        //모바일일경우
+
+        if (navigator.userAgent.match(mobileFlag) && !navigator.userAgent.match(/iPad/)) {
+
+            flag = "Mobile";
+
+        }
+            //모바일 Device와 Android가 포함이 안되어 있을 경우
+
+        else if (navigator.userAgent.match(/iPad|Android/)) {
+
+            flag = "Tablet";
+
+        }
+            //그 외의 경우 모두 테블릿
+
+        else {
+
+            flag = "PC(Mobile, Tablet 외)";
+
+        }
+        console.log(flag);
+        if (flag === "PC(Mobile, Tablet 외)") {
+            location.href = "../../main/roomHistory.html";
+          }
+        };
+      deviceKind();
+
+
   </script>
 
-  <script type="text/javascript">
-    function deviceKind() {
-  
-      var flag;
-  //모바일 Device종류(윈도우 폰은 앞으로 나오지 않기 때문에 빼도 무방하나 아직 쓰는 사람이 존재하기에..)
-  
-      var mobileFlag = /Mobile|iP(hone|od)|Windows (CE|Phone)|Minimo|Opera M(obi|ini)|BlackBerry|Nokia/;
-      //모바일일경우
-  
-      if (navigator.userAgent.match(mobileFlag) && !navigator.userAgent.match(/iPad/)) {
-  
-          flag = "Mobile";
-  
-      }
-          //모바일 Device와 Android가 포함이 안되어 있을 경우
-  
-      else if (navigator.userAgent.match(/iPad|Android/)) {
-  
-          flag = "Tablet";
-  
-      }
-          //그 외의 경우 모두 테블릿
-  
-      else {
-  
-          flag = "PC(Mobile, Tablet 외)";
-  
-      }
-      console.log(flag);
-      if (flag === "PC(Mobile, Tablet 외)") {
-        location.href = "../../main/roomHistory.html";
-      }
-    };
-    deviceKind();
-  
-  
-  </script>
-<!--
+  <!--
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 크롬이나 엣지 아니면 out이야
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 -->
 <script type="text/javascript">
-  /* 
-   * http://tonks.tistory.com/107 
-   */ 
-  
+  /*
+   * http://tonks.tistory.com/107
+   */
+
 
   function isBrowserCheck(){
 
     var agent = navigator.userAgent.toLowerCase();
     var browserName;
-    var word; 
-    var info = {  name: "N/A" , version: -1  }; 
+    var word;
+    var info = {  name: "N/A" , version: -1  };
 
-    if ( navigator.appName == "Microsoft Internet Explorer" ){    // IE old version ( IE 10 or Lower ) 
-            word = "msie "; 
-    } 
-    else if ( agent.search( "trident" ) > -1 ) word = "trident/.*rv:";    // IE 11 
-    else if ( agent.search( "edge/" ) > -1  ) word = "edge/";        // Microsoft Edge 
-    else  { 
+    if ( navigator.appName == "Microsoft Internet Explorer" ){    // IE old version ( IE 10 or Lower )
+            word = "msie ";
+    }
+    else if ( agent.search( "trident" ) > -1 ) word = "trident/.*rv:";    // IE 11
+    else if ( agent.search( "edge/" ) > -1  ) word = "edge/";        // Microsoft Edge
+    else  {
       if (agent.indexOf("chrome") != -1) {
           browserName = "Chrome";
       }
       else {
           browserName = "cannotAccess"
       }
-    } 
+    }
 
 
-    var reg = new RegExp( word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})" ); 
+    var reg = new RegExp( word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})" );
 
-    if (  reg.exec( agent ) != null  ){ 
+    if (  reg.exec( agent ) != null  ){
 
-            info.version = parseFloat( RegExp.$1 + RegExp.$2 ); 
+            info.version = parseFloat( RegExp.$1 + RegExp.$2 );
 
-            info.name = ( word == "edge/" ) ? "Edge" : "IE"; 
+            info.name = ( word == "edge/" ) ? "Edge" : "IE";
             browserName = info.name;
-    } 
+    }
 
-    
+
     console.log(browserName);
 
     if (browserName === "Chrome" || browserName === "Edge") {
@@ -138,78 +147,53 @@
       location.href = "error/browserError.html";
     }
     };
-    
+
     isBrowserCheck();
 
   </script>
-            <div class="main-box">
 
-              <div class="align-left">
-                <p id="roomTitle">
-                  <span id="titleData"> <!--방이름 출력되는 부분--></span>
-                </p>
-
-                  <span id="endDate"><!--기간 출력되는 부분--></span>
-
-                <div class="boxes">
-                  <p class="goal" id="box">
-                      <span id="goalText">
-
-                          <!--목표 출력되는 부분-->
-
-                      </span>
-                  </p>
-
-                  <p class="punishment" id="box">
-                      <span id="bettingText">
-
-                          <!--내기 출력되는 부분-->
-
-                      </span>
-                  </p>
+<div class="main-box">
 
 
-            <div class="ranking" id="box">
-              <div id="scoreBar">
-                  <!--<div class="progress">
-                  <div class="progress-done">10점</div>
-                  </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
-                  <!---스코어바 생성 부분---></div>
-              </div>
-            </div>
-          </div>
+  <p id="roomTitle">
+    <span id="titleData">-<!--방이름 출력되는 부분--></span>
+  </p>
+
+    <span id="endDate">-<!--기간 출력되는 부분--></span>
+
+  <div class="boxes">
+    <p class="goal" id="box">
+        <span id="goalText">
+
+            -<!--목표 출력되는 부분-->
+
+        </span>
+    </p>
+
+    <p class="punishment" id="box">
+        <span id="bettingText">
+
+            -<!--내기 출력되는 부분-->
+
+        </span>
+    </p>
 
 
-          <div class="align-right">
-            <!--글씨 크기 수정-->
-
-              <table class="table" style="margin-top: 30px;">
-              <tr>
-                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                <img id="profileImg" src="" style="width: 250px;">
-                </td>
-                <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
-                <span id="nicknameData" style="font-size: 20px; color: white;"> <!--닉네임 출력되는 부분--> </span>
-                </td>
-              </tr>
-
-              <tr>
-
-                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px;">
-                <button onclick="goHistory()" id="successBtn">히스토리</button>
-                </td>
-
-              </tr>
-    </div>
-  </div>
+<div class="ranking" id="box">
+<div id="scoreBar">
+    <!--<div class="progress">
+    <div class="progress-done">10점</div>
+    </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
+    <!---스코어바 생성 부분---></div>
+</div>
+</div>
 
 
   <div id="myModal-manual" class="modalManual">
     <div class="modal-contentManual">
-      <span class="closeManual">&times;</span>
       <div class="main-container">
         <div>
-          <h2 style="color: black; text-align: center; font-weight: bolder;">핏투게더 이용하기</h2>
+          <h2 style="color: black; text-align: center; font-weight: bolder; font-size: 35px">핏투게더 이용하기</h2>
           <div class="section-title-divider"></div>
           <p class="howToUse">
             <span>❶  회원가입 후 닉네임을 설정하세요.</span><br><br>
@@ -223,7 +207,7 @@
         </div>
         <br>
         <div>
-          <h2 style="color: black; text-align: center; font-weight: bolder;">알고 넘어가기</h2>
+          <h2 style="color: black; text-align: center; font-weight: bolder; font-size: 35px">알고 넘어가기</h2>
           <div class="section-title-divider"></div>
           <p class='caution'>
             <span>❶  그 날의 운동 기록은 다음 날 새벽 5시에 초기화됩니다.</span><br><br>
@@ -233,8 +217,11 @@
             <span><span style="color: red;">❺  한 번 설정한 방 이름은 변경할 수 없으니 주의해주세요.</span></span>
           </p>
         </div>
+        <br>
+        <button class="closeManual">닫기</button>
       </div>
     </div>
+    
   </div>
 
   <style>
@@ -248,11 +235,8 @@
 
     .howToUse, .caution {
       border: none;
-      width: 820px;
-      position: relative;
-      left: 50%;
-      margin-left: -260px;
-      font-size: 15px;
+      
+      font-size: 25px;
     }
 
     .howToUse #right, .caution #right {
@@ -263,6 +247,7 @@
       transition: 0.3s;
       cursor: pointer;
       font-family: 'InfinitySans-RegularA1';
+      font-size: 25px;
     }
 
     .howToUse #right:hover, .caution #right:hover {
@@ -274,6 +259,36 @@
       font-family: 'InfinitySans-RegularA1';
     }
 
+    .closeManual {
+      border: 1px solid #3d8dd3;
+      border-radius: 2px;
+      background-color: #3d8dd3;
+      color: white;
+      transition: 0.3s;
+      cursor: pointer;
+      font-family: 'InfinitySans-RegularA1';
+      font-size: 30px;
+      height: 70px;
+      width: 150px;
+      margin: auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .closeManual:hover {
+      border: 1px solid #000;
+      border-radius: 2px;
+      background: none;
+      color: black;
+      transition: 0.3s;
+      font-family: 'InfinitySans-RegularA1';
+      font-size: 30px;
+      
+    }
+
+
     .howToUse #reverse, .caution #reverse {
       border: 1px solid black;
       border-radius: 2px;
@@ -282,6 +297,7 @@
       transition: 0.3s;
       cursor: pointer;
       font-family: 'InfinitySans-RegularA1';
+      font-size: 25px;
     }
 
     .howToUse #reverse:hover, .caution #reverse:hover {
@@ -319,7 +335,7 @@
     .modalManual {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 2; /* Sit on top */
+        z-index: 3; /* Sit on top */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -333,12 +349,14 @@
     .modal-contentManual {
         background-color: #fff;
         margin: 1% auto; /* 15% from the top and centered */
-        padding: 30px;
-        padding-top: 15px;
+        padding: 50px;
+        padding-top: 30px;
         border: 1px solid #888;
-        width: 55%; /* Could be more or less, depending on screen size */
+        width: 80%; /* Could be more or less, depending on screen size */
+       
     }
   </style>
+
 
       <!-- Vendor JS Files -->
       <script src="assets/vendor/jquery/jquery.min.js"></script>

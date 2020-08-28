@@ -60,7 +60,7 @@ firebase.auth().onAuthStateChanged(function(user)
          if (roomCnt == 0) {
            roomState = '-';
          } else if (roomCnt == -1) {
-           roomStae = '포기';
+           roomState = '포기';
          } else if(roomCnt == 1) {
            roomState = '완료';
          }

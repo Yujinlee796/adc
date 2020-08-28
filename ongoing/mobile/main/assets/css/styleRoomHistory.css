@@ -1,0 +1,293 @@
+/**
+* Template Name: Hidayah - v2.2.0
+* Template URL: https://bootstrapmade.com/hidayah-free-simple-html-template-for-corporate/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face { font-family: 'InfinitySans-BoldA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face { font-family: 'JSArirang-Regular';
+          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSArirang-RegularA1.woff') format('woff');
+          font-weight: normal;
+          font-style: normal; }
+  
+body {
+    font-family: 'InfinitySans-RegularA1';
+    background-attachment: fixed;
+    background-size: cover;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.fixed-top {
+    background-color: rgba(0,0,0,0.3);
+    padding: 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+모바일용네비바
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+nav ul {
+  list-style: none;
+  font-size: 40px;
+}
+
+nav li {
+  margin-bottom: 80px;
+  margin-top: 120px;
+}
+
+
+header h1 {
+  color: white;
+  font-size: 60px;
+  margin-left: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #3d8dd3;
+}
+
+
+
+input[id="hamburger"] {
+  display: none;
+}
+input[id="hamburger"] + label {
+  display: block;
+  width: 80px;
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+  float: right;
+  margin-top: 45px;
+  margin-right: 40px;
+}
+input[id="hamburger"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  border-radius: 30px;
+  background: #fff;
+  transition: all 0.35s;
+}
+input[id="hamburger"] + label span:nth-child(1) {
+  top: 0;
+}
+input[id="hamburger"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+input[id="hamburger"] + label span:nth-child(3) {
+  bottom: 0;
+}
+input[id="hamburger"]:checked + label {
+  z-index: 2;
+}
+input[id="hamburger"]:checked + label span {
+  background: #fff;
+}
+input[id="hamburger"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+input[id="hamburger"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+input[id="hamburger"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+div[class="sidebar"] {
+  width: 80%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  top: 0;
+  right: -80%;
+  z-index: 1;
+  transition: all 0.35s;
+  overflow: auto;
+}
+input[id="hamburger"]:checked + label + div {
+  right: 0;
+}
+  
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+본문 왼쪽
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+#titleData {
+    font-size: 50px;
+    color: white;
+    width: 700px;;
+    position: absolute;
+    top: 175px;
+    left: 50%;
+    margin-left: -350px;
+    text-align: center;
+}
+
+#endDate {
+    font-size: 30px;
+    color: white;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    margin-left: -300px;
+    top: 267px;
+    text-align: center;
+}
+
+.boxes {
+    position: absolute;
+    left: 50%;
+    margin-left: -350px;
+    top: 370px;
+  }
+  
+  .goal {
+    border: none;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 700px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+  }
+  
+  .punishment {
+    border: none;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 700px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+  }
+
+.ranking {
+  border: none;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 600px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+본문 오른쪽
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+
+
+  /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  (다은코드) progress bar를 위한 css
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+  @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+  
+
+  .progress {
+      background-color: #d8d8d8;
+      border-radius: 20px;
+      position: relative;
+      margin: 15px 0;
+      height: 50px;
+      width: 600px;
+  }
+/*  
+  .progress-done {
+      background: linear-gradient(to left, #00ccff, #fcfa7a);
+      box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c;
+      border-radius: 20px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 70%;
+      opacity: 1;
+      transition: 1s ease 0.3s;
+  }*/
+  
+
+  
+  /********** Modal Section 
+  .bg-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  .modal-content {
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+  **********/

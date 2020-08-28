@@ -44,7 +44,7 @@ window.onload = function(){
       document.getElementById("goalText").innerHTML = printGoals;
       document.getElementById("bettingText").innerHTML = printBetting;
       document.getElementById("titleData").innerHTML = printTitle;
-      document.getElementById("endDate").innerHTML = revisePrintEndDate(startDate) + '~' + revisePrintEndDate(endDate) + '종료';
+      document.getElementById("endDate").innerHTML = revisePrintEndDate(startDate) + ' ~ ' + revisePrintEndDate(endDate);
     });
    } else { alert('방 이름을 불러오지 못했습니다.');}
 
@@ -76,16 +76,16 @@ window.onload = function(){
        makeUserHistory(roomName);
      }
      else {
-       delRoom(roomName);  //Rooms data 삭제
-       delUsersRoom(roomName,currentUserID); //Usersroom data 삭제
-       window.alert("방이 삭제되었습니다.")
-     }
+      delRoom(roomName);  //Rooms data 삭제
+      delUsersRoom(roomName,currentUserID); //Usersroom data 삭제
+      window.alert("방이 삭제되었습니다.")
+    }
 
     }
    else if (!user) { window.location.href = "../index.html";} //signout 상태이면 쫓겨나는 코드
    else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
   });
-}
+};
 
 //===========================================================================//
 //UsersRoom에서 data 삭제
@@ -136,7 +136,6 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 
           //만약 이 uid가 현재 접속중인 uid와 같다면, 해당 닉네임을 출력해줘라
           if(roomUsersUid == currentUserID){
-            document.getElementById('nicknameData').innerHTML = Nname;
             document.getElementById("nickName").innerHTML = Nname;
           }
 
@@ -247,7 +246,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
 
     var deferred = $.Deferred();
 
-    firebase.database().ref('Usersroom/' + roomUsersUid + '/' + roomName).once('value')
+    firebase.database().ref('Rooms/' + roomName + '/Users/' + roomUsersUid).once('value')
         .then(function(snapshot) {
           score = snapshot.child('fitcnt').val();
           deferred.resolve(score);
@@ -278,6 +277,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
       alert('방 정보가 로드되기 전에 스코어 바를 출력하려는 오류가 발생했습니다.');
     }
   }
+
 
 //=================히스토리 버튼 누르면 개인 history page로 이동 ===============================//
 function goHistory(){

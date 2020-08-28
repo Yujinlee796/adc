@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
 
-  <title>홈 ｜ 핏투게더</title>
+  <title>축하합니다! ｜ 핏투게더</title>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -12,12 +11,10 @@
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
-  <link rel="stylesheet" href="assets/css/styleRoom.css">
+  <link rel="stylesheet" href="assets/css/styleByeRoom.css">
 </head>
 
-<body>
-
-  <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
+  <body style="background-image: url(assets/img/historyBackground.png);">
     <header id="header" class="fixed-top">
         <span class="logo" style="float: left;">
             <div class="greet" style="display: flex;">
@@ -146,22 +143,21 @@
 
   </script>
 
-
             <div class="main-box">
 
-              <div class="align-left">
+
                 <p id="roomTitle">
                   <h1> 축하합니다! 긴 여정을 마쳤습니다. </h1>
-                  <span id="titleData"> <!--방이름 출력되는 부분--></span>
+                  <span id="titleData">- <!--방이름 출력되는 부분--></span>
                 </p>
 
-                  <span id="endDate"><!--기간 출력되는 부분--></span>
+                  <span id="endDate">-<!--기간 출력되는 부분--></span>
 
                 <div class="boxes">
                   <p class="goal" id="box">
                       <span id="goalText">
 
-                          <!--목표 출력되는 부분-->
+                          -<!--목표 출력되는 부분-->
 
                       </span>
                   </p>
@@ -169,7 +165,7 @@
                   <p class="punishment" id="box">
                       <span id="bettingText">
 
-                          <!--내기 출력되는 부분-->
+                          -<!--내기 출력되는 부분-->
 
                       </span>
                   </p>
@@ -183,35 +179,15 @@
                   <!---스코어바 생성 부분---></div>
               </div>
             </div>
-          </div>
 
 
-          <div class="align-right">
+
+
             <!--글씨 크기 수정-->
 
-              <p>
-               <span style="margin-bottom: 8px; color: white;" class="currentResult"></span> <br>
-               <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;"><!--오늘의 운동 완료 여부--></span>
-             </p>
-              <table class="table" style="margin-top: 30px;">
-              <tr>
-                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                <img id="profileImg" src="" style="width: 250px;">
-                </td>
-                <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
-                <span id="nicknameData" style="font-size: 20px; color: white;"> <!--닉네임 출력되는 부분--> </span>
-                </td>
-              </tr>
 
-              <tr>
+                <button onclick="goHistory()" id="successBtn">히스토리 바로가기</button>
 
-                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px;">
-                <button onclick="goHistory()" id="successBtn">히스토리</button>
-                </td>
-
-              </tr>
-    </div>
-  </div>
 
 
   <div id="myModal-manual" class="modalManual">
