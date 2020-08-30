@@ -150,9 +150,42 @@ background: white;
 z-index: 3;
 }
 
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+체크박스
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
 
+#smallTitle {
+  margin-left: 3px;
+  font-size: 40px;
+  color: white;
+}
 
-  
+.certify label {
+  font-size: 35px;
+  color: white;
+}
+
+.certify input[type="radio"] {
+  margin-right: 20px;
+  width: 25px;
+  height: 25px;
+}
+
+.certify {
+  margin-bottom: 20px;
+}
+
+.certify a {
+  cursor: pointer;
+}
+
+  /*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+체크박스 아래 메인 박스
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
 .main-box {
     font-family: 'InfinitySans-RegularA1';
     padding-right: 40px;
@@ -218,4 +251,97 @@ z-index: 3;
     align-items: center;
     justify-content: center;
 }
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+인증유형 가이드 모달
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.typeTitle {
+  text-align: center;
+  font-size: 60px;
+  font-weight: bolder;
+  margin-bottom: 80px;
+}
 
+.dumbel {
+
+  font-size: 25px;
+}
+
+.conscience {
+  font-size: 25px;
+
+}
+
+.conscience #right, .dumbel #right {
+border: 1px solid #3d8dd3;
+border-radius: 2px;
+background-color: #3d8dd3;
+color: white;
+transition: 0.3s;
+cursor: pointer;
+font-family: 'InfinitySans-RegularA1';
+font-size: 25px;
+}
+
+.conscience #right:hover, .dumbel #right:hover {
+border: 1px solid #000;
+border-radius: 2px;
+background: none;
+color: black;
+transition: 0.3s;
+font-family: 'InfinitySans-RegularA1';
+}
+
+.closeType {
+border: 1px solid #3d8dd3;
+border-radius: 2px;
+background-color: #3d8dd3;
+color: white;
+transition: 0.3s;
+cursor: pointer;
+font-family: 'InfinitySans-RegularA1';
+font-size: 30px;
+height: 70px;
+width: 150px;
+margin: auto;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.closeType:hover {
+border: 1px solid #000;
+border-radius: 2px;
+background: none;
+color: black;
+transition: 0.3s;
+font-family: 'InfinitySans-RegularA1';
+font-size: 30px;
+
+}
+
+
+.modalType {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-contentType {
+  background-color: #fff;
+  margin: 1% auto; /* 15% from the top and centered */
+  padding: 50px;
+  padding-top: 30px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}

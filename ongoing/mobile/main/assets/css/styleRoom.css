@@ -249,7 +249,7 @@ z-index: 3;
 .boxes {
   position: absolute;
   left: 50%;
-  margin-left: -250px;
+  margin-left: -400px;
   top: 355px;
 }
 
@@ -259,7 +259,7 @@ z-index: 3;
   border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 500px;
+  width: 800px;
   text-align: center;
   color: white;
   font-size: 30px;
@@ -271,7 +271,7 @@ z-index: 3;
   border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 500px;
+  width: 800px;
   text-align: center;
   color: white;
   font-size: 30px;
@@ -309,7 +309,7 @@ z-index: 3;
 
 
 
-#successBtn {
+#successBtn, #goCertifyBtn {
   background-color: rgba(61,141,211,0.6);
   border: rgba(61,141,211,0.6) 3px solid;
   border-radius: 2px;
@@ -320,9 +320,10 @@ z-index: 3;
   width: 200px;
   height: 80px;
   cursor: pointer;
+  display: none;
 }
 
-#successBtn:hover {
+#successBtn:hover, #goCertifyBtn:hover {
   background: none;
   border: #fff 3px solid;
   border-radius: 2px;
@@ -485,7 +486,7 @@ modal
 }
 
 .modal input {
-  border: 2px;
+  border: 1px solid gray;
   font-size: 30px;
   padding: 10px;
   margin-bottom: 20px;

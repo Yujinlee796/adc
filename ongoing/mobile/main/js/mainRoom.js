@@ -39,29 +39,49 @@ window.onload = function(){
 
   roomName = getURLParameter();  //방 이름 받아오기
 
-  //============================================================================//
-  //(다은코드) 현재 방 정보 받아오고 띄우기
-  //============================================================================//
-  if (roomName != '') {
-    firebase.database().ref('Rooms/' + roomName).once('value').then(function(snapshot) {
-      var printGoals = snapshot.child("goals").val();
-      var printBetting = snapshot.child("betting").val();
-      var printTitle = snapshot.child("name").val();
-      var endDate = snapshot.child("endDate").val();
-      startDate = snapshot.child("startDate").val();
-      if(startDate != '' && endDate != '') {
-        period = calculatePeriod(startDate, endDate);
-        //방 터트리는 코드 추가
-        endGame(endDate);
-      }
+    //============================================================================//
+    //(다은코드) 현재 방 정보 받아오고 띄우기
+    //============================================================================//
+    if (roomName != '') {
+      firebase.database().ref('Rooms/' + roomName).once('value').then(function(snapshot) {
+        var printGoals = snapshot.child("goals").val();
+        var printBetting = snapshot.child("betting").val();
+        var printTitle = snapshot.child("name").val();
+        var endDate = snapshot.child("endDate").val();
+        var certifyType = snapshot.child("certifyType").val();
+        startDate = snapshot.child("startDate").val();
+        if(startDate != '' && endDate != '') {
+          period = calculatePeriod(startDate, endDate);
+          //방 터트리는 코드 추가
+          endGame(endDate);
+        }
 
-      document.getElementById("goalText").innerHTML = printGoals;
-      document.getElementById("bettingText").innerHTML = printBetting;
-      document.getElementById("titleData").innerHTML = printTitle;
-      document.title = printTitle + ' ｜ 핏투게더';
-      document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
-    });
-  } else { alert('방 이름을 불러오지 못했습니다.');}
+        document.getElementById("goalText").innerHTML = printGoals;
+        document.getElementById("bettingText").innerHTML = printBetting;
+        document.getElementById("titleData").innerHTML = printTitle;
+        document.title = printTitle + ' ｜ 핏투게더';
+        document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+        //certifyType에 따라 버튼 바뀌는 함수
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        console.log(certifyType);
+        var successBtn = document.getElementById('successBtn');
+        var goCertifyBtn = document.getElementById('goCertifyBtn');
+
+        if (certifyType === 'conscience') {
+          successBtn.style.display = "block";
+          goCertifyBtn.style.display = "none";
+          console.log("요기는 양심방");
+        }
+
+        else if (certifyType === 'dumbel') {
+          successBtn.style.display = "none";
+          goCertifyBtn.style.display = "block";
+          console.log("요기는 아령방");
+        }
+      });
+    } else { alert('방 이름을 불러오지 못했습니다.');}
 
 
   //============================================================================//
@@ -718,7 +738,7 @@ return zero + n;
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function getURLParameter() {
 return decodeURI(
- (RegExp(roomName + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+ (RegExp('roomName' + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
 );
 }
 
@@ -1049,6 +1069,15 @@ var printNickname = snapshot.child("nickName").val();
 document.getElementById("nicknameData").innerHTML = printNickname;
 })
 */
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+//certifyType = dumbel 일때 인증창 가는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function goCertify() {
+  window.location.href = "roomCertify.html";
+}
+
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
 //자라나라 모달모달 - 목표수정
