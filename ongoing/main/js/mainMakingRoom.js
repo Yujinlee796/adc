@@ -18,6 +18,7 @@ firebase.analytics();
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //var confirmCount = 0;
 var tempRoomName = '';
+var specialRoomName;
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,9 +68,18 @@ firebase.auth().onAuthStateChanged(function(user)
  * ****************** */
 function makingRoom() {
   var userID = firebase.auth().currentUser.uid;
+
+  var typeConscience = document.getElementById("radioConscience");
+  var typeDumbel = document.getElementById("radioDumbel");
+  var resultConscience = $(typeConscience).is(":checked");
+  var resultDumbel = $(typeDumbel).is(":checked");
+  var typeArray = [resultConscience, resultDumbel];
+  console.log(typeArray);
+
   var roomName = document.getElementById("room_name").value;
   var roomGoal = document.getElementById("room_goal").value;
   var roomBet = document.getElementById("room_bet").value;
+
   var invitedList = document.querySelectorAll("#invitedList li");
   var roomDate = document.getElementById("room_date").value;
   //방 개설 날짜 기록
@@ -78,10 +88,12 @@ function makingRoom() {
   //입렵칸을 모두 채웠는지 확인
   if(roomName != "" && roomGoal != "" && roomBet != "" && roomDate != "")
   {
-    //방이름 중복 확인을 완료하였는지 확인
-    if(tempRoomName != '') {
+    if (resultConscience === true || resultDumbel === true) {  //인증방식 체크했는지 확인
+    
+    if(tempRoomName != '') {   //방이름 중복 확인을 완료하였는지 확인
       //중복 확인했던 이름과 동일한 이름인지 확인
-      if(tempRoomName == roomName) {
+      if(tempRoomName == roomName && specialRoomName != "") //동일한 이름이면서 특수문자 없는 경우
+      {
         var rootRoomRef = firebase.database().ref().child("Rooms");
         var roomRef = rootRoomRef.child(roomName);
         var roomUsersRef = roomRef.child("Users");
@@ -129,15 +141,35 @@ function makingRoom() {
           });
         }
 
-        //후에 나머지 정보들도 Rooms/roomName에다가 넣기
-        var roomData =
-        {
-          name : roomName,
-          betting : roomBet,
-          goals : roomGoal,
-          endDate : roomDate,
-          startDate : startDate,
+        //후에 나머지 정보들도 Rooms/roomName에다가 넣기 (방이름, 내기, 목표, 시작및종료일, 인증타입)
+        //인증타입에 따라 저장되는 roomData가 다름
+
+        //인증타입이 양심적 기록인 경우
+        if (resultConscience === true && resultDumbel === false) {
+          var roomData =
+          {
+            name : roomName,
+            betting : roomBet,
+            goals : roomGoal,
+            endDate : roomDate,
+            startDate : startDate,
+            certifyType : 'conscience'
+          };
+        }
+
+        //인증타입이 스마트 아령인 경우
+        else if (resultConscience === false && resultDumbel === true) {
+          var roomData = 
+          {
+            name : roomName,
+            betting : roomBet,
+            goals : roomGoal,
+            endDate : roomDate,
+            startDate : startDate,
+            certifyType : 'dumbel'
+          };
         };
+
         firebase.database().ref('Rooms/' + roomName).set(roomData, function(error)
         {
           if(error)
@@ -159,14 +191,28 @@ function makingRoom() {
             }
           }
         });
-      } else {
+      }
+      else if (tempRoomName == roomName && specialRoomName == "") //동일한 이름이면서 특수문자가 있는 경우
+      {
+      //방 이름에 특수문자가 들어가서 반려된 경우
+      alert("방 이름 형식이 올바르지 않습니다.")
+      }
+
+      else {
         //중복확인을 한 방 이름과 다른 이름이 입력되어있는 경우
         alert("방 이름 중복확인을 다시 진행해주세요.")
       }
       
-    } else {
-      //중복확인 버튼을 아직 안눌렀거나, 반려된 경우
-      alert("방 이름 중복확인을 완료해주세요.");
+    }
+    
+    else {
+      //중복확인 버튼을 아직 안눌렀거나, 반려된 경우 (특수문자는 포함 x; 10자, 중복인경우는 포함 o)
+      alert("방 이름 중복확인이 완료되지 않았습니다.");
+    }
+    }
+
+    else {
+      alert("인증 유형을 선택해주세요.")
     }
   }
   else{
@@ -312,52 +358,77 @@ function addLi(){
 function confirmName(){
   var roomName = document.getElementById('room_name').value;
 
-  //방 이름 10자 이내 인지 확인하기
-  if (0 < roomName.length && roomName.length <= 10) {
+  if ( roomName.indexOf('.') == -1 && roomName.indexOf('#') == -1 && roomName.indexOf('$') == -1 && 
+  roomName.indexOf('[') == -1 && roomName.indexOf(']') == -1 ) {
+    console.log('특수문자 괜찮');
 
-    var rootRef = firebase.database().ref().child("Rooms");
+    //방 이름 10자 이내 인지 확인하기
+    if (0 < roomName.length && roomName.length <= 10) {
 
-    rootRef.orderByChild('name').equalTo(roomName).once('value', function(snapshot){
-      if (snapshot.val() === null) {
-        // 중복되지않은 방이름
-        //alert("사용가능한 방이름입니다.");
-        document.getElementById("confirmNameResult").innerHTML = "사용 가능한 방 이름입니다.";
-        document.getElementById("confirmNameResult").style.color = "greenyellow"
-        document.getElementById("plzFillin").innerHTML = "";
-        document.getElementById("break").innerHTML = "";
+      var rootRef = firebase.database().ref().child("Rooms");
 
-        tempRoomName = roomName; //중복확인 승인됨
-      }
-      else
-      {
-        // 중복된 방이름
-        //alert("중복된 방이름입니다.");
-        document.getElementById("confirmNameResult").innerHTML = "이미 사용중인 방 이름입니다.";
-        document.getElementById("confirmNameResult").style.color = "red"
-        document.getElementById("plzFillin").innerHTML = "";
-        document.getElementById("break").innerHTML = "";
+      rootRef.orderByChild('name').equalTo(roomName).once('value', function(snapshot){
+        if (snapshot.val() === null) {
+          // 중복되지않은 방이름
+          //alert("사용가능한 방이름입니다.");
+          document.getElementById("confirmNameResult").innerHTML = "사용 가능한 방 이름입니다.";
+          document.getElementById("confirmNameResult").style.color = "greenyellow"
+          document.getElementById("plzFillin").innerHTML = "";
+          document.getElementById("break").innerHTML = "";
 
-        tempRoomName = ''; //중복확인 반려됨
-      }
-    });
-  } else if (roomName.length == 0) {
-    //방 이름을 입력하지 않음
-    document.getElementById("confirmNameResult").innerHTML = "방 이름을 입력해 주세요.";
+          specialRoomName = roomName;
+          tempRoomName = roomName; //중복확인 승인됨
+        }
+        else
+        {
+          // 중복된 방이름
+          //alert("중복된 방이름입니다.");
+          document.getElementById("confirmNameResult").innerHTML = "이미 사용중인 방 이름입니다.";
+          document.getElementById("confirmNameResult").style.color = "red"
+          document.getElementById("plzFillin").innerHTML = "";
+          document.getElementById("break").innerHTML = "";
+
+          specialRoomName = roomName;
+          tempRoomName = ''; //중복확인 반려됨
+        }
+
+
+        
+      });
+    } else if (roomName.length == 0) {
+      //방 이름을 입력하지 않음
+      document.getElementById("confirmNameResult").innerHTML = "방 이름을 입력해 주세요.";
+      document.getElementById("confirmNameResult").style.color = "red"
+      document.getElementById("plzFillin").innerHTML = "";
+      document.getElementById("break").innerHTML = "";
+      
+      specialRoomName = roomName;
+      tempRoomName = ''; //중복확인 반려됨
+    } else if (roomName.length > 10) {
+      //방 이름이 10자를 초과함
+      document.getElementById("confirmNameResult").innerHTML = "10자 이내의 방 이름을 입력해 주세요.";
+      document.getElementById("confirmNameResult").style.color = "red"
+      document.getElementById("plzFillin").innerHTML = "";
+      document.getElementById("break").innerHTML = "";
+
+      specialRoomName = roomName;
+      tempRoomName = ''; //중복확인 반려됨
+    }
+  }
+
+  else {
+    //들어가면 안 되는 문자
+    console.log('특수문자 쓰지 말랬지');
+    document.getElementById("confirmNameResult").innerHTML = "특수문자 '.', '#', '$', '[', ']'는 방 이름에 포함될 수 없습니다.";
     document.getElementById("confirmNameResult").style.color = "red"
     document.getElementById("plzFillin").innerHTML = "";
     document.getElementById("break").innerHTML = "";
 
-    tempRoomName = ''; //중복확인 반려됨
-  } else if (roomName.length > 10) {
-    //방 이름이 10자를 초과함
-    document.getElementById("confirmNameResult").innerHTML = "10자 이내의 방 이름을 입력해 주세요.";
-    document.getElementById("confirmNameResult").style.color = "red"
-    document.getElementById("plzFillin").innerHTML = "";
-    document.getElementById("break").innerHTML = "";
-
-    tempRoomName = ''; //중복확인 반려됨
+    tempRoomName = roomName; //중복확인 반려됨
+    specialRoomName = ''; //특수문자때문에
   }
 }
+
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //(다은코드) (공통JS로 뺄것) 현재 시간 표준 포맷을 뽑는 함수
@@ -428,5 +499,36 @@ spanManual.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modalManual) {
         modalManual.style.display = "none";
+        console.log("disappear");
+    }
+}
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//자라나라 모달모달 - 인증유형 가이드
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Get the modal
+var modalType = document.getElementById('myModal-type');
+ 
+// Get the button that opens the modal
+var btnType = document.getElementById("openType");
+
+// Get the <span> element that closes the modal
+var spanType = document.getElementsByClassName("closeType")[0];                                         
+
+// When the user clicks on the button, open the modal 
+btnType.onclick = function() {
+    modalType.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spanType.onclick = function() {
+    modalType.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalType) {
+        modalType.style.display = "none";
+        console.log("disappear");
     }
 }

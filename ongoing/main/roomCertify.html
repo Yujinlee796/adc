@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>인증하기 ｜ 핏투게더</title>
+        <link href="../logo/titleIcon.png" rel="shortcut icon" type="image/x-icon">
+    </head>
+    <body>
+        <div class="complete">
+            <button id="completeCertify">인증 완료</button>
+        </div>
+    </body>
+
+    <script type="text/javascript"> //페이지 로드 후 2초 후 버튼 뜸
+        window.onload = setTimeout(function() {
+            var button = document.getElementById("completeCertify");
+            button.style.display = "block";
+        }, 2000);
+    </script>
+    <style> /*그냥 css 다 html 내부에서 해결*/
+        @font-face {
+            font-family: 'InfinitySans-RegularA1';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #completeCertify {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -150px;
+            display: none;
+        }
+
+        .complete button {
+            background-color: rgba(61,141,211,1);
+            border: rgba(61,141,211,1) 2px solid;
+            border-radius: 2px;
+            color: #fff;
+            transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
+            font-size: 40px;
+            height: 100px;
+            width: 300px;
+            cursor: pointer;
+        }
+
+
+        .complete button:hover {
+            background: none;
+            border: black 2px solid;
+            border-radius: 2px;
+            color: black;
+            transition: 0.3s;
+            font-family: 'InfinitySans-RegularA1';
+        }
+    </style>
+</html>

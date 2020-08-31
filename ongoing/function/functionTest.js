@@ -22,7 +22,7 @@ var firebaseConfig = {
 //===========================================================================//
 //main 함수 //
 //==========================================================================//
-firebase.auth().onAuthStateChanged(function(user)
+window.onload = function()
 {
   $.when(getUserID())
   .done(function(){
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(function(user)
       }
     });
   });
-});
+}
 
 function update() {
   userList.forEach(user => {

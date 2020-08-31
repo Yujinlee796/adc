@@ -48,6 +48,7 @@ window.onload = function(){
         var printBetting = snapshot.child("betting").val();
         var printTitle = snapshot.child("name").val();
         var endDate = snapshot.child("endDate").val();
+        var certifyType = snapshot.child("certifyType").val();
         startDate = snapshot.child("startDate").val();
         if(startDate != '' && endDate != '') {
           period = calculatePeriod(startDate, endDate);
@@ -60,9 +61,27 @@ window.onload = function(){
         document.getElementById("titleData").innerHTML = printTitle;
         document.title = printTitle + ' ｜ 핏투게더';
         document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+        //certifyType에 따라 버튼 바뀌는 함수
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        console.log(certifyType);
+        var successBtn = document.getElementById('successBtn');
+        var goCertifyBtn = document.getElementById('goCertifyBtn');
+
+        if (certifyType === 'conscience') {
+          successBtn.style.display = "block";
+          goCertifyBtn.style.display = "none";
+          console.log("요기는 양심방");
+        }
+
+        else if (certifyType === 'dumbel') {
+          successBtn.style.display = "none";
+          goCertifyBtn.style.display = "block";
+          console.log("요기는 아령방");
+        }
       });
     } else { alert('방 이름을 불러오지 못했습니다.');}
-
 
     //============================================================================//
     //(다은코드) 현재 접속 중인 유저의 방과 관련된 정보 받아오고 띄우기
@@ -718,7 +737,7 @@ function leadingZeros(n, digits) {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function getURLParameter() {
   return decodeURI(
-   (RegExp(roomName + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+   (RegExp('roomName' + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
   );
 }
 
@@ -1049,6 +1068,14 @@ firebase.database().ref('Users/rv2UkGj4xWQoAEEYiKiHHLQeY883/').once('value').the
   document.getElementById("nicknameData").innerHTML = printNickname;
 })
 */
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+//certifyType = dumbel 일때 인증창 가는 함수
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function goCertify() {
+  window.location.href = "roomCertify.html";
+}
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
 //자라나라 모달모달 - 목표수정

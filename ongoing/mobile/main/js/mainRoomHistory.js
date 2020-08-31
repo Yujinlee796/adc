@@ -131,7 +131,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   function getURLParameter() {
     return decodeURI(
-     (RegExp(roomName + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+     (RegExp('roomName' + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
   }
 

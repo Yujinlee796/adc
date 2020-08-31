@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.howToUse, .caution {
+  border: none;
+  font-size: 25px;
+}
+
+.howToUse #right, .caution #right {
+  border: 1px solid #3d8dd3;
+  border-radius: 2px;
+  background-color: #3d8dd3;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: 'InfinitySans-RegularA1';
+  font-size: 25px;
+}
+
+.howToUse #right:hover, .caution #right:hover {
+  border: 1px solid #000;
+  border-radius: 2px;
+  background: none;
+  color: black;
+  transition: 0.3s;
+  font-family: 'InfinitySans-RegularA1';
+}
+
+.closeManual {
+  border: 1px solid #3d8dd3;
+  border-radius: 2px;
+  background-color: #3d8dd3;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: 'InfinitySans-RegularA1';
+  font-size: 30px;
+  height: 70px;
+  width: 150px;
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeManual:hover {
+  border: 1px solid #000;
+  border-radius: 2px;
+  background: none;
+  color: black;
+  transition: 0.3s;
+  font-family: 'InfinitySans-RegularA1';
+  font-size: 30px;
+  
+}
+
+
+.howToUse #reverse, .caution #reverse {
+  border: 1px solid black;
+  border-radius: 2px;
+  background: none;
+  color: black;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: 'InfinitySans-RegularA1';
+  font-size: 25px;
+}
+
+.howToUse #reverse:hover, .caution #reverse:hover {
+  border: 1px solid #3d8dd3;
+  border-radius: 2px;
+  background-color: #3d8dd3;
+  color: white;
+  transition: 0.3s;
+  font-family: 'InfinitySans-RegularA1';
+}
+
+
+.howToUse a, .caution a {
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.howToUse a:hover, .caution a:hover {
+  color: #3d8dd3;
+  font-weight: bold;
+}
+
+
+.section-title-divider {
+  width: 50px;
+  height: 3px;
+  background: rgba(61,141,211,1);
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.modalManual {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-contentManual {
+    background-color: #fff;
+    margin: 1% auto; /* 15% from the top and centered */
+    padding: 50px;
+    padding-top: 30px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+   
+}

@@ -72,13 +72,15 @@ window.onload = function(){
      });
 
      if(confirm("이 방을 내 히스토리에 남기시겠습니까?") == true ){
-       delUsersRoom(roomName,currentUserID); //Usersroom에서 data 삭제 //
+       delUsersRoom1(roomName,currentUserID); //Usersroom에서 data 삭제 //
        makeUserHistory(roomName);
      }
      else {
-      delRoom(roomName);  //Rooms data 삭제
-      delUsersRoom(roomName,currentUserID); //Usersroom data 삭제
-      window.alert("방이 삭제되었습니다.")
+       $.when(delUsersRoom2(roomName,currentUserID)).done(function(){
+        alert('방이 삭제되었습니다.');
+        location.href = "mainPage.html";
+         
+       })
     }
 
     }
@@ -90,18 +92,31 @@ window.onload = function(){
 //===========================================================================//
 //UsersRoom에서 data 삭제
 //==========================================================================//
-function delUsersRoom(rName,currentUserID) {
+function delUsersRoom1(rName,currentUserID) {
+  
   firebase.database().ref('Usersroom/' + currentUserID +'/' + rName).remove();
   console.log("delete");
+}
+
+//===========================================================================//
+//History에 남기지 않을 경우 UsersRoom에서 data 삭제
+//==========================================================================//
+function delUsersRoom2(rName,currentUserID) {
+  var deferred = $.Deferred();
+  firebase.database().ref('Usersroom/' + currentUserID +'/' + rName).remove().then(function() {deferred.resolve();});
+  return deferred.promise();
 }
 
 //==========================================================================//
 //History에 남기지 않을 경우 Rooms에서 data 삭제
 //===========================================================================//
 function delRoom(rName) {
-  firebase.database().ref('Rooms/' + rName).remove();
-  console.log("delete");
+  var deferred = $.Deferred();
+  firebase.database().ref('Rooms/' + rName).remove().then(function() {deferred.resolve();});
+  return deferred.promise();
 }
+
+
 
 //==========================================================================//
 //Userhistory에 data 업데이트 //
@@ -150,7 +165,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   function getURLParameter() {
     return decodeURI(
-     (RegExp(roomName + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+     (RegExp('roomName' + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
   }
 
