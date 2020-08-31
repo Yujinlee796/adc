@@ -46,7 +46,9 @@ function update() {
     .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var roomName = childSnapshot.key;
-          updates["Usersroom/" + user + "/" + roomName + "/recentcnt"] = 0;
+          firebase.database().ref("Usersroom/" + user + "/" + roomName).set({
+            recentcnt : 0
+          });
           roomList.push({ user : user , name : roomName});
         });
     });
