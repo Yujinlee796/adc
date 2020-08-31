@@ -128,6 +128,12 @@ window.onload = function(){
       } else if (!user) { window.location.href = "../index.html"; //signout 상태이면 쫓겨나는 코드
       } else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
     });
+    
+
+    //settings 버튼 만드는 코드 ★모바일추가★
+    var addBtn = '<button type="button" id="settings" onclick="setRoomNameAndMoveToSettings(\'roomSettings.html\',\'' + roomName + '\');"><img id="settingsIcon" src="assets/img/settings.png"></button>'
+
+    $("#btnPlace").append(addBtn);
 }
 
 
@@ -759,19 +765,10 @@ function endGame(eDate) {
 
 
 //유진코드(공통 js로 뺄것)
-function setRoomNameAndMove(url,rName) {
+function setRoomNameAndMoveToSettings(url,rName) {
   window.location.href = url + "?roomName=" + rName;
 }
 
-//=======방 조기종료 함수 ===============//
-function roomQuit() {
-  if(confirm("방을 정말 끝내시겠습니까?") == true){
-    setRoomNameAndMove("byeRoom.html",roomName);
-  }
-  else{
-    return;
-  }
-}
 
 
 //버튼
@@ -1076,6 +1073,7 @@ firebase.database().ref('Users/rv2UkGj4xWQoAEEYiKiHHLQeY883/').once('value').the
 function goCertify() {
   window.location.href = "roomCertify.html";
 }
+
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
 //자라나라 모달모달 - 목표수정

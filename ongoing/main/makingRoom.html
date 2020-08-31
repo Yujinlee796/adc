@@ -162,15 +162,18 @@
                 <h3 style="text-align: center; color: white; font-weight: bold; font-size: 25px;">새로운 방 만들기</h3>
                 <span id="plzFillin"></span><span id="break"></span>
                 <div class="certify">
-                  <span>
+                  <span id="smallTitle">
                     인증 유형 선택
                   </span>
                   <a id="openType"><img src="assets/img/questionMark.png" style="width: 15px;"></a>
                   <br>
-                  <label><input type="radio" value="resultConscience" id="radioConscience">양심적 기록</label><br>
-                  <label><input type="radio" value="resultDumbel" id="radioDumbel">핏투게더 스마트 아령</label>
-                </div>
+                  <label><input type="radio" name="roomType" value="resultConscience" id="radioConscience">양심적 기록</label><br>
+                  <label><input type="radio" name="roomType" value="resultDumbel" id="radioDumbel">핏투게더 스마트 아령</label>
+                </div><br>
                 <div class='holder'>
+                  <span id="smallTitle">
+                    방 정보 기입
+                  </span><br>
                     <!--<span>방 이름: </span>-->
                     <input placeholder="방 이름 (10자 이내)" id="room_name" />
                     <button id="btn-confirm" onclick="confirmName()">중복확인</button>

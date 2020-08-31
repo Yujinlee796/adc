@@ -103,11 +103,11 @@ settings button
   top: 107px;
   margin-right: 20px;
   cursor: pointer;
+  z-index: 1;
 }
 
 #settingsIcon {
   width: 30px;
-  
 }
 
 /*
@@ -460,13 +460,6 @@ modal
   font-weight: bold;
 }
 
-.closeManual {
-  color: #aaa;
-  float: right;
-  margin-top: 0;
-  font-size: 28px;
-  font-weight: bold;
-}
 
 .closeGoal:hover, .closeGoal:focus {
     color: black;
@@ -486,11 +479,6 @@ modal
   cursor: pointer;
 }
 
-.closeManual:hover, .closeManual:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 
 
