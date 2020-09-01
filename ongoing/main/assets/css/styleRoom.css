@@ -373,7 +373,7 @@ modal
   text-align: center;
   margin-bottom: 20px;
 }
-
+/*
 .modal input, #done {
   position: relative;
   left: 50%;
@@ -412,7 +412,7 @@ modal
   margin-left: 53px;
 }
 
-
+*/
   .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -435,7 +435,7 @@ modal
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */                          
 }
-/* The Close Button */
+/* The Close Button *//*
 .closeGoal {
     color: #aaa;
     float: right;
@@ -443,7 +443,7 @@ modal
     font-size: 28px;
     font-weight: bold;
 }
-
+*/
 .closeState {
   color: #aaa;
   float: right;
@@ -451,7 +451,7 @@ modal
   font-size: 28px;
   font-weight: bold;
 }
-
+/*
 .closePun {
   color: #aaa;
   float: right;
@@ -466,19 +466,19 @@ modal
     text-decoration: none;
     cursor: pointer;
 }
-
+*/
 .closeState:hover, .closeState:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
-
+/*
 .closePun:hover, .closePun:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
-
+*/
 
 
 

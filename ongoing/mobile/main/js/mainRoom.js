@@ -39,50 +39,49 @@ window.onload = function(){
 
   roomName = getURLParameter();  //방 이름 받아오기
 
-    //============================================================================//
-    //(다은코드) 현재 방 정보 받아오고 띄우기
-    //============================================================================//
-    if (roomName != '') {
-      firebase.database().ref('Rooms/' + roomName).once('value').then(function(snapshot) {
-        var printGoals = snapshot.child("goals").val();
-        var printBetting = snapshot.child("betting").val();
-        var printTitle = snapshot.child("name").val();
-        var endDate = snapshot.child("endDate").val();
-        var certifyType = snapshot.child("certifyType").val();
-        startDate = snapshot.child("startDate").val();
-        if(startDate != '' && endDate != '') {
-          period = calculatePeriod(startDate, endDate);
-          //방 터트리는 코드 추가
-          endGame(endDate);
-        }
+  //============================================================================//
+  //(다은코드) 현재 방 정보 받아오고 띄우기
+  //============================================================================//
+  if (roomName != '') {
+    firebase.database().ref('Rooms/' + roomName).once('value').then(function(snapshot) {
+      var printGoals = snapshot.child("goals").val();
+      var printBetting = snapshot.child("betting").val();
+      var printTitle = snapshot.child("name").val();
+      var endDate = snapshot.child("endDate").val();
+      var certifyType = snapshot.child("certifyType").val();
+      startDate = snapshot.child("startDate").val();
+      if(startDate != '' && endDate != '') {
+        period = calculatePeriod(startDate, endDate);
+        //방 터트리는 코드 추가
+        endGame(endDate);
+      }
 
-        document.getElementById("goalText").innerHTML = printGoals;
-        document.getElementById("bettingText").innerHTML = printBetting;
-        document.getElementById("titleData").innerHTML = printTitle;
-        document.title = printTitle + ' ｜ 핏투게더';
-        document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
+      document.getElementById("goalText").innerHTML = printGoals;
+      document.getElementById("bettingText").innerHTML = printBetting;
+      document.getElementById("titleData").innerHTML = printTitle;
+      document.title = printTitle + ' ｜ 핏투게더';
+      document.getElementById("endDate").innerHTML = revisePrintEndDate(endDate) + '종료';
 
-        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
-        //certifyType에 따라 버튼 바뀌는 함수
-        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        console.log(certifyType);
-        var successBtn = document.getElementById('successBtn');
-        var goCertifyBtn = document.getElementById('goCertifyBtn');
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+      //certifyType에 따라 버튼 바뀌는 함수
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      console.log(certifyType);
+      var successBtn = document.getElementById('successBtn');
+      var goCertifyBtn = document.getElementById('goCertifyBtn');
 
-        if (certifyType === 'conscience') {
-          successBtn.style.display = "block";
-          goCertifyBtn.style.display = "none";
-          console.log("요기는 양심방");
-        }
+      if (certifyType === 'conscience') {
+        successBtn.style.display = "block";
+        goCertifyBtn.style.display = "none";
+        console.log("요기는 양심방");
+      }
 
-        else if (certifyType === 'dumbel') {
-          successBtn.style.display = "none";
-          goCertifyBtn.style.display = "block";
-          console.log("요기는 아령방");
-        }
-      });
-    } else { alert('방 이름을 불러오지 못했습니다.');}
-
+      else if (certifyType === 'dumbel') {
+        successBtn.style.display = "none";
+        goCertifyBtn.style.display = "block";
+        console.log("요기는 아령방");
+      }
+    });
+  } else { alert('방 이름을 불러오지 못했습니다.');}
 
   //============================================================================//
   //(다은코드) 현재 접속 중인 유저의 방과 관련된 정보 받아오고 띄우기
@@ -129,6 +128,12 @@ window.onload = function(){
     } else if (!user) { window.location.href = "../index.html"; //signout 상태이면 쫓겨나는 코드
     } else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
   });
+  
+
+  //settings 버튼 만드는 코드 ★모바일추가★
+  var addBtn = '<button type="button" id="settings" onclick="setRoomNameAndMoveToSettings(\'roomSettings.html\',\'' + roomName + '\');"><img id="settingsIcon" src="assets/img/settings.png"></button>'
+
+  $("#btnPlace").append(addBtn);
 }
 
 
@@ -760,19 +765,10 @@ else { return 0; }
 
 
 //유진코드(공통 js로 뺄것)
-function setRoomNameAndMove(url,rName) {
+function setRoomNameAndMoveToSettings(url,rName) {
 window.location.href = url + "?roomName=" + rName;
 }
 
-//=======방 조기종료 함수 ===============//
-function roomQuit() {
-if(confirm("방을 정말 삭제하시겠습니까?") == true){
-  setRoomNameAndMove("byeRoom.html",roomName);
-}
-else{
-  return;
-}
-}
 
 
 //버튼
@@ -1075,10 +1071,10 @@ document.getElementById("nicknameData").innerHTML = printNickname;
 //certifyType = dumbel 일때 인증창 가는 함수
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function goCertify() {
-  window.location.href = "roomCertify.html";
+window.location.href = "roomCertify.html";
 }
 
-
+/*
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
 //자라나라 모달모달 - 목표수정
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1093,40 +1089,38 @@ var spanGoal = document.getElementsByClassName("closeGoal")[0];
 
 // When the user clicks on the button, open the modal
 btnGoal.onclick = function() {
-    modalGoal.style.display = "block";
+  modalGoal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 spanGoal.onclick = function() {
-    modalGoal.style.display = "none";
-    document.getElementById("plzFillinGoal").innerHTML = "";
-    document.getElementById("breakGoal").innerHTML = "";
+  modalGoal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modalGoal) {
-        modalGoal.style.display = "none";
-    }
+  if (event.target == modalGoal) {
+      modalGoal.style.display = "none";
+  }
 }
 
 
 function editGoals() {
-  var newGoal = document.getElementById("edittedGoals").value;
+var newGoal = document.getElementById("edittedGoals").value;
 
-  if (newGoal == "") {
-    document.getElementById("plzFillinGoal").innerHTML = "목표를 입력하지 않으셨습니다.";
-    document.getElementById("breakGoal").innerHTML = "<br>";
-    document.getElementById("plzFillinGoal").style.color = "red"
-  }
+if (newGoal == "") {
+  document.getElementById("plzFillinGoal").innerHTML = "목표를 입력하지 않으셨습니다.";
+  document.getElementById("breakGoal").innerHTML = "<br>";
+  document.getElementById("plzFillinGoal").style.color = "red"
+}
 
-  else {
-    firebase.database().ref("Rooms/" + roomName).update({
-      goals: newGoal
-  });
-  alert("목표가 새로 설정되었습니다.");
-  window.location.reload();
-  }
+else {
+  firebase.database().ref("Rooms/" + roomName).update({
+    goals: newGoal
+});
+alert("목표가 새로 설정되었습니다.");
+window.location.reload();
+}
 };
 
 
@@ -1145,42 +1139,40 @@ var spanPun = document.getElementsByClassName("closePun")[0];
 
 // When the user clicks on the button, open the modal
 btnPun.onclick = function() {
-    modalPun.style.display = "block";
+  modalPun.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 spanPun.onclick = function() {
-    modalPun.style.display = "none";
-    document.getElementById("breakPun").innerHTML = "<br>";
-    document.getElementById("plzFillinPun").style.color = "red"
+  modalPun.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modalPun) {
-        modalPun.style.display = "none";
-    }
+  if (event.target == modalPun) {
+      modalPun.style.display = "none";
+  }
 }
 
 
 function editPunishment() {
-  var newBetting = document.getElementById("edittedPunishment").value;
+var newBetting = document.getElementById("edittedPunishment").value;
 
-  if (newBetting == "") {
-    document.getElementById("plzFillinPun").innerHTML = "내기를 입력하지 않으셨습니다.";
-    document.getElementById("breakPun").innerHTML = "<br>";
-    document.getElementById("plzFillinPun").style.color = "red"
-  }
+if (newBetting == "") {
+  document.getElementById("plzFillinPun").innerHTML = "내기를 입력하지 않으셨습니다.";
+  document.getElementById("breakPun").innerHTML = "<br>";
+  document.getElementById("plzFillinPun").style.color = "red"
+}
 
-  else {
-    firebase.database().ref("Rooms/" + roomName).update({
-      betting: newBetting
-    });
-    alert("내기가 새로 설정되었습니다.");
-    window.location.reload();
-  }
+else {
+  firebase.database().ref("Rooms/" + roomName).update({
+    betting: newBetting
+  });
+  alert("내기가 새로 설정되었습니다.");
+  window.location.reload();
+}
 };
-
+*/
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1190,26 +1182,26 @@ function editPunishment() {
 var modalState = document.getElementById('myModal-state');
 
 // Get the button that opens the modal
-var btnState = document.getElementById("friends");
+var btnState = document.getElementById("openStatePopup");
 
 // Get the <span> element that closes the modal
 var spanState = document.getElementsByClassName("closeState")[0];
 
 // When the user clicks on the button, open the modal
 btnState.onclick = function() {
-    modalState.style.display = "block";
+  modalState.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 spanState.onclick = function() {
-    modalState.style.display = "none";
+  modalState.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modalState) {
-        modalState.style.display = "none";
-    }
+  if (event.target == modalState) {
+      modalState.style.display = "none";
+  }
 }
 
 
@@ -1219,65 +1211,65 @@ window.onclick = function(event) {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Get the modal
 var modalManual = document.getElementById('myModal-manual');
- 
+
 // Get the button that opens the modal
-var btnManual = document.getElementById('openManual');
+var btnManual = document.getElementById("openManual");
 
 // Get the <span> element that closes the modal
-var spanManual = document.getElementsByClassName("closeManual")[0];                                         
+var spanManual = document.getElementsByClassName("closeManual")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btnManual.onclick = function() {
-    modalManual.style.display = "block";
+  modalManual.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 spanManual.onclick = function() {
-    modalManual.style.display = "none";
+  modalManual.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modalManual) {
-        modalManual.style.display = "none";
-    }
+  if (event.target == modalManual) {
+      modalManual.style.display = "none";
+  }
 }
 
 //=============================================================================//
 //(다은코드) 친구들의 달성 상황 - 각 넥네임 별 표 한칸씩 생성
 //=============================================================================//
 function displayState(Nname, state) {
-  const stateTable = document.getElementById('stateTable');
-  const trElem = document.createElement('tr');
-  const tdElemLeft = document.createElement('td');
-  const tdElemRight = document.createElement('td');
-  const elemTxtLeft = document.createTextNode(Nname);
-  var elemTxtRight = document.createTextNode('');
+const stateTable = document.getElementById('stateTable');
+const trElem = document.createElement('tr');
+const tdElemLeft = document.createElement('td');
+const tdElemRight = document.createElement('td');
+const elemTxtLeft = document.createTextNode(Nname);
+var elemTxtRight = document.createTextNode('');
 
-  tdElemLeft.classList.add('Nname');
-  tdElemLeft.appendChild(elemTxtLeft);
+tdElemLeft.classList.add('Nname');
+tdElemLeft.appendChild(elemTxtLeft);
 
-  switch(state) {
-    case 1:
-      tdElemRight.classList.add('stateTrue');
-      elemTxtRight = document.createTextNode('완료');
-      tdElemRight.appendChild(elemTxtRight);
-      break;
-    case -1:
-      tdElemRight.classList.add('stateFalse');
-      elemTxtRight = document.createTextNode('포기');
-      tdElemRight.appendChild(elemTxtRight);
-      break;
-    case 0:
-      tdElemRight.classList.add('stateYet');
-      elemTxtRight = document.createTextNode('-');
-      tdElemRight.appendChild(elemTxtRight);
-      break;
-  }
+switch(state) {
+  case 1:
+    tdElemRight.classList.add('stateTrue');
+    elemTxtRight = document.createTextNode('완료');
+    tdElemRight.appendChild(elemTxtRight);
+    break;
+  case -1:
+    tdElemRight.classList.add('stateFalse');
+    elemTxtRight = document.createTextNode('포기');
+    tdElemRight.appendChild(elemTxtRight);
+    break;
+  case 0:
+    tdElemRight.classList.add('stateYet');
+    elemTxtRight = document.createTextNode('-');
+    tdElemRight.appendChild(elemTxtRight);
+    break;
+}
 
-  trElem.appendChild(tdElemLeft);
-  trElem.appendChild(tdElemRight);
+trElem.appendChild(tdElemLeft);
+trElem.appendChild(tdElemRight);
 
-  stateTable.appendChild(trElem);
-  return trElem;
+stateTable.appendChild(trElem);
+return trElem;
 }

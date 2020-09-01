@@ -77,7 +77,7 @@ window.onload = function(){
      }
      else {
       $.when(delUsersRoom2(roomName,currentUserID)).done(function(){
-        alert('방이 삭제되었습니다.');
+        alert('방에서 나왔습니다.');
         location.href = "mainPage.html";
       })
    }
