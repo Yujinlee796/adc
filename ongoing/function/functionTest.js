@@ -47,11 +47,11 @@ function update() {
           var roomName = childSnapshot.key;
           firebase.database().ref("Usersroom/" + user + "/" + roomName).set({
             recentcnt : 0,
-            lastClick : getTimeStamp();
+            lastClick : getTimeStamp()
         });
     });
   });
- }
+ });
 }
 
 //===========================================================================//
@@ -78,7 +78,7 @@ function getTimeStamp() {
   leadingZeros(d.getDate() , 2) + ' ' +
 
   leadingZeros(d.getHours(), 2) + ':' +
-  leadingZeros(d.getMinute(), 2) + ':' +
+  leadingZeros(d.getMinutes(), 2) + ':' +
   leadingZeros(d.getSeconds(), 2);
 
  return s;
