@@ -197,61 +197,61 @@ const styles = StyleSheet.create({
 const slides = [
   {
     key: 's1',
-    text: '내 삶을 바꿀 긍정적인 습관 한가지를 가질 수 있도록 도와줍니다',
-    title: '핏투게더는 여러분들에게',
+    text: '당신의 삶을 바꿀\n긍정적인 습관 한 가지를 만들어 봅시다.',
+    title: '핏투게더와 함께',
     image: {
       uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_mobile_recharge.png',
+        'introimage/1.png',
     },
-    backgroundColor: '#20d2bb',
+    backgroundColor: '#3d8dd3',
   },
   {
     key: 's2',
-    title: '어떻게 도와주냐구요?',
-    text: '...',
+    title: '',
+    text: '친구들과 함께 운동 목표와 내기를 설정하고\n서로를 감시하며 하루하루 열심히 운동합시다.',
     image: {
       uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png',
+        'introimage/2.png',
     },
-    backgroundColor: '#febe29',
+    backgroundColor: '#3d8dd3',
   },
   {
     key: 's3',
-    title: '바로 여러분의 친구들의 감시입니다',
-    text: '...',
+    title: '',
+    text: '내기에서 이기기 위해 꾸준히 노력하다 보면\n어느새 규칙적으로 운동하는 자신을 발견할 수 있을 거예요.',
     image: {
-      uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png',
+      uri: 'introimage/3.png',
     },
-    backgroundColor: '#22bcb5',
+    backgroundColor: '#3d8dd3',
   },
   {
     key: 's4',
-    title: '여러분끼리 자발적으로 내기를 설정하고,',
-    text: '내기에서 이기기 위해 하루하루 미션을 수행하다보면',
+    title: '하지만 기억하세요.',
+    text: '핏투게더는 당신을 도울 뿐\n이 멋진 습관을 실현하는 것은 여러분이라는 것을!',
     image: {
-      uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_best_deals.png',
+      uri: 'introimage/4.png',
     },
-    backgroundColor: '#3395ff',
+    backgroundColor: '#3d8dd3',
   },
   {
     key: 's5',
-    title: '어느새 내 삶을 바꿀 작은 습관이 하나 생겨있을겁니다.',
-    text: '...',
+    title: '',
+    text: '핏투게더를 본격적으로 시작하기 전에\n[이용 가이드] 를 반드시 확인해 주세요!',
     image: {
       uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_bus_ticket_booking.png',
+        'introimage/5.png',
     },
-    backgroundColor: '#f6437b',
+    backgroundColor: '#3d8dd3',
   },
   {
     key: 's6',
-    title: '핏투게더는 이러한 일이 가능해지도록 자리만 마련해 줄뿐이죠!',
-    text: '그럼 이제 내 삶을 바꾸러 가보시죠!',
+    title: '',
+    text: '그럼 이제,\n당신의 삶을 바꾸러 가볼까요?',
     image: {
       uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_train_ticket_booking.png',
+        '',
     },
-    backgroundColor: '#febe29',
+    backgroundColor: '#3d8dd3',
   },
 ];
 
