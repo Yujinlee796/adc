@@ -128,6 +128,12 @@ window.onload = function(){
       } else if (!user) { window.location.href = "../index.html"; //signout 상태이면 쫓겨나는 코드
       } else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
     });
+    
+
+    //settings 버튼 만드는 코드 ★모바일추가★
+    var addBtn = '<button type="button" id="settings" onclick="setRoomNameAndMoveToSettings(\'roomSettings.html\',\'' + roomName + '\');"><img id="settingsIcon" src="assets/img/settings.png"></button>'
+
+    $("#btnPlace").append(addBtn);
 }
 
 
@@ -339,22 +345,28 @@ function createScore(score, i) {
   //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
   var style = document.createElement('style');
   style.type = 'text/css';
-  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #f33886); box-shadow: 0 3px 3px -5px #fff, 0 2px 5px #fff; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+  style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #fcfa7a); box-shadow: 0 3px 3px -5px #fff, 0 2px 5px #fff; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
   document.getElementsByTagName('head')[0].appendChild(style);
 
   //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌
   const divElem = document.createElement('div');
   const divElem2 = document.createElement('div');
-  divElem.classList.add('progress');
-  divElem2.classList.add('progress-done-' + i);
-
+  const divElem3 = document.createElement('div');
+  divElem.classList.add("progressBox");
+  divElem2.classList.add('progress');
+  divElem3.classList.add('progress-done-' + i);
+  /*
   const elemTxt = document.createTextNode(score +"점");
-  divElem2.appendChild(elemTxt);
-
+  divElem2.appendChild(elemTxt);*/
+  var elemTxt = score + '점';
+  $(divElem).append(elemTxt);
+  
+  
+  divElem2.appendChild(divElem3);
   divElem.appendChild(divElem2);
-
+  
   return divElem;
-}
+  }
 
 //----------------------------------------------------------------------------//
 //닉네임을 입력하면 닉네임을 출력하는 함수
@@ -759,19 +771,10 @@ function endGame(eDate) {
 
 
 //유진코드(공통 js로 뺄것)
-function setRoomNameAndMove(url,rName) {
+function setRoomNameAndMoveToSettings(url,rName) {
   window.location.href = url + "?roomName=" + rName;
 }
 
-//=======방 조기종료 함수 ===============//
-function roomQuit() {
-  if(confirm("방을 정말 끝내시겠습니까?") == true){
-    setRoomNameAndMove("byeRoom.html",roomName);
-  }
-  else{
-    return;
-  }
-}
 
 
 //버튼
@@ -1077,6 +1080,7 @@ function goCertify() {
   window.location.href = "roomCertify.html";
 }
 
+/*
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
 //자라나라 모달모달 - 목표수정
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1174,7 +1178,7 @@ function editPunishment() {
     window.location.reload();
   }
 };
-
+*/
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

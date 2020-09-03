@@ -1,14 +1,9 @@
-<!--
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    상단바에 생기는 이상한 녀석들..수정필요
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
--->
 
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>방 ｜ 핏투게더</title>
+        <title>방 관리하기 ｜ 핏투게더</title>
         <link href="../logo/titleIcon.png" rel="shortcut icon" type="image/x-icon">
 
 
@@ -19,16 +14,17 @@
         <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
-        <link rel="stylesheet" href="assets/css/styleRoom.css">
+        <link rel="stylesheet" href="assets/css/styleRoomSettings.css">
         <link rel="stylesheet" href="assets/css/guideModal.css">
     </head>
 
     <body style="background-image: url(assets/img/slide/roomBackgroundDarkened.png);">
-      <div id="btnPlace"><!--★모바일추가★-->
-        <!--여기에 setting 버튼 여는거 추가될 예정, js 함수로 이루어짐-->
 
-
-      </div>
+        <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        pc용 네비게이션 바
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
         <header id="header" class="fixed-top">
             <span class="logo" style="float: left;">
                 <div class="greet" style="display: flex;">
@@ -57,6 +53,13 @@
             </nav>
 
         </header>
+
+
+        <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        모바일일 경우 모바일용 페이지로 이동
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
         <script type="text/javascript">
           function deviceKind() {
       
@@ -87,11 +90,11 @@
             }
             console.log(flag);
             if (flag === "Mobile") {
-              location.href = "../mobile/main/room.html";
+              location.href = "../mobile/main/roomSettings.html";
             }
     
             else if (flag === "Tablet") {
-              location.href = "../mobile/main/room.html";
+              location.href = "../mobile/main/roomSettings.html";
             }
             };
           deviceKind();
@@ -158,120 +161,53 @@
           isBrowserCheck();
 
         </script>
-        <div class="main-box">
+        <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        본문 코드 시작
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
+        <div class="mainTitle">
+            방 관리하기
+        </div>
+        <div class="explain">
+            방의 정보를 수정하고, 방을 나가거나 삭제할 수 있습니다.
+        </div>
+        <div id="returnPlace">
+          <!--방 돌아가는 버튼 추가 예정-->
+        </div>
 
-          <div class="align-left">
-            <p id="roomTitle">
-              <span id="titleData">-<!--방이름--></span>
-              <span id="fromStartDate"><!--며칠차--></span>
-            </p>
+        <div class="boxes">
+            <div class="goals" style="margin-bottom: 30px;">
+                <button class="settingBtn" id="editGoals">목표 수정하기</button>
+            </div>
 
-              <span id="endDate"><!--끝나는날짜--></span>
+            <div class="bettings" style="margin-bottom: 30px;">
+                <button class="settingBtn" id="editPunishment">내기 수정하기</button>
+            </div>
 
-            <div class="boxes">
-              <p class="goal" id="box">
+            <div class="date" style="margin-bottom: 30px;">
+                <button class="settingBtn" id="editDate">종료 날짜 수정하기</button>
+            </div>
 
-                  <span id="goalText">
-
-                      -
-
-                  </span>
-
-              </p>
-
-              <p class="punishment" id="box">
-
-                  <span id="bettingText">
-
-                      -<!--내기 출력되는 부분-->
-
-                  </span>
-
-              </p>
-
-              <div class="ranking" id="box">
-                <div id="scoreTitle">
-                  오늘까지의 총 점수
-                </div>
-                <div id="scoreBar">
-                  <!--<div class="progress">
-                    <div class="progress-done">10점</div>
-                  </div>--><!--(for 챙)이렇게 생겼다라는 예시임-->
-                  <!--스코어바 생성 부분-->
-                  </div>
-              </div>
+            <div class="exit" style="margin-bottom: 30px;">
+                <button class="settingBtn" onclick="roomQuit();">방 나가기</button><br>
+                <div id="sub">방에서 퇴장합니다. 내 방 목록에서는 이 방이 사라지지만, 다른 친구들은 방을 계속 이용할 수 있습니다. 방 정보의 히스토리 저장 여부를 선택할 수 있습니다.</div>
 
             </div>
-          </div>
 
-          <div class="align-right">
-            <!--글씨 크기 수정-->
-            <h2 style="color: #3d8dd3; margin-bottom: 30px; font-size: 20px;">
-              오늘의 운동 기록까지 남은 시간<br><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;">" </span>
-              <span id="todayTimer" style="font-size: 50px;"> <!--오늘의 운동기록까지 ~초--> </span><span id="quotation" style="font-family: 'JSArirang-Regular'; font-size: 50px;"> "</span>
-            </h2>
-            <p>
-              <span style="margin-bottom: 8px; color: white;" class="currentResult">오늘의 달성 상황</span> <br>
-              <span id="todayState" style="font-size: 50px; color: white; font-weight: bolder;">-<!--오늘의 운동 완료 여부--></span>
-            </p>
-            <a href="#" id="openStatePopup" style="font-size: 20px; margin-bottom: 30px;">친구들의 달성 상황 확인하기</a>
-            <table class="table" style="margin-top: 30px;">
-              <tr>
-                <td style="border-top: none;" rowspan="3" style="width: 230px;"> <!--프로필그림-->
-                  <img id="profileImg" src="assets/img/none.png" style="width: 250px;">
+            <div class="delete" style="margin-bottom: 30px;">
+                <button class="settingBtn" onclick="deleteRoom();">방 삭제하기</button><br>
+                <div id="sub">방을 삭제합니다. 방의 모든 구성원의 방 목록에서 이 방이 사라집니다. 친구들과 협의 후 진행해 주세요. 방 정보가 히스토리에 저장되지 않고 삭제됩니다.</div>
 
-                </td>
-                <td style="border-top: none; border-bottom: 1px solid white; width: 220px;">
-                  <span id="nicknameData" style="font-size: 20px; color: white;">- <!--닉네임 출력되는 부분--> </span>
-                </td>
-
-              </tr>
-
-              <tr>
-
-                <td style="border-top: none; border-bottom: 1px solid white; padding-right: 45px; padding-left: 45px; height: 90px;">
-                  <button onclick="plusOneAndReload()" id="successBtn">완료</button>
-                  <button onclick="goCertify()" id="goCertifyBtn">인증하기</button>
-                </td>
-
-              </tr>
-
-              <tr>
-
-                <td style="border-top: none;">
-
-                  <!--성공 실패 버튼-->
-
-                  <button onclick="giveUpAndReload()" id="resultBtn" >포기</button>
-                  <button onclick="resetScoreAndReload()" id="resultBtn">리셋</button>
-                </td>
-
-              </tr>
-
-            </table>
-
-
-
-          </div>
+            </div>
         </div>
 
 
-        <div id="myModal-state" class="modal">
-          <div class="modal-content">
-            <span class="closeState">&times;</span>
-              <div class="main-container">
-                  <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">친구들의 달성 상황</h2>
-                  <table id="stateTable">
-                      <!--동적할당되는 표의 형태
-                      <tr>
-                          <td style="color: skyblue;">닉네임</td>
-                          <td style="color: tomato;">현황</td>
-                      </tr>
-                      -->
-                  </table>
-              </div>
-          </div>
-        </div>
+        <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        이용 가이드 모달
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
 
         <div id="myModal-manual" class="modalManual">
           <div class="modal-contentManual">
@@ -310,6 +246,60 @@
           </div>
         </div>
 
+                <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        목표 수정 모달
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
+        <div id="myModal-goal" class="modal">
+            <div class="modal-content">
+              <span class="closeGoal">&times;</span>
+              <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">목표 수정하기</h2>
+              <input type="text" id="edittedGoals" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 목표를 입력하세요.">
+              <span id="breakGoal"></span><span id="plzFillinGoal"></span>
+              <br><button id="done" onclick="editGoals();" style="margin-top: 20px">수정 완료</button>
+            </div>
+          </div>
+
+
+                  <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        내기 수정 모달
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
+  
+          <div id="myModal-punishment" class="modal">
+            <div class="modal-content">
+              <span class="closePun">&times;</span>
+              <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">내기 수정하기</h2>
+              <input type="text" id="edittedPunishment" style="width: 400px; height: 30px; font-family: 'InfinitySans-RegularA1';"  placeholder="새로운 내기를 입력하세요.">
+              <span id="breakPun"></span><span id="plzFillinPun"></span>
+              <br><button id="done" onclick="editPunishment();" style="margin-top: 20px">수정 완료</button>
+            </div>
+          </div>
+
+
+                <!--
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        종료날짜 수정 모달
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        -->
+        <div id="myModal-date" class="modal">
+          <div class="modal-content">
+            <!--== for 달력 ==-->
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+            <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+            <!--===달력====-->
+            <span class="closeDate">&times;</span>
+            <h2 style="font-family: 'InfinitySans-RegularA1'; color: black;">종료 날짜 수정하기</h2>
+            <input style="padding-top: 5px; padding-bottom: 5px; color: #757575; font-size: 15px;" type="datetime-local" id="edittedDate"/>
+            <span id="breakDate"></span><span id="plzFillinDate"></span>
+            <br><button id="done" onclick="editDate();" style="margin-top: 20px">수정 완료</button>
+          </div>
+        </div>
+
+
 
         <script src="assets/vendor/jquery/jquery.min.js"></script>
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -325,7 +315,7 @@
         <script src="assets/js/main.js"></script>-->
 
         <!--이 html에 해당하는 JS File-->
-        <script src="js/mainRoom.js"></script>
+        <script src="js/mainRoomSettings.js"></script>
 
     </body>
 </html>

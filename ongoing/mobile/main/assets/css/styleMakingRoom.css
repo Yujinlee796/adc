@@ -264,13 +264,11 @@ z-index: 3;
 }
 
 .dumbel {
-
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .conscience {
-  font-size: 25px;
-
+  font-size: 36px;
 }
 
 .conscience #right, .dumbel #right {
@@ -281,7 +279,7 @@ color: white;
 transition: 0.3s;
 cursor: pointer;
 font-family: 'InfinitySans-RegularA1';
-font-size: 25px;
+font-size: 30px;
 }
 
 .conscience #right:hover, .dumbel #right:hover {

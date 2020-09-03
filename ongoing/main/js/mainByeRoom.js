@@ -77,7 +77,7 @@ window.onload = function(){
      }
      else {
       $.when(delUsersRoom2(roomName,currentUserID)).done(function(){
-        alert('방이 삭제되었습니다.');
+        alert('방에서 나왔습니다.');
         location.href = "mainPage.html";
       })
    }
@@ -89,7 +89,7 @@ window.onload = function(){
 }
 
 //===========================================================================//
-//UsersRoom에서 data 삭제
+//UsersRoom에서 data 삭제 (방 나가기 -> 히스토리 남김)
 //==========================================================================//
 function delUsersRoom1(rName,currentUserID) {
   
@@ -98,7 +98,7 @@ function delUsersRoom1(rName,currentUserID) {
 }
 
 //===========================================================================//
-//History에 남기지 않을 경우 UsersRoom에서 data 삭제
+//History에 남기지 않을 경우 UsersRoom에서 data 삭제 (방 나가기 -> 히스토리 안남김)
 //==========================================================================//
 function delUsersRoom2(rName,currentUserID) {
   var deferred = $.Deferred();
@@ -106,14 +106,24 @@ function delUsersRoom2(rName,currentUserID) {
   return deferred.promise();
 }
 
-//==========================================================================//
-//History에 남기지 않을 경우 Rooms에서 data 삭제
+/*
 //===========================================================================//
-function delRoom(rName) {
+//방 삭제하기 -> UsersRoom 삭제 (히스토리 남김)
+//==========================================================================//
+function delUsersRoom3(rName,currentUserID) {
+  var deferred = $.Deferred();
+  firebase.database().ref('Usersroom/' + currentUserID +'/' + rName).remove().then(function() {deferred.resolve();});
+  return deferred.promise();
+}
+
+//==========================================================================//
+//방 삭제하기 -> Rooms 삭제 (히스토리 남김)
+//===========================================================================//
+function delRoom1(rName) {
   var deferred = $.Deferred();
   firebase.database().ref('Rooms/' + rName).remove().then(function() {deferred.resolve();});
   return deferred.promise();
-}
+}*/
 
 //==========================================================================//
 //Userhistory에 data 업데이트 //

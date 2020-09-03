@@ -138,6 +138,17 @@ settings button
     text-align: center;
 }
 
+#period {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    top: 200px;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+}
+
 .boxes {
   position: absolute;
   left: 50%;
@@ -193,7 +204,8 @@ settings button
   
 
   .progress {
-      background-color: #d8d8d8;
+      background-color: #ff3a3a;
+      box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c;
       border-radius: 20px;
       position: relative;
       margin: 15px 0;
@@ -202,7 +214,7 @@ settings button
   }
 /*  
   .progress-done {
-      background: linear-gradient(to left, #00ccff, #fcfa7a);
+      background-color: #00ccff;
       box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c;
       border-radius: 20px;
       color: #fff;
