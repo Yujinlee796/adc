@@ -18,6 +18,8 @@ firebase.auth.Auth.Persistence.LOCAL;
 
 var roomName = '';
 var roomUsers = [];
+var startDate = '';
+var endDate = '';
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //(다은코드) 페이지 로드시 필요한 정보 가져오고, 출력하는 모든 코드 부분
@@ -35,7 +37,7 @@ window.onload = function(){
       var printGoals = snapshot.child("goals").val();
       var printBetting = snapshot.child("betting").val();
       var printTitle = snapshot.child("name").val();
-      var endDate = snapshot.child("endDate").val();
+      endDate = snapshot.child("endDate").val();
       startDate = snapshot.child("startDate").val();
       if(startDate != '' && endDate != '') {
         period = calculatePeriod(startDate, endDate);
@@ -45,6 +47,7 @@ window.onload = function(){
       document.getElementById("bettingText").innerHTML = printBetting;
       document.getElementById("titleData").innerHTML = printTitle;
       document.getElementById("endDate").innerHTML = revisePrintEndDate(startDate) + ' ~ ' + revisePrintEndDate(endDate);
+      document.getElementById("period").innerHTML = calculatePeriod(startDate,endDate) + '일간 내기 진행';
     });
    } else { alert('방 이름을 불러오지 못했습니다.');}
 
@@ -92,7 +95,7 @@ window.onload = function(){
 //UsersRoom에서 data 삭제 (방 나가기 -> 히스토리 남김)
 //==========================================================================//
 function delUsersRoom1(rName,currentUserID) {
-  
+
   firebase.database().ref('Usersroom/' + currentUserID +'/' + rName).remove();
   console.log("delete");
 }
@@ -191,7 +194,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
     var style = document.createElement('style');
     style.type = 'text/css';
-    style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #fcfa7a); box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+    style.innerHTML = '.progress-done-' + i + ' { background: #2be0e0; box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c; border-radius: 40px 10px 10px 40px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
     document.getElementsByTagName('head')[0].appendChild(style);
 
     //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌
@@ -200,8 +203,11 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     divElem.classList.add('progress');
     divElem2.classList.add('progress-done-' + i);
 
+    //챙이가 위치 수정해야할 점수 2개 (elemTxt : 성공점수, elemTxt2 : 실패점수)
     const elemTxt = document.createTextNode(score +"점");
+    const elemTxt2 = document.createTextNode(calculatePeriod(startDate,endDate)-score + "점");
     divElem2.appendChild(elemTxt);
+    divElem2. appendChild(elemTxt2);
 
     divElem.appendChild(divElem2);
 

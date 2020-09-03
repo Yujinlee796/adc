@@ -47,7 +47,7 @@ window.onload = function(){
       document.getElementById("bettingText").innerHTML = printBetting;
       document.getElementById("titleData").innerHTML = printTitle;
       document.getElementById("endDate").innerHTML = revisePrintEndDate(startDate) + '~' + revisePrintEndDate(endDate) + '종료';
-      document.getElementById("period").innerHTML = calculatePeriod(startDate,endDate) + '일간 내기 진행'
+      document.getElementById("period").innerHTML = calculatePeriod(startDate,endDate) + '일간 내기 진행';
     });
    } else { alert('방 이름을 불러오지 못했습니다.');}
 
@@ -162,6 +162,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     divElem.classList.add('progress');
     divElem2.classList.add('progress-done-' + i);
 
+    //챙이가 위치 수정해야할 점수 2개 (elemTxt : 성공점수, elemTxt2 : 실패점수)
     const elemTxt = document.createTextNode(score +"점");
     const elemTxt2 = document.createTextNode(calculatePeriod(startDate,endDate)-score + "점");
     divElem2.appendChild(elemTxt);
