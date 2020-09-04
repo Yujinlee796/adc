@@ -153,22 +153,29 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
     var style = document.createElement('style');
     style.type = 'text/css';
-    style.innerHTML = '.progress-done-' + i + ' { background-color: #2be0e0; box-shadow: 0 3px 3px -5px #f7c7c7c, 0 2px 5px #7c7c7c; border-radius: 40px 10px 10px 40px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+    style.innerHTML = '.progress-done-' + i + ' { background-color: #2be0e0; box-shadow: 0 3px 3px -5px #f7c7c7c, 0 2px 5px #7c7c7c; border-radius: 20px 0 0 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; opacity: 0; transition: 1s ease 0.3s;}';
     document.getElementsByTagName('head')[0].appendChild(style);
 
     //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌
     const divElem = document.createElement('div');
     const divElem2 = document.createElement('div');
-    divElem.classList.add('progress');
-    divElem2.classList.add('progress-done-' + i);
-
-    //챙이가 위치 수정해야할 점수 2개 (elemTxt : 성공점수, elemTxt2 : 실패점수)
+    const divElem3 = document.createElement('div');
+    divElem.classList.add("progressBox");
+    divElem2.classList.add('progress');
+    divElem3.classList.add('progress-done-' + i);
+    /*
     const elemTxt = document.createTextNode(score +"점");
-    const elemTxt2 = document.createTextNode(calculatePeriod(startDate,endDate)-score + "점");
-    divElem2.appendChild(elemTxt);
-    divElem2.appendChild(elemTxt2);
+    divElem2.appendChild(elemTxt);*/
+    var elemTxt = score + '일';
+    var elemTxt2 = document.createTextNode(calculatePeriod(startDate,endDate)-score + "일");
 
+
+
+    divElem2.appendChild(divElem3);
     divElem.appendChild(divElem2);
+
+    $(divElem).prepend(elemTxt);
+    $(divElem).append(elemTxt2);
 
     return divElem;
   }
@@ -260,6 +267,10 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     if(period != 0) {
       progress.style.width = (score/period)*100 + '%';
       progress.style.opacity = 1;
+
+      if ((score/period)*100 > 97) {
+        progress.style.borderRadius = "20px";
+      }
     } else {
       alert('방 정보가 로드되기 전에 스코어 바를 출력하려는 오류가 발생했습니다.');
     }

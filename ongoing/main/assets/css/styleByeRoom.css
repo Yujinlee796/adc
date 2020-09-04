@@ -171,40 +171,51 @@ settings button
 .goal {
   border: none;
   background-color: rgba(255,255,255,0.2);
-  border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 450px;
   text-align: center;
   color: white;
   font-size: 20px;
+  margin-bottom: 40px;
 }
 
 .punishment {
   border: none;
   background-color: rgba(255,255,255,0.2);
-  border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 450px;
   text-align: center;
   color: white;
   font-size: 20px;
+  margin-bottom: 40px;
 }
 
 .ranking {
   border: none;
   background-color: rgba(255,255,255,0.2);
-  border-radius: 20px;
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 20px;
-  padding-left: 75px;
-  padding-right: 75px;
-  width: 300px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 390px;
   text-align: center;
   color: white;
   font-size: 13px;
   margin-bottom: 50px;
+}
+
+#titleBox {
+  width: 450px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 15px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: white dotted 1px;
 }
 
 /*
@@ -219,7 +230,7 @@ settings button
   position: absolute;
   left: 50%;
   margin-left: -125px;
-  top: 273px;
+  top: -64px;
   background-color: rgba(61,141,211,0.6);
   border: rgba(61,141,211,0.6) 2px solid;
   border-radius: 2px;
@@ -252,14 +263,20 @@ settings button
 
 
   .progress {
-      background-color: #ff3a3a;
-      box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c;
-      border-radius: 20px;
-      position: relative;
-      margin: 15px 0;
-      height: 20px;
-      width: 300px;
-  }
+    background-color: #ff3a3a;
+    box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c;
+    border-radius: 20px;
+    margin: 0 auto;
+    height: 20px;
+    width: 315px;
+}
+
+.progressBox {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
 /*
   .progress-done {
       background: linear-gradient(to left, #00ccff, #fcfa7a);

@@ -345,7 +345,7 @@ function createScore(score, i) {
 //일단 각각의 score 값을 출력할 수 있는 css 코드를 각각 만들어서 html의 head 부분에 작성
 var style = document.createElement('style');
 style.type = 'text/css';
-style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #fcfa7a); box-shadow: 0 3px 3px -5px #fff, 0 2px 5px #fff; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; width: 0%; opacity: 0; transition: 1s ease 0.3s;}';
+style.innerHTML = '.progress-done-' + i + ' { background: linear-gradient(to left, #0093f5, #fcfa7a); box-shadow: 0 3px 3px -5px #fff, 0 2px 5px #fff; border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; height: 100%; opacity: 0; transition: 1s ease 0.3s;}';
 document.getElementsByTagName('head')[0].appendChild(style);
 
 //태그를 생성하여 클래스 속성 및 텍스트를 넣어줌

@@ -210,31 +210,30 @@ z-index: 3;
   .goal {
     border: none;
     background-color: rgba(255,255,255,0.2);
-    border-radius: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 700px;
     text-align: center;
     color: white;
     font-size: 30px;
+    margin-bottom: 60px;
   }
 
   .punishment {
     border: none;
     background-color: rgba(255,255,255,0.2);
-    border-radius: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 700px;
     text-align: center;
     color: white;
     font-size: 30px;
+    margin-bottom: 60px;
   }
 
 .ranking {
   border: none;
   background-color: rgba(255,255,255,0.2);
-  border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 50px;
@@ -244,6 +243,18 @@ z-index: 3;
   color: white;
   font-size: 30px;
   margin-bottom: 50px;
+}
+
+#titleBox {
+  width: 700px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 30px;
+  border-radius: 20px 20px 0 0;
+  border-bottom: white dotted 3px;
 }
 
 /*
@@ -264,10 +275,17 @@ z-index: 3;
       background-color: #ff3a3a;
       box-shadow: 0 3px 3px -5px #7c7c7c, 0 2px 5px #7c7c7c;
       border-radius: 20px;
-      position: relative;
-      margin: 15px 0;
+      
+      margin: 0 auto;
       height: 50px;
-      width: 600px;
+      width: 420px;
+  }
+
+  .progressBox {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 35px;
   }
 /*
   .progress-done {
