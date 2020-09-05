@@ -172,7 +172,7 @@ z-index: 3;
     color: white;
     width: 700px;;
     position: absolute;
-    top: 175px;
+    top: 200px;
     left: 50%;
     margin-left: -350px;
     text-align: center;
@@ -185,7 +185,7 @@ z-index: 3;
     position: absolute;
     left: 50%;
     margin-left: -300px;
-    top: 267px;
+    top: 282px;
     text-align: center;
 }
 
@@ -194,7 +194,7 @@ z-index: 3;
     width: 600px;
     left: 50%;
     margin-left: -300px;
-    top: 320px;
+    top: 345px;
     font-size: 30px;
     color: white;
     text-align: center;
@@ -204,7 +204,7 @@ z-index: 3;
     position: absolute;
     left: 50%;
     margin-left: -350px;
-    top: 370px;
+    top: 395px;
   }
 
   .goal {

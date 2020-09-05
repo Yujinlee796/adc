@@ -71,7 +71,7 @@ firebase.auth().onAuthStateChanged(function(user)
           //방목록 표 제목 html에 띄우기
           htmlTh += '<th>방 이름</th>';
           htmlTh += '<th>현황</th>';
-          htmlTh += '<th>입장</th>';
+          htmlTh += '<th>입장하기</th>';
           $("#dynamicThead").empty();
           $("#dynamicThead").append(htmlTh);
 
@@ -80,7 +80,7 @@ firebase.auth().onAuthStateChanged(function(user)
             html += '<tr>';
             html += '<td>' + roomList[key].name + '</td>';
             html += '<td>' + roomList[key].state + '</td>';
-            html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">입장</button> </td>'
+            html += '<td> <button onclick ="setRoomNameAndMove(\'room.html\',\'' + roomList[key].name + '\')">GO</button> </td>'
             html += '</tr>';
           }
           $("#dynamicTbody").empty();

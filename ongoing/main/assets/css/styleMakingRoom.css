@@ -203,12 +203,12 @@ type 가이드 모달
     margin-bottom: 30px;
 }
 
-.conscience, .dumbel {
+.conscience, .dumbel, .phone {
     text-align: center;
     font-size: 15px;
   }
 
-  .conscience #right, .dumbel #right {
+  .conscience #right, .dumbel #right, .phone #right {
     border: 1px solid #3d8dd3;
     border-radius: 2px;
     background-color: #3d8dd3;
@@ -218,7 +218,7 @@ type 가이드 모달
     font-family: 'InfinitySans-RegularA1';
   }
 
-  .conscience #right:hover, .dumbel #right:hover {
+  .conscience #right:hover, .dumbel #right:hover, .phone #right:hover {
     border: 1px solid #000;
     border-radius: 2px;
     background: none;

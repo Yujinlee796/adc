@@ -71,9 +71,11 @@ function makingRoom() {
 
   var typeConscience = document.getElementById("radioConscience");
   var typeDumbel = document.getElementById("radioDumbel");
+  var typePhone = document.getElementById("radioPhone");
   var resultConscience = $(typeConscience).is(":checked");
   var resultDumbel = $(typeDumbel).is(":checked");
-  var typeArray = [resultConscience, resultDumbel];
+  var resultPhone = $(typePhone).is(":checked");
+  var typeArray = [resultConscience, resultDumbel, resultPhone];
   console.log(typeArray);
 
   var roomName = document.getElementById("room_name").value;
@@ -88,7 +90,7 @@ function makingRoom() {
   //입렵칸을 모두 채웠는지 확인
   if(roomName != "" && roomGoal != "" && roomBet != "" && roomDate != "")
   {
-    if (resultConscience === true || resultDumbel === true) {  //인증방식 체크했는지 확인
+    if (resultConscience === true || resultDumbel === true || resultPhone === true) {  //인증방식 체크했는지 확인
     
     if(tempRoomName != '') {   //방이름 중복 확인을 완료하였는지 확인
       //중복 확인했던 이름과 동일한 이름인지 확인
@@ -145,7 +147,7 @@ function makingRoom() {
         //인증타입에 따라 저장되는 roomData가 다름
 
         //인증타입이 양심적 기록인 경우
-        if (resultConscience === true && resultDumbel === false) {
+        if (resultConscience === true && resultDumbel === false && resultPhone === false) {
           var roomData =
           {
             name : roomName,
@@ -158,7 +160,7 @@ function makingRoom() {
         }
 
         //인증타입이 스마트 아령인 경우
-        else if (resultConscience === false && resultDumbel === true) {
+        else if (resultConscience === false && resultDumbel === true  && resultPhone === false) {
           var roomData = 
           {
             name : roomName,
@@ -167,6 +169,19 @@ function makingRoom() {
             endDate : roomDate,
             startDate : startDate,
             certifyType : 'dumbel'
+          };
+        }
+
+        //인증타입이 스마트 아령인 경우
+        else if (resultConscience === false && resultDumbel === false  && resultPhone === true) {
+          var roomData = 
+          {
+            name : roomName,
+            betting : roomBet,
+            goals : roomGoal,
+            endDate : roomDate,
+            startDate : startDate,
+            certifyType : 'phone'
           };
         };
 

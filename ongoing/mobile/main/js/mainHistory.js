@@ -60,7 +60,7 @@ firebase.auth().onAuthStateChanged(function(user)
           for (key in roomList) {
             html += '<tr>';
             html += '<td>' + roomList[key].name + '</td>';
-            html += '<td> <button onclick ="setRoomNameAndMove(\'roomHistory.html\',\'' + roomList[key].name + '\')">상세보기</button> </td>'
+            html += '<td> <button onclick ="setRoomNameAndMove(\'roomHistory.html\',\'' + roomList[key].name + '\')">GO</button> </td>'
             html += '</tr>';
           }
           $("#dynamicTbody").empty();

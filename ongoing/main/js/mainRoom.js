@@ -75,7 +75,7 @@ window.onload = function(){
           console.log("요기는 양심방");
         }
 
-        else if (certifyType === 'dumbel') {
+        else if (certifyType === 'dumbel' || certifyType === 'phone') {
           successBtn.style.display = "none";
           goCertifyBtn.style.display = "block";
           console.log("요기는 아령방");
@@ -131,7 +131,7 @@ window.onload = function(){
     
 
     //settings 버튼 만드는 코드 ★모바일추가★
-    var addBtn = '<button type="button" id="settings" onclick="setRoomNameAndMoveToSettings(\'roomSettings.html\',\'' + roomName + '\');"><img id="settingsIcon" src="assets/img/settings.png"></button>'
+    var addBtn = '<button type="button" id="settings" onclick="setRoomNameAndMove(\'roomSettings.html\',\'' + roomName + '\');"><img id="settingsIcon" src="assets/img/settings.png"></button>'
 
     $("#btnPlace").append(addBtn);
 }
@@ -781,6 +781,13 @@ function setRoomNameAndMove(url,rName) {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function goCertify() {
   window.location.href = "roomCertify.html";
+}
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%o
+//certifyType = dumbel 일때, 그런데 pc일때
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function noCertify() {
+  alert("인증 기능은 핏투게더 모바일 앱에서만 사용하실 수 있습니다.");
 }
 
 /*
