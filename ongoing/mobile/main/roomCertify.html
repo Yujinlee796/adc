@@ -3,19 +3,31 @@
     <head>
         <title>인증하기 ｜ 핏투게더</title>
         <link href="../logo/titleIcon.png" rel="shortcut icon" type="image/x-icon">
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
     </head>
     <body>
         <div class="complete">
-            <button id="completeCertify">인증 완료</button>
+            <!--<span id="roomname"></span> 방 <br>-->
+            <button id="completeCertify" onclick="completeCertify()">인증 완료</button>
         </div>
+
+        <!--이 html에 해당하는 JS File-->
+        <script src="js/mainRoomCertify.js"></script>
+
     </body>
 
-    <script type="text/javascript"> //페이지 로드 후 2초 후 버튼 뜸
+    <!--<script type="text/javascript"> //페이지 로드 후 2초 후 버튼 뜸
         window.onload = setTimeout(function() {
             var button = document.getElementById("completeCertify");
             button.style.display = "block";
         }, 2000);
-    </script>
+    </script>-->
     <style> /*그냥 css 다 html 내부에서 해결*/
         @font-face {
             font-family: 'InfinitySans-RegularA1';
@@ -30,7 +42,6 @@
             left: 50%;
             margin-top: -50px;
             margin-left: -150px;
-            display: none;
         }
 
         .complete button {
