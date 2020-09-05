@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'InfinitySans-RegularA1';
+}
+
+
+
+html { 
+    background: url(../img/certifyBackground.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+
+.exp1 {
+    color: white;
+    font-size: 70px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 510px;    
+}
+
+.exp2 {
+    color: white;
+    font-size: 40px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 640px;  
+}
+
+#completeCertify {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -70px;
+    margin-left: -250px;
+}
+
+.complete button {
+    background: none;
+    border: white 5px solid;
+    border-radius: 2px;
+    color: #fff;
+    transition: 0.3s;
+    font-family: 'InfinitySans-RegularA1';
+    font-size: 70px;
+    height: 250px;
+    width: 500px;
+    cursor: pointer;
+}
+
+
+.complete button:hover {
+    background: none;
+    border: rgba(61,141,211,1) 5px solid;
+    border-radius: 2px;
+    color: rgba(61,141,211,1);
+    transition: 0.3s;
+    font-family: 'InfinitySans-RegularA1';
+}
