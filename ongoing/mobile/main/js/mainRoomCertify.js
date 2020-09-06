@@ -25,6 +25,10 @@ var lastClick = '';
 var loadingState = false;
 
 window.onload = function() {
+    setTimeout(function() {
+        var button = document.getElementById("completeCertify");
+        button.style.display = "block";
+      }, 1000);
 
     roomName = getURLParameter();
 
@@ -55,7 +59,7 @@ function completeCertify() {
         lastClick = getTimeStamp();
         usersroomUpdate();
 
-        ReactNativeWebView.postMessage('complete!');
+        //ReactNativeWebView.postMessage('complete!');
         setRoomNameAndMove("room.html", roomName);
         console.log("successful");
     }
@@ -71,7 +75,7 @@ function usersroomUpdate() {
     if (currentUserID != ''){
         firebase.database().ref('Usersroom/' + currentUserID + '/' + roomName).set({
             recentcnt : 1,
-            lastClick : lastClick,
+            lastClick : lastClick
         },
         function(error) {
         if(error)
@@ -87,7 +91,7 @@ function usersroomUpdate() {
         });
 
         firebase.database().ref('Rooms/' + roomName + '/Users/'+ currentUserID).set({
-            fitcnt : fitcnt,
+            fitcnt : fitcnt
         },
         function(error) {
         if(error)
