@@ -236,7 +236,7 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     var distance = end - start;
     var d = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-    return d; //기간이 총 몇일인지 리턴
+    return d+1; //기간이 총 몇일인지 리턴
   }
 
 

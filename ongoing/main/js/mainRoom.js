@@ -128,7 +128,7 @@ window.onload = function(){
       } else if (!user) { window.location.href = "../index.html"; //signout 상태이면 쫓겨나는 코드
       } else if (roomName == '') { alert('방 이름을 불러오지 못했습니다.');}
     });
-    
+
 
     //settings 버튼 만드는 코드 ★모바일추가★
     var addBtn = '<button type="button" id="settings" onclick="setRoomNameAndMove(\'roomSettings.html\',\'' + roomName + '\');"><img id="settingsIcon" src="assets/img/settings.png"></button>'
@@ -360,11 +360,11 @@ function createScore(score, i) {
   divElem2.appendChild(elemTxt);*/
   var elemTxt = score + '점';
   $(divElem).append(elemTxt);
-  
-  
+
+
   divElem2.appendChild(divElem3);
   divElem.appendChild(divElem2);
-  
+
   return divElem;
   }
 
@@ -403,7 +403,7 @@ function calculatePeriod(sDate, eDate) {
   var distance = end - start;
   var d = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-  return d; //기간이 총 몇일인지 리턴
+  return d+1; //기간이 총 몇일인지 리턴
 }
 
 //============================================================================//
