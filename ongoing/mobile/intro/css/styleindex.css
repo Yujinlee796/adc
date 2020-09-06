@@ -176,6 +176,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 5px;
 }
 
+
 #hero .btn-get-started {
   width: 120px;
   background: rgba(61,141,211,0.6);
@@ -198,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-services {
-  width: 120px;
+  width: 254px;
   border: 2px solid #fff;
   color: #fff;
   font-family: "InfinitySans-RegularA1";
@@ -208,7 +209,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-services:hover {
-  width: 120px;
   background: rgba(61,141,211,0.6);
   border: 2px solid rgba(61,141,211,0.6);
   font-family: "InfinitySans-RegularA1";
