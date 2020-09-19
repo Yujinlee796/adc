@@ -764,7 +764,7 @@ function endGame(eDate) {
   var distance = end - now;
 
   if( distance < 0 ) {
-    setRoomNameAndMove("byeroom.html",roomName);
+    setRoomNameAndMove("byeRoom.html",roomName);
   }
   else { return 0; }
 }

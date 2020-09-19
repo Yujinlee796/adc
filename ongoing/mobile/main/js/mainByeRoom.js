@@ -204,7 +204,6 @@ function getRoomUsersNname(roomUsersUid, currentUserID) {
     var elemTxt2 = document.createTextNode(calculatePeriod(startDate,endDate)-score + "일");
 
 
-
     divElem2.appendChild(divElem3);
     divElem.appendChild(divElem2);
 
